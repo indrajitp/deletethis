@@ -22,6 +22,7 @@ pipeline{
                     {
                         
                         sh '''
+				ls -ltr
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
                             if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
                             then
