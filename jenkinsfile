@@ -22,7 +22,9 @@ pipeline{
                     {
                         
                         sh '''
-				ls -ltr
+			    checkout([$class: 'GitSCM', branches: [[name: "master"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "tf_creds", url: "https://github.com/indrajitp/deletethis.git"]]])
+			    ls -ltr
+			    pwd
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
                             if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
                             then
