@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <DefaultFaultRule name="fault-rule">
+        <Step>
+            <FaultRules/>
+            <Name>Set-Error</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Access-Control</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>VerbValidation</Name>
+            </Step>
+            <Step>
+                <Name>Verb-Validation</Name>
+                <Condition>validateMethod="false"</Condition>
+            </Step>
+            <Step>
+                <Name>Set-Security</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>Security-Callout</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>XML-to-JSON-For-Credit-Report</Name>
+                <Condition>(request.verb != "OPTIONS" and contentType == "application/json" and isXmlRequest != true)</Condition>
+            </Step>
+            <Step>
+                <Name>Create-Response</Name>
+                <Condition>(request.verb != "OPTIONS" and contentType == "application/json" and isXmlRequest != true)</Condition>
+            </Step>
+            <Step>
+                <Name>Remove-Headers</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="options-pre-flight">
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>Add-Cors</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS"</Condition>
+        </Flow>
+        <Flow name="get-credit-report">
+            <Description>Credit Report</Description>
+            <Request>
+                <Step>
+                    <Name>Request-Validation</Name>
+                    <Condition>(request.verb != "OPTIONS" and request.header.Content-Type == "application/json")</Condition>
+                </Step>
+                <Step>
+                    <Name>Assign-Message-Request-For-Credit-Report</Name>
+                    <!--<Condition>(request.verb != "OPTIONS" and CreditReport == "CreditReport") </Condition>-->
+                    <Condition>(request.verb != "OPTIONS" and isCommercial == false) </Condition>
+                </Step>
+                <Step>
+                    <Name>Set-Request-Commercial-CreditReport</Name>
+                    <Condition>(request.verb != "OPTIONS" and isCommercial == true) </Condition>
+                </Step>
+                <Step>
+                    <Name>Set-Request-For-CreditReport</Name>
+                    <Condition>(request.verb != "OPTIONS" and CreditReport == "CreditReport" ) </Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Decode-Response</Name>
+                </Step>
+                <Step>
+                    <Condition>(response.status.code = 503) or (response.status.code = 400)</Condition>
+                    <Name>Bad-Request</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/report") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="InvalidResource">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>InvalidResourceFault</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix != "/report") and (request.verb != "OPTIONS")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/apis/boarding/creditreport</BasePath>
+        <Properties/>
+        <VirtualHost>globalpay</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="NoRoute">
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>
+    <RouteRule name="creditreport">
+        <TargetEndpoint>Credit Report</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/report") and (request.verb = "POST")</Condition>
+    </RouteRule>
+    <RouteRule name="default"/>
+</ProxyEndpoint>

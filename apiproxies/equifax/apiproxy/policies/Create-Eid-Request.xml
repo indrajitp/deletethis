@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Create-Eid-Request">
+    <DisplayName>Create Eid Request</DisplayName>
+    <Properties/>
+    <Properties/>
+    <Set>
+        <Verb>POST</Verb>
+        <Headers>
+            <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+            <Header name="Accept">application/xml</Header>
+        </Headers>
+    </Set>
+    <Add>
+        <FormParams>
+            <FormParam name="InputSegment">{request.content}</FormParam>
+            <FormParam name="DecisionType">{private.cs.password}</FormParam>
+            <FormParam name="cmdSubmit">Submit</FormParam>
+            <FormParam name="EFXEnvironment">A01PKSS</FormParam>
+        </FormParams>
+    </Add>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="request"/>
+</AssignMessage>

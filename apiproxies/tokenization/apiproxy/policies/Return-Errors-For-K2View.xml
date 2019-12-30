@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Return error message if anything fails at K2view end-->
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Return-Errors-For-K2View">
+    <DisplayName>Return Errors For K2View</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+                {
+                    "httpCode": "{httpcode}",
+                	"httpMessage": "{httpMessage}",
+                	"moreInformation": "{moreInfo}"
+                }
+			</Payload>
+            <StatusCode>{errorCode}</StatusCode>
+            <ReasonPhrase>{errortype}</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

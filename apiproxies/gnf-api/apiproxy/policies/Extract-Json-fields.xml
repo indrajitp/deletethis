@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Json-fields">
+    <DisplayName>Extract Json fields</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="MessageCategory">
+            <JSONPath>$.messageCategory</JSONPath>
+        </Variable>
+        <Variable name="MessageContent">
+            <JSONPath>$.messageContent</JSONPath>
+        </Variable>
+        <Variable name="Resource">
+            <JSONPath>$.Resource</JSONPath>
+        </Variable>
+        <Variable name="test">
+            <JSONPath>$.</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

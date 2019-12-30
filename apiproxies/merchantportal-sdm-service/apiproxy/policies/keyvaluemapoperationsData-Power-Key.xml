@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="keyvaluemapoperationsData-Power-Key" mapIdentifier="_kvm_merchantportal">
+    <DisplayName>keyvaluemapoperationsData-Power-Key</DisplayName>
+    <Properties/>
+    <Get assignTo="id">
+        <Key>
+            <Parameter>client_id</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="secret">
+        <Key>
+            <Parameter>client_secret</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

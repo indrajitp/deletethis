@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Add-Transaction-Headers">
+    <Description>The mandatory x_global_transaction_id,x_global_transaction_id_source are set in the headers 
+                  when the request is being passed to the backend </Description>
+    <DisplayName>Add-Transaction-Headers</DisplayName>
+    <Properties/>
+    <Remove>
+        <Headers>
+            <Header name="apikey"/>
+        </Headers>
+    </Remove>
+    <Set>
+        <Headers>
+            <Header name="X-IBM-Client-Id">{id}</Header>
+            <Header name="X-IBM-Client-Secret">{secret}</Header>
+            <!-- <Header name="Client-Id">{id}</Header>
+            <Header name="Client-Secret">{secret}</Header>-->
+            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id_source">globalpay.ApigeeEdge</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Extract response variable-->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-OutPut-Variables">
+    <DisplayName>Extract OutPut Variables</DisplayName>
+    <JSONPayload>
+        <Variable name="errorResponse">
+            <JSONPath>$.error</JSONPath>
+        </Variable>
+    </JSONPayload>
+</ExtractVariables>

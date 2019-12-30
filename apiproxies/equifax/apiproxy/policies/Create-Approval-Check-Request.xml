@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Create-Approval-Check-Request">
+    <DisplayName>Create Approval Check Request</DisplayName>
+    <Properties/>
+    <Set>
+        <Verb>POST</Verb>
+        <Path>/underwrite/{underWriting.guid}</Path>
+        <Headers>
+            <Header name="Content-Type">application/json</Header>
+            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id_source">globalpay.ApigeeEdge</Header>
+        </Headers>
+        <Payload contentType="application/json">
+        {approvalCheckReq}
+    </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="request"/>
+</AssignMessage>

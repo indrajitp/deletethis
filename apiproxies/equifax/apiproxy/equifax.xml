@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="8" name="equifax">
+    <Basepaths>/equifax_creditscore_service</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1543357380486</CreatedAt>
+    <CreatedBy>ranganath.parvataneni@globalpay.com</CreatedBy>
+    <Description>Equifax_Creditscore_service</Description>
+    <DisplayName>Equifax_Creditscore_service</DisplayName>
+    <LastModifiedAt>1546955824489</LastModifiedAt>
+    <LastModifiedBy>prashant.chouhan@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:5799601e99ea9262c444bf25cf3ecd7ec842b20dc0ec4a9c490b018d8edfbadc0bfe137931a8522b9f6972621fc55671cba2ca465bcc0f38e62decb7fb75db2a</ManifestVersion>
+    <Policies>
+        <Policy>Access-Control</Policy>
+        <Policy>Add-Cors</Policy>
+        <Policy>Assign-Message-Request-For-Credit-Report</Policy>
+        <Policy>Bad-Request</Policy>
+        <Policy>Create-Approval-Check-Request</Policy>
+        <Policy>Create-Eid-Request</Policy>
+        <Policy>Create-Response</Policy>
+        <Policy>Decode-Response</Policy>
+        <Policy>Guid-Extractor</Policy>
+        <Policy>Guid-Validation</Policy>
+        <Policy>InvalidResourceFault</Policy>
+        <Policy>Remove-Headers</Policy>
+        <Policy>Request-Validation</Policy>
+        <Policy>Security-Callout</Policy>
+        <Policy>Set-Error</Policy>
+        <Policy>Set-Request-Commercial-CreditReport</Policy>
+        <Policy>Set-Request-For-CreditReport</Policy>
+        <Policy>Set-Security</Policy>
+        <Policy>Set-Target</Policy>
+        <Policy>Verb-Validation</Policy>
+        <Policy>VerbValidation</Policy>
+        <Policy>XML-to-JSON-For-Credit-Report</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>UWSvc</ProxyEndpoint>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>wsdl://SOAP-Message-Validation-1.wsdl</Resource>
+        <Resource>jsc://createResponse.js</Resource>
+        <Resource>jsc://decodeResponse.js</Resource>
+        <Resource>jsc://guidValidation.js</Resource>
+        <Resource>jsc://requestValidation.js</Resource>
+        <Resource>jsc://setError.js</Resource>
+        <Resource>jsc://setRequestForCreditReport.js</Resource>
+        <Resource>jsc://setSecurity.js</Resource>
+        <Resource>jsc://setTarget.js</Resource>
+        <Resource>jsc://verbValidation.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>Credit Report</TargetEndpoint>
+        <TargetEndpoint>Under_Writing_Service</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Assign-Message-1" version="SHA-512:684fc78c8fe92a022ccf4ba07a1c2e4805ed70eb239c0c8a19ba104756233c1153e920d9ea6e50cdae0375b0a67e7c3c52a6c487943d9f0a78db334c3f5d4335"/>
+        <VersionInfo resourceName="Extract-Variables-1" version="SHA-512:3fd306d21b4b4d67b75492fd8e5850a0e7ece9e2c2e141a7bdb8b92f3f0abe78656a520f00cfe6abf2e43c02cb2c53caa5cc365c2f4967a13d9744b84de06521"/>
+        <VersionInfo resourceName="xmltojson-1" version="SHA-512:37a249bb09331a999ab33e6efa3e57933fcf0c8a52423be91472bc881902263bb5bded6c8b5fee371e3d693a6b20d832120ada6b286ac82518604f9a07dc0394"/>
+        <VersionInfo resourceName="xmltojson-2" version="SHA-512:a337d331ebfd19149fc534512943ac895fd19daf869d5376c3ecfe5213e5cb740f6f8d27a0fda6a4c1be84ab8a2270398a3830c7a127b80bce033c87bc8a2559"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:719d8b33e6890d8c070cb0c23ba6a4f77573f76d201671df3da0f6e060772922ae0ec2dd54c82f6f5f71f2598837a82e614bddda7173e25217c61769180c2d91"/>
+    </ProxyEndpoints>
+    <Resources/>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:bd6e2a4ab510a3ca4e373c639978924cd8cc6cdd1cf2e5d1bd6a17dade9affb6a93f492c3b01074167d99ff67e78b5ee81979adaecb6b316df235987935d3877"/>
+    </TargetEndpoints>
+</Manifest>

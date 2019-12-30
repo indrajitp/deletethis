@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="Credit Report">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Set-Target</Name>
+            </Step>
+            <Step>
+                <Name>Create-Eid-Request</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Add-Cors</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="creditreport"/>
+        </LoadBalancer>
+        <Path>/efxws/STSRequest.asmx/Submit</Path>
+    </HTTPTargetConnection>
+</TargetEndpoint>

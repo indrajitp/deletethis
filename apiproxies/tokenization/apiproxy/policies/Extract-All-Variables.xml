@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Extracting input request inorder to build request structure for backend-->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-All-Variables">
+    <DisplayName>Extract All Variables</DisplayName>
+    <Properties/>
+    <Source clearPayload="false">request</Source>
+    <JSONPayload>
+        <Variable name="private.pan">
+            <JSONPath>$.PAN</JSONPath>
+        </Variable>
+        <Variable name="private.tnumber">
+            <JSONPath>$.TOKEN_NUM</JSONPath>
+        </Variable>
+        <Variable name="mid">
+            <JSONPath>$.MID</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

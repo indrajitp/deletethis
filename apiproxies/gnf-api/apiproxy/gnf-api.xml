@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="gnf-api">
+    <Basepaths>/gnf</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1546945601986</CreatedAt>
+    <CreatedBy>indrajit.patil3@globalpay.com</CreatedBy>
+    <Description>indrajitp git: 91450eb0 U3-DPE-CPB-0135</Description>
+    <DisplayName>GNF</DisplayName>
+    <LastModifiedAt>1547113357030</LastModifiedAt>
+    <LastModifiedBy>indrajit.patil3@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:56f61f837c5f125f76e982e0535b1765dae919918f30833f77a9f8220ae7f6b5083dca0b302ed86a26f10ef4b0f048f30ecf959ee0fbe0cb891f0ad95b14d371</ManifestVersion>
+    <Policies>
+        <Policy>Basic-Authentication-1</Policy>
+        <Policy>Constructing-Request</Policy>
+        <Policy>CreateResponse</Policy>
+        <Policy>EV-Json-Payload</Policy>
+        <Policy>Extract-Json-fields</Policy>
+        <Policy>TargetEndpoint</Policy>
+        <Policy>add-cors</Policy>
+        <Policy>assign-globaltxid</Policy>
+        <Policy>remove-query-param-apikey</Policy>
+        <Policy>verify-api-key</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://Constructing Request.js</Resource>
+        <Resource>jsc://TargetEndpoint.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

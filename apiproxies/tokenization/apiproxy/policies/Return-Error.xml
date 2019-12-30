@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Setting bad request error message which caught at APIGEE -->
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Return-Error">
+    <DisplayName>Return Error</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+                {
+                    "httpCode": "400",
+                	"httpMessage": "Bad Request",
+                	"moreInformation": "Invalid Input Parameter"
+
+                }
+			</Payload>
+            <StatusCode>{errorCode}</StatusCode>
+            <ReasonPhrase>{errortype}</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

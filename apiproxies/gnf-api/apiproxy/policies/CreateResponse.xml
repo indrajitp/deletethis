@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="CreateResponse">
+    <DisplayName>CreateResponse</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers/>
+        <QueryParams/>
+        <FormParams/>
+        <!-- <Verb>GET</Verb> -->
+        <Path/>
+        <Payload contentType="application/json">
+{
+   "messageId":"{MessageId}",
+   "message":"{Message}",
+   "publishTime":"{Publishtime}",
+   "x_global_transaction_id":"{GlobalTransactionId}"
+}
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="responset"/>
+</AssignMessage>

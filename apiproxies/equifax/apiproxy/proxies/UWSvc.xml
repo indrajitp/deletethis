@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="UWSvc">
+    <Description/>
+    <FaultRules/>
+    <DefaultFaultRule name="fault-rule">
+        <Step>
+            <FaultRules/>
+            <Name>Set-Error</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Access-Control</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>VerbValidation</Name>
+            </Step>
+            <Step>
+                <Name>Verb-Validation</Name>
+                <Condition>validateMethod="false"</Condition>
+            </Step>
+            <Step>
+                <Name>Set-Security</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>Security-Callout</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Remove-Headers</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="options-pre-flight">
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>Add-Cors</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS"</Condition>
+        </Flow>
+        <Flow name="approval-check">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Guid-Extractor</Name>
+                    <Condition>(request.verb != "OPTIONS")</Condition>
+                </Step>
+                <Step>
+                    <Name>Guid-Validation</Name>
+                    <Condition>(request.verb != "OPTIONS")</Condition>
+                </Step>
+                <Step>
+                    <Name>Create-Approval-Check-Request</Name>
+                    <Condition>(request.verb != "OPTIONS")</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/underwrite/*") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="InvalidResource">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>InvalidResourceFault</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix != "/underwrite/*") and (request.verb != "OPTIONS"))</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/apis/boarding/merchant/approvalcheck</BasePath>
+        <Properties/>
+        <VirtualHost>globalpay</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="NoRoute">
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>
+    <RouteRule name="underwritingservice">
+        <TargetEndpoint>Under_Writing_Service</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/underwrite/*") and (request.verb = "POST")</Condition>
+    </RouteRule>
+    <RouteRule name="default"/>
+</ProxyEndpoint>

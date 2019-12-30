@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="tokenization_rev33_2019_11_15">
+    <Basepaths>/apis/tokenization</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1574329824926</CreatedAt>
+    <CreatedBy>saurabh.sinha@globalpay.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>tokenization</DisplayName>
+    <LastModifiedAt>1574329824926</LastModifiedAt>
+    <LastModifiedBy>saurabh.sinha@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:0f6afd39e2d53034f8aa3f4c05b727578616aa7e6290cf19d00097fe3880cfbd9d4505dc173521a6edaf9129c57072adb9f93befb5c08e376a3187b9757991b8</ManifestVersion>
+    <Policies>
+        <Policy>Add-CORS</Policy>
+        <Policy>Apply-GPN-Security-Policies</Policy>
+        <Policy>Create-Detoken-Request</Policy>
+        <Policy>Create-Global-Tokenize-Request</Policy>
+        <Policy>Create-Global-with-Merchant-Request</Policy>
+        <Policy>Create-Merchant-Request</Policy>
+        <Policy>Default-Fault-Handling</Policy>
+        <Policy>ErrorCheck</Policy>
+        <Policy>Extract-All-Variables</Policy>
+        <Policy>Extract-OutPut-Variables</Policy>
+        <Policy>Get-K2View-Key</Policy>
+        <Policy>Invalid-Resource-Fault</Policy>
+        <Policy>JSON-Threat-Protection</Policy>
+        <Policy>Log-Mid-To-Stack-Driver</Policy>
+        <Policy>Quota</Policy>
+        <Policy>Remove-Pathsuffix</Policy>
+        <Policy>Retry-Mechanism</Policy>
+        <Policy>Return-Error-For-Backend-K2View</Policy>
+        <Policy>Return-Error-For-Backend</Policy>
+        <Policy>Return-Error-For-Invalid-APIKey</Policy>
+        <Policy>Return-Error-For-JSON-Threat-Protection</Policy>
+        <Policy>Return-Error-Message For Invalid Token</Policy>
+        <Policy>Return-Error</Policy>
+        <Policy>Return-Errors-For-K2View</Policy>
+        <Policy>Set-Cache-Control</Policy>
+        <Policy>Set-Default-Request-Message</Policy>
+        <Policy>Set-Security-Headers</Policy>
+        <Policy>Set-Security-Policies</Policy>
+        <Policy>Validate-Data</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://errorCheck.js</Resource>
+        <Resource>jsc://logMidToStackDriver.js</Resource>
+        <Resource>jsc://removePathsuffix.js</Resource>
+        <Resource>jsc://retryMechanism.js</Resource>
+        <Resource>jsc://setSecurity.js</Resource>
+        <Resource>jsc://validateData.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>Detoken K2View</TargetEndpoint>
+        <TargetEndpoint>Global Token</TargetEndpoint>
+        <TargetEndpoint>Merchant and Global Token</TargetEndpoint>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

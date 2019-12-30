@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Set-Request-Commercial-CreditReport">
+    <DisplayName>Assign Message Request For Commercial-CreditReport</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="text/xml" variablePrefix="$" variableSuffix="#">
+            <CNCustTransmitToEfx xmlns="http://www.equifax.ca/XMLSchemas/CustToEfx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.equifax.ca/XMLSchemas/UAT/CNCustTransmitToEfx.xsd">
+                <CNCustomerInfo>
+                    <CustomerCode>$customerCode#</CustomerCode>
+                    <CustomerInfo>
+                        <CustomerNumber>$customerNumber#</CustomerNumber>
+                        <SecurityCode>$securityCode#</SecurityCode>
+                    </CustomerInfo>
+                    <CustomerId>$customerId#</CustomerId>
+                </CNCustomerInfo>
+                <CNRequests>
+                    <CNCommercialRequest>
+                        <CustomerInfo>
+                            <CustomerNumber>$customerNumber#</CustomerNumber>
+                            <SecurityCode>$securityCode#</SecurityCode>
+                        </CustomerInfo>
+                        <FirmName>$firmName#</FirmName>
+                        <Addresses>
+                            <Address addressType="CURR">
+                                <CivicNumber>$civicNumber#</CivicNumber>
+                                <StreetName>$streetName#</StreetName>
+                                <Suite/>
+                                <City>$city#</City>
+                                <Province code="ON"/>
+                                <PostalCode>$postalCode#</PostalCode>
+                            </Address>
+                        </Addresses>
+                        <ParsedTelephones>
+                            <ParsedTelephone telephoneType="BUS">
+                                <AreaCode/>
+                                <Number/>
+                                <Extension/>
+                            </ParsedTelephone>
+                        </ParsedTelephones>
+                        <FileNumber/>
+                    </CNCommercialRequest>
+                    <CNOutputParameters>
+                        <Language>$language#</Language>
+                        <OutputParameter outputParameterType="COMM">
+                            <GenericOutputCode>$genericOutputCode#</GenericOutputCode>
+                            <CustomizationCode>$customizationCode#</CustomizationCode>
+                        </OutputParameter>
+                    </CNOutputParameters>
+                </CNRequests>
+            </CNCustTransmitToEfx>
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

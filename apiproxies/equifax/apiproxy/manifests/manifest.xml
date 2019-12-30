@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Access-Control" version="SHA-512:bcd0032c825b1feab0e827c79e5dba279b7ad1cb4db6c1e0e59945f7654372bbeda1e656d5031c7e54f090eaa1db533d8a16472989822c2dc0cbeaa4fbf97f7e"/>
+        <VersionInfo resourceName="Add-Cors" version="SHA-512:06c5ab608808abb0aad2149b427663ffcdda94333750a1ba0710ac92890937b287defac8ac39627db58b0c04c53259ef31bfd10d458e14f7906d8ac1eccde0ab"/>
+        <VersionInfo resourceName="Assign-Message-Request-For-Credit-Report" version="SHA-512:255869286fd8d3dcb9f456341ca7a6eb73864f3071c17fb2a05a12f69ccd9206d9b6bfd0824fc708c6cd18366f9cc2258158d8df365e8c3a6d4f0c7b457897bb"/>
+        <VersionInfo resourceName="Bad-Request" version="SHA-512:2837c1df56eee1729b5ab99260a0d920f0a6c2924b9ddc8a21f80f62620500249e86ed52ab99b7fcd7d5f26efa4a3408f64d36466c42540acdc7d0f83026a22e"/>
+        <VersionInfo resourceName="Create-Approval-Check-Request" version="SHA-512:cf2e2d0c157a02ceb756cecfc51992adb9149dcd1eeb524b98527717fe51a0fcc9e637108507c7ef6ed0b584c34f979f7146dfa9f0b5a9cda868ebcd9684893f"/>
+        <VersionInfo resourceName="Create-Eid-Request" version="SHA-512:3421e57e52ef0af6bcce1beac9ffb511d83d55da083c2b98f426a504328512b91ba0f6508ba9f2c3ecadfdac9bb709f12189b64e5eabbde48a9eef4cea317ecb"/>
+        <VersionInfo resourceName="Create-Response" version="SHA-512:ffa4340b9bc79ede86898271d07aef03d75aa104be245c8cb29147887b16e32b6707c93a4bc4674d4e1bda131d3c989bfe8f3443f9092e523bdbf82e8237ebfd"/>
+        <VersionInfo resourceName="Decode-Response" version="SHA-512:10e0c5a3880165a9d2adabe4dcde5a79a6eb9279f7aacc36b5cf495acd7b3c92ee8d86d310e88ccadf19572e07c7bc5a7c58d342dd40aab2c4813f606dabd80b"/>
+        <VersionInfo resourceName="Guid-Extractor" version="SHA-512:94b7114711a20c48af621f3f99643ea7409a89943ef993b0b74e2ec883ad63e55ebe9fdf44dd371ecc3c68e9e22523b062c63b51beb537024e6a01f0d990d53c"/>
+        <VersionInfo resourceName="Guid-Validation" version="SHA-512:7f31b45cea9699480f6c77f13e21e041edf3748bb5ffd60d8805616770d144b1842bf05697225689de6063ab9bc457c967a9ab1164f3ef902092cbeacabee4af"/>
+        <VersionInfo resourceName="InvalidResourceFault" version="SHA-512:2696dcb95a41d9e4a44540ef4bd28ef955c558a85e35e812941bfdcc72746cc98ca16b6702c7476b638e8e44f00176f9262cfa61361917ea538756d8532cf915"/>
+        <VersionInfo resourceName="Remove-Headers" version="SHA-512:8d7ba7921da134f40cc4c62d8532d2f38916e68a4a16c7a54a28661bf42acd8d310275c6e0f29c3e2f09d137522dd64ec6b6d8aa06e75d4320c6575d2d054ac3"/>
+        <VersionInfo resourceName="Request-Validation" version="SHA-512:eef75bf89d7274129f0b0864964df666113406cc93b61d76222f7ca806eb39b699ea3e5751006fd69445163d25fb9b28d6573b09b83fae84d7b0b53b562474ab"/>
+        <VersionInfo resourceName="Security-Callout" version="SHA-512:411529b1f1f23c9dc1aa2f95965c8985aab27dbd6a8dd0712815ea3bc50e50dd42568bded5df9c99d0561a440a045d2383bef2cf8249b0e7e4f74763387b33ab"/>
+        <VersionInfo resourceName="Set-Error" version="SHA-512:ba12eacfdc55fd2358e30425f5c981a1dd6d5bf5f909dcfcd94d63c5bd23a969bc0b881bf411c60717cbb0d16057a099957db2f5991223276ef86538882c7ba7"/>
+        <VersionInfo resourceName="Set-Request-Commercial-CreditReport" version="SHA-512:aa54bedf190ad4c5341929810f098857d80a9991e916907bdb6c04efd0dd437d8449b0cda53a0adcbb9b5a01f0d16a7c0dcad3532eb01d58206f460890411010"/>
+        <VersionInfo resourceName="Set-Request-For-CreditReport" version="SHA-512:677af860ead24bd4329902471f5b406ec9ca7f2d3563e9bde1839721a696540f6822a4760e1bae68d3460042378bb07488d1108e13ba9c6b4170a2d79516c4f3"/>
+        <VersionInfo resourceName="Set-Security" version="SHA-512:4cdda96dd98e03a6e810f7b1ee1c2d5f03607eb84be6134a2f52dcd821838e8aa9a8a7a8b033573c6f08b669b76486b7e6d02239b68903eb1a90be06d748221d"/>
+        <VersionInfo resourceName="Set-Target" version="SHA-512:5d77e7345a6a592d4bb76edda17d514fcdbdd4772587a0ab6681b0f4b06880057482cf2c4d7ab5446eb0bb18eba671a06dfaa5058fb8f8ac2bd9736f27e13777"/>
+        <VersionInfo resourceName="Verb-Validation" version="SHA-512:a3a256f11ebbb24a059e07eedd4112e36f7262d305fd21f3c3d301809943fcddbcb30b954f9090e88df10f01547e21b316041d6d8e5154aacfb14d62aeaba9f6"/>
+        <VersionInfo resourceName="VerbValidation" version="SHA-512:971c2bac03998f36809826d07dcae1a0e0d115c88d44f8f37e29cac856f71d16d1db0ccc070f579d95ab6c6647fb537ba22efd608913fdce4734f06badf55e7a"/>
+        <VersionInfo resourceName="XML-to-JSON-For-Credit-Report" version="SHA-512:da41a0fa2e489e4ccefd309dc33d1a74d71a4ccfd6631e9b7e51dae5ed56f9724cd3aee57e37580bc1cd160889f19077cb5df8eae3d77ed8da3c84359aacaf91"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="UWSvc" version="SHA-512:08583fa9251ff64401d26dcd81cd25d0ea27e22baa79d4d319abbbc45dc217ca8fd2b79f82c930f5576509bf65d5c4032416c43cf9eb71363f7f4df35e3eca43"/>
+        <VersionInfo resourceName="default" version="SHA-512:984cce8f9f3e90964efb8a079e04424a8e404081798d7ba72461e4bbc78d53d96ae94463d6bcfa8a145589938a386522287dd986f6d9982db9a86649dddaed3c"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://createResponse.js" version="SHA-512:b04d68b3d0940c0e0d8be503dd510c94753ddb6bf0c7e6a558a0920637039e8158f70e4a11661f9e780097ca936365ad1fce5af2ad6cbe3ace1b58bf6c94bf76"/>
+        <VersionInfo resourceName="jsc://decodeResponse.js" version="SHA-512:6c70902c19d75468915ad1b748b90a306ef1eecd16d257c48fb7d92476b6c4db5632ebef23896722e4561f91902a05cb07a8d8263d7231f3e76392f8d8e18ea4"/>
+        <VersionInfo resourceName="jsc://guidValidation.js" version="SHA-512:32bae84102f1f06154ec5c741d3300b0a76683dbe3cdbb04e9280edd683aaffde793689745c683eb841b9f7a5ebaead4f45394cfa77f181204d84892069b435f"/>
+        <VersionInfo resourceName="jsc://requestValidation.js" version="SHA-512:40158cc6c16ec8f9b1b3c9d4687cc98d7cab758c6e7f0e13634e5eb82a9e6701f066d3fb1f0b20ca71b8df4ae6720d83e63586e7d323717d9662679cad23fb3f"/>
+        <VersionInfo resourceName="jsc://setError.js" version="SHA-512:f82b665e9776f3d2ba5ab9f34109acc8715048783fa6bb1762ecf4a534fbe2971e0a30622979ac84e4af495f4b4958e12a06eb38b0dbf1b7cc8e30194bf6692c"/>
+        <VersionInfo resourceName="jsc://setRequestForCreditReport.js" version="SHA-512:987a7370339c4dbff14b3fc5107760d96f5efbbf017d6667e9c9bcf60a0a1d67ca0cf9ece77e45b40706a947793b6da9d01d60da569bf412495cc0822301c6fd"/>
+        <VersionInfo resourceName="jsc://setSecurity.js" version="SHA-512:fb86ba8464ca9b1a84e0b33d65c4d9275d227b347903febd0c47d9513ac718daf12fbf9756f394e47b63d935ba25480c903cb33a79ec894f1f6fcee3b27acf12"/>
+        <VersionInfo resourceName="jsc://setTarget.js" version="SHA-512:a653bff2cb44f171ae88556142e3b207726ba150de5ca44c88bffc2967a7e51fede3d56cef92296799d2fda173501e7c64f981fbc224dbdf7a6aaccae6241a3d"/>
+        <VersionInfo resourceName="jsc://verbValidation.js" version="SHA-512:d056ec3888e1dee730b89afed0e2b920d8c568648669db9a0c7683958223924f676bbf3422c1e65b3d7bb5a2e842c6025a5d7cb4c95e7c6427e685fe1bc41540"/>
+        <VersionInfo resourceName="wsdl://SOAP-Message-Validation-1.wsdl" version="SHA-512:182a909d139d57e25ec3acdcb0174f27f3656615877bacd6a0f48f351b00d272416e33f045e1d47cccb589db165cbb86776b2566d80ac4ae747cfd7e0c378759"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="Credit Report" version="SHA-512:fcd8e4569ded7bcae72c17a76517e3eb3dc2274eba36b1ebe425bc6af8d9fc336e735fc341db1350683235a9467ce7a615b462ad1f59fb33c114d009909f19eb"/>
+        <VersionInfo resourceName="Under_Writing_Service" version="SHA-512:d9140db83e4e47fc6c3de7a22490eba6def51ebd583eecdeb3880f81f3466ee08df6d01f74d31a2150caf3412dac352120b3a05f0a548af37f04d380883aab03"/>
+    </TargetEndpoints>
+</Manifest>

@@ -1,0 +1,64 @@
+pipeline {
+    agent any
+
+    stages {
+		stage('Detect') {
+            steps {
+               sh '''
+                            git log -1 | grep -i commit | awk '{print $2}' > latestcommitidfile
+                            if [ `cat latestcommitidfile` == `cat ~/oldcommitidfile` ]
+                            then
+                                touch changed_files
+                            else
+                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > changed_files
+                                cat changed_files
+                                cat changed_files > ~/file_to_be_build
+                                cat ~/file_to_be_build
+								
+								echo "gnf-api
+toknization" > $WORKSPACE/changed_files
+                                git log -1 | grep -i commit | awk '{print $2}' > ~/oldcommitidfile
+                            fi
+							pwd
+                  '''
+            }
+        }
+        stage('Build-Scan-Deploy') {
+            steps {
+				script{
+						dir("${WORKSPACE}")
+					{
+						def service_count = sh(script: "cat $WORKSPACE/changed_files | wc -l ", returnStdout: true).trim();
+					    println "service_count:$service_count"
+						
+								sh '''
+									echo "In shell"
+	                             cat $WORKSPACE/changed_files | while read line
+								 do
+								 echo "In while loop"
+								 echo " $line "
+								 cd $WORKSPACE/$line
+								 pwd
+								 done
+										
+								'''
+								
+				
+						
+						
+						}
+						}
+					}
+				}		
+		stage('PerformanceTesting') {
+            steps {
+                echo 'Need to add code here for Jmeter testing, As of now Jmeter script is ready'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'This will be added once i resolve issues of above stages'
+            }
+        }
+    }
+}

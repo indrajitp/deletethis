@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Set-Security">
+    <Description>All the default security policies(In GP) that we want our proxy to go through is set to True</Description>
+    <DisplayName>Set-Security</DisplayName>
+    <Properties/>
+    <!-- <Set>
+        <Headers>
+            <Header name="jwt">{message.header.Authorization}</Header>
+        </Headers>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="Authorization"/>
+        </Headers>
+    </Remove>-->
+    <AssignVariable>
+        <Name>_SF_Default-Security-Policies.apikey</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>_SF_Default-Security-Policies.b2c</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>_SF_Default-Security-Policies.sqlProtection</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>_SF_Default-Security-Policies.jsonValid</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

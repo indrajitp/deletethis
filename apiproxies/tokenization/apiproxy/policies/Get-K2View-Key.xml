@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Getting GP App Access token from keyvalue map-->
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="Get-K2View-Key" mapIdentifier="tokenization_k2viewCredentials">
+    <DisplayName>Get K2View Key</DisplayName>
+    <Properties/>
+    <Get assignTo="private.k2vToken">
+        <Key>
+            <Parameter>k2view.token</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.modTenCheck">
+        <Key>
+            <Parameter>modTenCheck</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Add-Transaction-Headers" version="SHA-512:20b7dcc1d0302d207865c9c973150857ca3422a92d0e344f4c70c546316699e43c0233e9ef4038960857e08cabea3b5a0ed9a43374c763210a4b55ed75212cc7"/>
+        <VersionInfo resourceName="FlowCalloutSecurity-Policies" version="SHA-512:c0533e9a3172957e05c79791669c4200b00674f7ba6c8c0fe75cf1045ef16d55abfa8e1c1182cabeae58698957040769da9885d8af14eee690596b23ba831bf2"/>
+        <VersionInfo resourceName="Set-JWT-Header" version="SHA-512:f845091281357cd2adfc0c0775f31e9c47b0495050686bef1e73c0b6fae03c993b5ab73fdd31a74f17208c0aa3f390f3d390ef47973d9cb94399f6f6ba23bd3f"/>
+        <VersionInfo resourceName="Set-Security" version="SHA-512:222bfa4e8fd0d86480ef389efed4239f9a85a997b389875d81502db4a6caadff1ae53915eec465d81d84967bb6722149ee0757b53f63b0be9a0265d999228532"/>
+        <VersionInfo resourceName="add-cors" version="SHA-512:2be9ad6c208c172a206649d0c5e09fd514b70fcfc849cc316a647449de95e60cf924a4a598b14f1f2a58f4be2714d7482286866bb2b30694343f43c4a6815ce3"/>
+        <VersionInfo resourceName="assignRemove-Response-Headers" version="SHA-512:67eae72beb79a2d731a96392a9da6497e1697f5718ca720382a658ad8bd122706f938a77e0e4fd25f075025e856123c14286effcc12304e48f7490becc3f2a55"/>
+        <VersionInfo resourceName="assignmessage-Bad-Request" version="SHA-512:b764f1fdb93353cada94711d7ee278dc954c068a3714ac5d2a7a6a0bf35f65a7ecbeddbc78eb052c25c84a03cdb98110e6989f123174cf6f26c6fba32f166908"/>
+        <VersionInfo resourceName="keyvaluemapoperationsData-Power-Key" version="SHA-512:477bf5dd37012aa0e6bff028bcb7d68e11cc5531e8f31541c4259452bb2c9bd1e28c0401196b2722220619b3bd345764814d2411629341045444dc5804708dde"/>
+        <VersionInfo resourceName="raisefaultInvalid-Resource-Fault" version="SHA-512:205f40adf2c76d6bd508c055b6a7290dca368e650b4aa6a73b8326ee2333da14a5f0997381df13d9fc8a427663b9af2881a816d77bf20a326b8c8f61b31be6bc"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:9911cbc9f019ac4dc931a6ce0b3d066a22a982cc97626712d676e6fbfc9a006ae432744ea06136d23d9b81b8305a9ffe439990c325d24687207102810bb6bdb2"/>
+    </ProxyEndpoints>
+    <Resources/>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="Datapower" version="SHA-512:1cd321b01160cae1dfc6a4ef67cb8ad36a0f444ad3bbc74c05a78ccd55568814829bc387d7930f2365fc1c4e32b24861f78be99b6194e470b994c25e7130ea4c"/>
+        <VersionInfo resourceName="default" version="SHA-512:9679411c0755d42e326151b0551e328b2c6ba438c4ab6c9f3bd4948f01111f396c0ad31170233bd08795887565d72464f5af5e1e675a236a41c69c704f6b8721"/>
+    </TargetEndpoints>
+</Manifest>

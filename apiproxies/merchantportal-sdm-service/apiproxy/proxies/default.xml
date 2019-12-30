@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="invalidrequest_error_message">
+            <Step>
+                <Name>assignmessage-Bad-Request</Name>
+            </Step>
+            <Condition>(fault.name = "ScriptExecutionFailed") or (fault.name= "Failed")</Condition>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Set-JWT-Header</Name>
+                <Condition>(request.verb != "OPTIONS")</Condition>
+            </Step>
+            <Step>
+                <Name>Set-Security</Name>
+                <Condition>(request.verb != "OPTIONS")</Condition>
+            </Step>
+            <Step>
+                <Name>FlowCalloutSecurity-Policies</Name>
+                <Condition>(request.verb != "OPTIONS")</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>add-cors</Name>
+            </Step>
+            <Step>
+                <Name>assignRemove-Response-Headers</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="OptionsPreFlight">
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>add-cors</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS"</Condition>
+        </Flow>
+        <Flow name="Create">
+            <Request>
+                <Step>
+                    <Name>keyvaluemapoperationsData-Power-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Add-Transaction-Headers</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/create") and (request.verb = "POST") and (request.verb != "OPTIONS")</Condition>
+        </Flow>
+        <Flow name="Update">
+            <Request>
+                <Step>
+                    <Name>keyvaluemapoperationsData-Power-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Add-Transaction-Headers</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/update") and (request.verb = "PUT") and (request.verb != "OPTIONS")</Condition>
+        </Flow>
+        <Flow name="UserQuery">
+            <Request>
+                <Step>
+                    <Name>keyvaluemapoperationsData-Power-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Add-Transaction-Headers</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/sdm/*/*") and (request.verb = "GET") and (request.verb != "OPTIONS")</Condition>
+        </Flow>
+        <Flow name="InvalidResource">
+            <Request>
+                <Step>
+                    <Name>raisefaultInvalid-Resource-Fault</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/sdml</BasePath>
+        <Properties/>
+        <VirtualHost>globalpay</VirtualHost>
+    </HTTPProxyConnection>
+    <!--<RouteRule name="Datapower">
+        <TargetEndpoint>Datapower</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/sdm/**") and (request.verb = "GET") and (request.verb != "OPTIONS")</Condition>
+    </RouteRule>-->
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

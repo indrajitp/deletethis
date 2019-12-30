@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-Json-Payload">
+    <DisplayName>EV-Json-Payload</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="MessageId">
+            <JSONPath>$.publishedMessages.[1].messageId</JSONPath>
+        </Variable>
+        <Variable name="Message">
+            <JSONPath>$.publishedMessages.[1].message</JSONPath>
+        </Variable>
+        <Variable name="TopicName">
+            <JSONPath>$.publishedMessages.[1].topicName</JSONPath>
+        </Variable>
+        <Variable name="Publishtime">
+            <JSONPath>$.publishedMessages.[1].publishTime</JSONPath>
+        </Variable>
+        <Variable name="GlobalTransactionId">
+            <JSONPath>$.x_global_transaction_id</JSONPath>
+        </Variable>
+        <Variable name="Message">
+            <JSONPath>$.message</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>

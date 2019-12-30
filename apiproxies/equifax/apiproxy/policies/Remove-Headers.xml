@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Remove-Headers">
+    <DisplayName>Remove Headers</DisplayName>
+    <Properties/>
+    <Remove>
+        <Headers>
+            <Header name="Server"/>
+        </Headers>
+    </Remove>
+    <Set>
+        <Headers>
+            <Header name="Cache-Control">no-store, no-cache</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

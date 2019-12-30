@@ -1,0 +1,6 @@
+testcaseid,userstory,testcasedescription,servername,path,execute,assertheader,env,assertcontentnegative,
+GNF-1-1,GNF-1,valid location (woeid),indrajitpatil3-eval-test.apigee.net,/gnf/all,Y,HTTP/1.1 200 OK,TEST,NON-EXISTENT-WORD,
+GNF-1-2,GNF-1,valid location (woeid),indrajitpatil3-eval-test.apigee.net,/gnf/all,Y,HTTP/1.1 200 OK,TEST,NON-EXISTENT-WORD,
+GNF-1-3,GNF-1,weather at maine,indrajitpatil3-eval-test.apigee.net,/gnf/all,Y,HTTP/1.1 200 OK,TEST,NON-EXISTENT-WORD,
+GNF-1-4,GNF-1,invalid location (woed),indrajitpatil3-eval-test.apigee.net,/gnf/all,Y,HTTP/1.1 200 OK,TEST,city,NON-EXISTENT-WORD
+GNF-1-5,GNF-1,invalid location (woed) test that channel word does not exist,indrajitpatil3-eval-test.apigee.net,/gnf/all,Y,HTTP/1.1 200 OK,TEST,channel,

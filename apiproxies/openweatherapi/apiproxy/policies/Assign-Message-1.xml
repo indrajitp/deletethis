@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-1">
+    <DisplayName>am-remove-query-params</DisplayName>
+    <Remove>
+        <QueryParams>
+            <QueryParam name="city"/>
+            <QueryParam name="apikey"/>
+        </QueryParams>
+    </Remove>
+    <Set>
+        <QueryParams>
+            <QueryParam name="id">{id}</QueryParam>
+            <QueryParam name="APPID">{APPID}</QueryParam>
+        </QueryParams>
+        <Verb>GET</Verb>
+        <Path/>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

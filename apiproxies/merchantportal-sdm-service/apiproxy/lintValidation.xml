@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="lintValidation">
+    <Basepaths>/sdm_service</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1552925788845</CreatedAt>
+    <CreatedBy>saikumarreddy.sheru@globalpay.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>SDM_Service</DisplayName>
+    <LastModifiedAt>1552925788845</LastModifiedAt>
+    <LastModifiedBy>saikumarreddy.sheru@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:349aa5d35139542393ef7ed64c378cfe9e7de3b40a3318c9a35d789e5ba720d8309494acdfe55746c214917e4e2143d7519f60b2603db7c51b2671f97f0dc254</ManifestVersion>
+    <Policies>
+        <Policy>Add-Transaction-Headers</Policy>
+        <Policy>FlowCalloutSecurity-Policies</Policy>
+        <Policy>Set-JWT-Header</Policy>
+        <Policy>Set-Security</Policy>
+        <Policy>add-cors</Policy>
+        <Policy>assignRemove-Response-Headers</Policy>
+        <Policy>assignmessage-Bad-Request</Policy>
+        <Policy>keyvaluemapoperationsData-Power-Key</Policy>
+        <Policy>raisefaultInvalid-Resource-Fault</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>Datapower</TargetEndpoint>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

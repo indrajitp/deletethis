@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Add-CORS" version="SHA-512:1759a74253c05c59e7e4c72152b6e002ee1f183f2dc0c8dd16ac7d61132b6c6b90dc697a7a8b4b023b2000417010b545f9988a2ba9736b2081139a7be204f220"/>
+        <VersionInfo resourceName="Apply-GPN-Security-Policies" version="SHA-512:6d0e6c06d6b327c114fada9f0dec48740884c0b0398a58f6aee79a5e9326697fa79073345db70c11cb4115a1d7715f86dac92b94ae5b2ee4603e6f870fd38027"/>
+        <VersionInfo resourceName="Create-Detoken-Request" version="SHA-512:a199ef61f790720f7b0f3a4d200f0e323a59af00001550d4515ba54fc7ab587a76f82e622975a366939a15b37e68173f43fa67068d42f899aaeac6cb3ebbaeab"/>
+        <VersionInfo resourceName="Create-Global-Tokenize-Request" version="SHA-512:8b994468c4160130e43c82709adb02f184367d3519e9b1b31fb262769b55b7b526e85d1ff03c13b563e1397fbaa9c46e09353554d9e8e0a96be23009ad97dfe1"/>
+        <VersionInfo resourceName="Create-Global-with-Merchant-Request" version="SHA-512:a47df1789e8db4321f8e77e1f010ce4c3f78ebbaf307b45870a798416c844e03d1a3302d5a8c340a78288ae9299ace10d79792150274a5d7e1ca1a6468aadad3"/>
+        <VersionInfo resourceName="Create-Merchant-Request" version="SHA-512:e2dd1042218b6ab7345d6a014bf493c9e157b15bacc32659a695118359b8ef34a3e2fa07964b953d39ae52d1d489345c14412fab165c56648dfc82cab9abaa28"/>
+        <VersionInfo resourceName="Default-Fault-Handling" version="SHA-512:81113e2fbb1edc4c1753e1261282c97f399750d9ea722d7d3fc9725d4cfb6b74799025713b06c0e7259e8aaad70027261ca381caf08ea01af6007bd2945aa1c2"/>
+        <VersionInfo resourceName="ErrorCheck" version="SHA-512:3da56d54259e2c83d361fb3de9ce4a3ac0efb57e326e3754010995a44c4c9598c68a085aec5f142b167127a26164669a3072d807dd83d48e19a137bce662e5ac"/>
+        <VersionInfo resourceName="Extract-All-Variables" version="SHA-512:92ae7edcfb1e4c6a741e6b447b0a2855a96a2fd01c914ec086c53a1ec047aa60725b601ab91aced4354a8d54bb91d3accb8935797ac47b0bf3e468cc728ab425"/>
+        <VersionInfo resourceName="Extract-OutPut-Variables" version="SHA-512:38db16dbdf0162aac5ba8fb258af4f3da1d947b7bf6c60ea5c8bb790f08ad397ad990dd9b1f860613b8289f2f1a35e02131fb5c02c9c111fa6a8bc82d82abe16"/>
+        <VersionInfo resourceName="Get-K2View-Key" version="SHA-512:53a67b6d0344d0ff5af08e4b20351ab8e2fe9f98acd6e67602a8b43d29710305b48a1f9d1a4f6637c8511b43e23d18d0c2119907f44e7f9d57b9c80be6c0769e"/>
+        <VersionInfo resourceName="Invalid-Resource-Fault" version="SHA-512:e2a565977461d7036a5ded2625c7aac65fc8d5dcd9dcc97beaf54ced95a941e6a06660f2061901bc88283d8d58b3ad38663fbdb94633b5bae0be34da34e98489"/>
+        <VersionInfo resourceName="JSON-Threat-Protection" version="SHA-512:f718f57bab9a34fff6d8bc3a381f4b1e732740bb97ba275aa34c738cec18a0efecd0d1f48f41f8d29848287021f4bc69f89e5c5b6547b02b0b901f74666f0a40"/>
+        <VersionInfo resourceName="Log-Mid-To-Stack-Driver" version="SHA-512:3702516124decf4ff1132e929cbd922fb0f6018630f240b3cfb24e689a677a0ea5779ccf8f7a336ca9178b0c0d8dcfbdf91ea67d2f3d72f5e261fe9e36a41f5b"/>
+        <VersionInfo resourceName="Quota" version="SHA-512:4f97ad34b72635d251ef26e13d1b48bf775e4dd8f6f335bf49d59a127470246511b8b771d96000a59b18b8d835ba956e1d21be7041ca5ec1010c86d8274f5d48"/>
+        <VersionInfo resourceName="Remove-Pathsuffix" version="SHA-512:07c811bf3b1970177eceb7d7990b918bbb200ad7a0ad645469bcd71d4e116d980b2acd687df3605d14c97c62777aca03ebe39debd137199a2650094c0cc30b24"/>
+        <VersionInfo resourceName="Retry-Mechanism" version="SHA-512:e09867f3a2558e4893334c2d1f2070d23f1ea8eb0c7f8505ded193a799706b6a7e263cb2689b70bf99f5ade616beb9e1b6de116b1da1387942da2705a468e50e"/>
+        <VersionInfo resourceName="Return-Error" version="SHA-512:1c7e96712bbbfcb641573e331ba6117c6d3b831ce3bed217c938682c4ca007e2eab35ed1a03e40aa45186d92bb75664d04f8a1eb5bbaa22f22a7b858bf8127ef"/>
+        <VersionInfo resourceName="Return-Error-For-Backend" version="SHA-512:e9eab3d9f7af94f9e4d3941793b131a3578e329a6bafc8bdf0b9836ef0ab4acdcd437c429558d6e0f34d9d6208eb57383e964f2b736205b3c09d0ca3a1a4b385"/>
+        <VersionInfo resourceName="Return-Error-For-Backend-K2View" version="SHA-512:5e9e41b7202ce9c0686831281c3514661115f1706dee76dc1f19897708733504f5d1a8b7b456b4f43462786c576af2703e69df03eed81096acb22e76aa976e78"/>
+        <VersionInfo resourceName="Return-Error-For-Invalid-APIKey" version="SHA-512:7b95da4f4647a2e89f0bb25d25282f5f5b25816f97ee11d6083bbb6ba55d5c4d5cf2f88c5d4973cde6798efca4f3c0ec324415b976beea2a1062d90265db9c8f"/>
+        <VersionInfo resourceName="Return-Error-For-JSON-Threat-Protection" version="SHA-512:6e716b74498bcec34fd4922272eb78ffffc9a2b03fbed637417c6186a07737afa19afe4bb56ca59596b06597df3933e2f2ce4315e516ba63b397fdfa27cf0b4b"/>
+        <VersionInfo resourceName="Return-Error-Message For Invalid Token" version="SHA-512:d1bcd143d975797365bd9e75aedaee20beb0fabc022a4f2066418c27934ab668a46583d228903f1dbbc9e4bd06cd48c77ec006a7dd5e77283f76fbdf1f5e5ed6"/>
+        <VersionInfo resourceName="Return-Errors-For-K2View" version="SHA-512:b3ceb5ae6daec1ab3b644dcea427f77b7ae9456480b1e757abd48756f91c253f0af86b19b89626a6a867016c43038ac0a2391d69137be17097368366f9b185bc"/>
+        <VersionInfo resourceName="Set-Cache-Control" version="SHA-512:f0a85dac473853a499fe52ef7d369cd073c79c01516916ca233d0487fedac4273396ac6805055040897a02532115e4f85266ec58ccfb00d7384f4577f446edd6"/>
+        <VersionInfo resourceName="Set-Default-Request-Message" version="SHA-512:1c5c537e946d2fc769d76a87a9844bc02e80b8cd7eef13363c6e71cbf00700cfa792c77536b525b6c5fcb376c2ecc6701c8d30f4c37e9a09324a62406b1661bf"/>
+        <VersionInfo resourceName="Set-Security-Headers" version="SHA-512:ebef34fe9d39224ed33aa0382b158da881f628e480757cc9587ab41b98a9d7dd6dc2f50ee5c17b65564b8278de9a0ab3a689a37e76f029e4f6cfc5282d6c49c7"/>
+        <VersionInfo resourceName="Set-Security-Policies" version="SHA-512:f1d61fb81c5ee11fd6694a5c6204ce268934d1ae9d04da1ffb29cef1db7cff41b65bbc9e9ddf3cf86e1f7f39da1295630908fe7ab3cec822e749b191b94e211d"/>
+        <VersionInfo resourceName="Validate-Data" version="SHA-512:07e5859b40fe733a2b610f4cf63ea3abaf8e988ff5f94922ee6b3f27b841556b0435320a26cf6ad44d2ef84ad2f38805c8e9cf94e057b94db0715af2bcd71bf2"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:76da7bb6ac0d411a57e104d4ce3e2bdd08474913d341be4f9fa82670940c5b44e7c0e69c607cd5063087171d566f2574de5bd248e35f91335d09285553da5d4f"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://errorCheck.js" version="SHA-512:bc524861a0fce4fbd9d08030e0ed5864f9754742ef906d1c7f01ee3c954b7dc13357deb279dda3ed95c2d77d5b05cd0a8186fe6637019439ff74a8ab3ef8d291"/>
+        <VersionInfo resourceName="jsc://logMidToStackDriver.js" version="SHA-512:0527e66d0244c3eddfcb0a39ea28e2b631ee789bfbdddba863b5453bc59d71775ce7f79becfb8c15dc285447c23d98ce00ebcbaad2839ad4b55b40e1a2dae757"/>
+        <VersionInfo resourceName="jsc://removePathsuffix.js" version="SHA-512:3feb5a770cf77e925e8eabe96606b9ff69c3553a880073bae08b75bc7edbd161fc341b85798d38f22c64d625be45590c218064e92bf909e4b922c889dfc12eb8"/>
+        <VersionInfo resourceName="jsc://retryMechanism.js" version="SHA-512:c17e116cbd8e3a4e1e846fc18606106207910028e58be5b0fe779f98249f9d8ff4842b6a38bff520afde49b6c7203c4a7523778877c58754ae018fab91cdec27"/>
+        <VersionInfo resourceName="jsc://setSecurity.js" version="SHA-512:51d3a55b6a2af65cad821fd80498239e680eecc0b3a39a725a1f2bd0a23cfd3a3c4c8e8f148261a5dbd72eaea21c1c30b7ffbbaad6d1e1c8c902d37f896ae996"/>
+        <VersionInfo resourceName="jsc://validateData.js" version="SHA-512:8f44f8b1af60dbdccbb6f6a9735ce3b1dc3b3fbcaea972dddb4b516047d2a2123014420465c0aee66ee54649558b798740bf8b77f845ddfca31ffa06bbf6a6b9"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="Detoken K2View" version="SHA-512:cd8b736c5898def13e9de54c4881fa59b69b135eb8289492aa898514b5ecd26782614d72153159156939059b8fb01406198fa62dfc1dd911cab3005fd56ca24a"/>
+        <VersionInfo resourceName="Global Token" version="SHA-512:ade933885bc1b670db29bcfb77f57fff513bd93632a9f119f6f0af192f36728d365f148d2179b73f2c78f56a360df5e5330b187754497d2adfd7818889897187"/>
+        <VersionInfo resourceName="Merchant and Global Token" version="SHA-512:aa2d3644e669a4266878895cd2897b3e7bbd2abeb0603222e554068ee1189c3d2e2ff9bb5534ade7949b9d89eb4450c8185c54b9828b5109578cee725d88065b"/>
+        <VersionInfo resourceName="default" version="SHA-512:8bbd3a044da5fa558bd74ae45d85b342d93b47bbe1a8ca9fef838fbb7f168049f24469ce08d017ed03a32710ec1672c3116d2b61fec49d79ff7d624ef642bc96"/>
+    </TargetEndpoints>
+</Manifest>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="FailedToResolveAPIKey">
+            <Step>
+                <Name>Return-Error-For-Invalid-APIKey</Name>
+            </Step>
+            <Condition>fault.name Matches "InvalidApiKey"</Condition>
+        </FaultRule>
+        <FaultRule name="JsonThreatProtectionError">
+            <Step>
+                <Name>Return-Error-For-JSON-Threat-Protection</Name>
+            </Step>
+            <Condition>(jsonattack.JSON-Threat-Protection.failed = true)</Condition>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="PlatformFaults">
+        <Step>
+            <Name>Add-CORS</Name>
+        </Step>
+        <Step>
+            <Name>Return-Error-For-Backend-K2View</Name>
+            <Condition>(response.status.code = "500") OR (response.status.code = "502") OR (response.status.code = "503") OR (response.status.code = "504") OR (message.status.code = "500") OR (message.status.code = "502") OR (message.status.code = "503") OR (message.status.code = "504")</Condition>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Extract-All-Variables</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>Log-Mid-To-Stack-Driver</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>JSON-Threat-Protection</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>Validate-Data</Name>
+                <Condition>request.verb != "OPTIONS" and !(proxy.pathsuffix MatchesPath "/ping")</Condition>
+            </Step>
+            <Step>
+                <Name>Return-Error</Name>
+                <Condition>validPayload == "false"</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Extract-OutPut-Variables</Name>
+            </Step>
+            <Step>
+                <Name>ErrorCheck</Name>
+            </Step>
+            <Step>
+                <Name>Return-Errors-For-K2View</Name>
+                <Condition>checkError == "true"</Condition>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="options-preflight">
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>Add-CORS</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS"</Condition>
+        </Flow>
+        <Flow name="global-tokenize">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Get-K2View-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Create-Global-Tokenize-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/global/number") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="merchant-tokenize">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Get-K2View-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Create-Merchant-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/merchant/number") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="global-with-merchant-tokenize">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Get-K2View-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Create-Global-with-Merchant-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/number") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="detokenize">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Get-K2View-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Create-Detoken-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="invalid-resource">
+            <Description/>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>Invalid-Resource-Fault</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/apis/gptokenization</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="no-route">
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/merchant/number")</Condition>
+    </RouteRule>
+    <RouteRule name="Detoken">
+        <TargetEndpoint>Detoken K2View</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/token")</Condition>
+    </RouteRule>
+    <RouteRule name="Merchant and Global Token">
+        <TargetEndpoint>Merchant and Global Token</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/number")</Condition>
+    </RouteRule>
+    <RouteRule name="Global Token">
+        <TargetEndpoint>Global Token</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/global/number")</Condition>
+    </RouteRule>
+</ProxyEndpoint>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="9" name="openweatherapi">
+    <Basepaths>/weather</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1546533338322</CreatedAt>
+    <CreatedBy>indrajit.patil3@globalpay.com</CreatedBy>
+    <Description>indrajitp git: 91450eb0 U3-DPE-CPB-0135 ::Recommended Forecast Weather API</Description>
+    <DisplayName>openweatherapi</DisplayName>
+    <LastModifiedAt>1547199562772</LastModifiedAt>
+    <LastModifiedBy>indrajit.patil3@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:d76547ecedfd4f86768a628f0244fddf85709a593ca99765622edecbea4f1aa7b4b9f6c15a68b1669bde642ab0a5f5329a0540fb5e2d78a42c3e94485f92b638</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Message-1</Policy>
+        <Policy>Extract-Variables-1</Policy>
+        <Policy>xmltojson-1</Policy>
+        <Policy>xmltojson-2</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Return-Error-For-Backend">
+    <DisplayName>Return Error For Backend</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <!--
+            <Payload contentType="text/plain">Invalid user credentials</Payload>
+            -->
+            <Payload contentType="application/json">
+                {
+                    "httpCode": "500",
+                	"httpMessage": "Failed to established backend connection",
+                	"moreInformation": "Rejected"
+                }
+			</Payload>
+            <StatusCode>{errorCode}</StatusCode>
+            <ReasonPhrase>{errortype}</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-Request-For-Credit-Report">
+    <DisplayName>Assign Message Request For Credit Report</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="text/xml" variablePrefix="$" variableSuffix="#">
+            <CNCustTransmitToEfx xmlns="http://www.equifax.ca/XMLSchemas/CustToEfx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.equifax.ca/XMLSchemas/UAT/CNCustTransmitToEfx.xsd">
+                <CNCustomerInfo>
+                    <CustomerCode>$customerCode#</CustomerCode>
+                    <CustomerInfo>
+                        <CustomerNumber>$customerNumber#</CustomerNumber>
+                        <SecurityCode>$securityCode#</SecurityCode>
+                    </CustomerInfo>
+                    <CustomerId>$customerId#</CustomerId>
+                </CNCustomerInfo>
+                <CNRequests>
+                    <CNConsumerRequests>
+                        <CNConsumerRequest>
+                            <Subjects>
+                                <Subject subjectType="SUBJ">
+                                    <SubjectName>
+                                        <LastName>$lastName#</LastName>
+                                        <FirstName>$firstName#</FirstName>
+                                    </SubjectName>
+                                    <SocialInsuranceNumber>$socialInsuranceNumber#</SocialInsuranceNumber>
+                                    <DateOfBirth>$dateOfBirth#</DateOfBirth>
+                                    <Occupation>$occupation#</Occupation>
+                                </Subject>
+                                <Addresses>
+                                    <Address>
+                                        <CivicNumber>$civicNumber#</CivicNumber>
+                                        <StreetName>$streetName#</StreetName>
+                                        <City>$city#</City>
+                                        <Province code="BC" description="British-Columbia"/>
+                                        <PostalCode>$postalCode#</PostalCode>
+                                    </Address>
+                                </Addresses>
+                            </Subjects>
+                            <CustomerReferenceNumber>$customerReferenceNumber#</CustomerReferenceNumber>
+                            <ECOAInquiryType>$ecoaInquiryType#</ECOAInquiryType>
+                            <JointAccessIndicator>$jointAccessIndicator#</JointAccessIndicator>
+                        </CNConsumerRequest>
+                    </CNConsumerRequests>
+                    <CNOutputParameters>
+                        <Language>$language#</Language>
+                        <OutputParameter outputParameterType="CONS">
+                            <GenericOutputCode>$genericOutputCode#</GenericOutputCode>
+                        </OutputParameter>
+                    </CNOutputParameters>
+                </CNRequests>
+            </CNCustTransmitToEfx>
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

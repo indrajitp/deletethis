@@ -1,0 +1,88 @@
+pipeline{
+    agent any
+    tools
+    {
+        maven 'Jenkins-Maven'
+        jdk 'Jenkins-Java'
+    }
+    stages{
+        stage ('Initialize'){
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+        stage('CheckOut & FindOut'){
+            steps{
+                script{
+                    cleanWs()
+                    dir("${WORKSPACE}")
+                    {
+                        checkout([$class: 'GitSCM', branches: [[name: "master"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "tf_creds", url: "https://ctf.gpn.globalpay.com/gerrit/apigee"]]])
+                        //remove Old build list and compare current git commitID with old commitID and get diff files
+                        sh '''
+                            git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
+                            if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
+                            then
+                                touch AD_changed_files
+                            else
+                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > AD_changed_files
+                                cat AD_changed_files
+                                cat AD_changed_files > ~/file_to_be_build
+                                cat ~/file_to_be_build
+								
+								echo "gnf-api
+toknization" > $WORKSPACE/AD_changed_files
+                                git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
+                            fi
+							pwd
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Build & SCAN'){
+            steps{
+                script{
+                    dir("${WORKSPACE}")
+                    {
+                        def service_count = sh(script: "cat $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
+                        println "service_count:$service_count"
+                        //def n = service_count.toInteger()
+                        if(service_count!=0)
+                        {
+                            for(i=0; i<service_count.toInteger(); i++)
+                            {
+                                //get service name and version number to take a maven build and deploy to artifactory
+                                def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
+                                
+                                  
+                                    //Create a maven build for specific service
+                                    sh '''
+									service=`cat $WORKSPACE/AD_changed_files | head -1`
+									
+									echo $service
+									ls -ltr
+									cd $WORKSPACE/apiproxies/$service
+									pwd
+									mvn install -Ptest -Dusername=indrajit.patil3@globalpay.com -Dorg=IP@Mar2018
+                                    '''
+                          
+                                
+                                
+                                //remove recently built service name from build list
+                                sh '''
+                                    cd $WORKSPACE
+                                    sed -i '1d' AD_changed_files
+                                '''
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

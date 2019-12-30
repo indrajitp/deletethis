@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Return-Error-For-Invalid-APIKey">
+    <DisplayName>Return-Error-For-Invalid-APIKey</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="application/json">
+                {
+                    "httpCode": "401",
+                	"httpMessage": "Unauthorized",
+                	"moreInformation": "Invalid API Key"
+                }
+			</Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>Invalid API Key</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

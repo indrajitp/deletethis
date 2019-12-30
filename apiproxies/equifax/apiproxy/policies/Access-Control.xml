@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AccessControl async="false" continueOnError="false" enabled="true" name="Access-Control">
+    <DisplayName>Access Control</DisplayName>
+    <IPRules noRuleMatchAction="DENY">
+        <MatchRule action="ALLOW">
+            <!-- Below is the eqvifax Ip range -->
+            <SourceAddress mask="24">208.44.185.0</SourceAddress>
+            <SourceAddress>64.27.246.4</SourceAddress>
+            <SourceAddress>64.27.244.4</SourceAddress>
+            <SourceAddress>52.42.145.197</SourceAddress>
+            <SourceAddress>64.69.195.250</SourceAddress>
+            <!-- address range of Azure -->
+            <SourceAddress>104.45.152.13</SourceAddress>
+            <SourceAddress>13.68.196.39</SourceAddress>
+            <SourceAddress>13.68.196.115</SourceAddress>
+            <SourceAddress>13.68.194.79</SourceAddress>
+            <SourceAddress>40.87.9.247</SourceAddress>
+            <SourceAddress>13.68.195.227</SourceAddress>
+            <SourceAddress>13.68.192.27</SourceAddress>
+            <SourceAddress>13.68.196.48</SourceAddress>
+            <!--temp -->
+            <SourceAddress>104.129.206.72</SourceAddress>
+            <SourceAddress>104.129.206.76</SourceAddress>
+            <SourceAddress>10.20.211.11</SourceAddress>
+            <SourceAddress>10.216.1.2</SourceAddress>
+            <SourceAddress>35.196.229.99</SourceAddress>
+            <SourceAddress>35.185.27.228</SourceAddress>
+            <SourceAddress>64.27.248.4</SourceAddress>
+            <SourceAddress>115.249.166.25</SourceAddress>
+            <SourceAddress>104.129.206.77</SourceAddress>
+            <SourceAddress>24.98.93.198</SourceAddress>
+            <SourceAddress>107.21.54.141</SourceAddress>
+            <SourceAddress>107.212.71.190</SourceAddress>
+            <SourceAddress>104.129.206.83</SourceAddress>
+        </MatchRule>
+    </IPRules>
+</AccessControl>
