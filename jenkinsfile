@@ -20,7 +20,7 @@ pipeline{
                     cleanWs()
                     dir("${WORKSPACE}")
                     {
-                        checkout([$class: 'GitSCM', branches: [[name: "master"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "tf_creds", url: "https://ctf.gpn.globalpay.com/gerrit/apigee"]]])
+                        //checkout([$class: 'GitSCM', branches: [[name: "master"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "tf_creds", url: "https://ctf.gpn.globalpay.com/gerrit/apigee"]]])
                         //remove Old build list and compare current git commitID with old commitID and get diff files
                         sh '''
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
