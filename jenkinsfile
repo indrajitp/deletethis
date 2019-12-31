@@ -22,7 +22,7 @@ pipeline{
                     {
                         
                         sh '''
-			    checkout([$class: 'GitSCM', branches: [[name: "master"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "indrajit-github", url: "https://github.com/indrajitp/deletethis.git"]]])
+			    
 			    ls -ltr
 			    pwd
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
