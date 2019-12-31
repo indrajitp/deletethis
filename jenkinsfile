@@ -69,7 +69,7 @@ toknization" > $WORKSPACE/AD_changed_files
 									ls -ltr
 									cd $WORKSPACE/apiproxies/$service
 									pwd
-									mvn install -Ptest -Dusername=indrajit.patil3@globalpay.com -Dorg=IP@Mar2018
+									mvn install -P test -D username=indrajit.patil3@globalpay.com -D password=IP@Mar2018 -D org=indrajitpatil3-eval
                                     '''
                           
                                 
