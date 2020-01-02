@@ -20,9 +20,11 @@ pipeline{
                     cleanWs()
                     dir("${WORKSPACE}")
                     {
-                        checkout([$class: 'GitSCM', branches: [[name: "master"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "tf_creds", url: "https://ctf.gpn.globalpay.com/gerrit/apigee"]]])
-                        //remove Old build list and compare current git commitID with old commitID and get diff files
+                        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6bbcd2a7-09d4-4f45-9f9a-688c9e2ea1d3', url: 'https://github.com/indrajitp/deletethis.git']]])
                         sh '''
+			    
+			    ls -ltr
+			    pwd
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
                             if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
                             then
@@ -33,8 +35,7 @@ pipeline{
                                 cat AD_changed_files > ~/file_to_be_build
                                 cat ~/file_to_be_build
 								
-								echo "gnf-api
-toknization" > $WORKSPACE/AD_changed_files
+								echo "gnf-api" > $WORKSPACE/AD_changed_files
                                 git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
                             fi
 							pwd
@@ -62,12 +63,15 @@ toknization" > $WORKSPACE/AD_changed_files
                                     //Create a maven build for specific service
                                     sh '''
 									service=`cat $WORKSPACE/AD_changed_files | head -1`
-									
-									echo $service
+									echo 'Deploying a $service Proxy'
 									ls -ltr
 									cd $WORKSPACE/apiproxies/$service
-									pwd
-									mvn install -Ptest -Dusername=indrajit.patil3@globalpay.com -Dorg=IP@Mar2018
+									apigeelint -s apiproxies/$service/apiproxy -f table.js
+									echo '*********************************************************'
+									echo '			Java Code Scan using JSLint					   '
+									echo '*********************************************************'
+									jslint '**/*.js'
+									mvn install -P test -D username=indrajit.patil3@globalpay.com -D password=IP@Mar2018 -D org=indrajitpatil3-eval
                                     '''
                           
                                 
