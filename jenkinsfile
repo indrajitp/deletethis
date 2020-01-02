@@ -63,11 +63,14 @@ pipeline{
                                     //Create a maven build for specific service
                                     sh '''
 									service=`cat $WORKSPACE/AD_changed_files | head -1`
-									
-									echo $service
+									echo 'Deploying a $service Proxy'
 									ls -ltr
 									cd $WORKSPACE/apiproxies/$service
-									pwd
+									apigeelint -s apiproxies/$service/apiproxy -f table.js
+									echo '*********************************************************'
+									echo '			Java Code Scan using JSLint					   '
+									echo '*********************************************************'
+									jslint '**/*.js'
 									mvn install -P test -D username=indrajit.patil3@globalpay.com -D password=IP@Mar2018 -D org=indrajitpatil3-eval
                                     '''
                           
