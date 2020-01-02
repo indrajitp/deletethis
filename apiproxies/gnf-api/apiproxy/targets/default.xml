@@ -5,7 +5,7 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>jsc-TargetEndpoint</Name>
+                <Name>Assign-Message-To-Remove-Path-Suffix</Name>
             </Step>
             <Step>
                 <Name>assign-globaltxid</Name>
