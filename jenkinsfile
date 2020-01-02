@@ -70,7 +70,7 @@ pipeline{
 									echo '*********************************************************'
 									echo '			Java Code Scan using JSLint					   '
 									echo '*********************************************************'
-									jslint '**/*.js'
+									#jslint '**/*.js'
 									mvn install -P test -D username=indrajit.patil3@globalpay.com -D password=IP@Mar2018 -D org=indrajitpatil3-eval
                                     '''
                           
