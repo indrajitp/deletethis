@@ -66,7 +66,7 @@ pipeline{
 									echo 'Deploying a $service Proxy'
 									ls -ltr
 									cd $WORKSPACE/apiproxies/$service
-									apigeelint -s apiproxies/$service/apiproxy -f table.js
+									apigeelint -s apiproxies/$service/apiproxy -f html.js > $service-apigeelint.html
 									echo '*********************************************************'
 									echo '			Java Code Scan using JSLint					   '
 									echo '*********************************************************'
