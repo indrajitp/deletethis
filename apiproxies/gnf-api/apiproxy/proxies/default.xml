@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><ProxyEndpoint name="default">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
     <Description/>
     <FaultRules/>
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>remove-query-param-apikey</Name>
+                <Name>assign-remove-query-param-apikey</Name>
                 <Condition>request.verb != "OPTIONS"</Condition>
             </Step>
             <Step>

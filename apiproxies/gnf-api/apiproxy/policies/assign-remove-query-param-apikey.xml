@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="remove-query-param-apikey">
-    <DisplayName>remove-query-param-apikey</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="assign-remove-query-param-apikey">
+    <DisplayName>assign-remove-query-param-apikey</DisplayName>
     <Remove>
         <QueryParams>
             <QueryParam name="apikey"/>

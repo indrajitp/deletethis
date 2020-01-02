@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="TargetEndpoint" version="SHA-512:3def7c418d29f0d3816ebea551871a0fed21d39a3f3305dfb3389e0ca8ebfcba1ff8571bb2bab4a3331ea28b9f1ee1f444f2b5d6731edcdfaae5a5b276086fb1"/>
         <VersionInfo resourceName="add-cors" version="SHA-512:007cd75c0fce3805278d8b25ac51513be79e6844996e494f83ec533dcc870761b6e47b75e71ea4d8c363fa0ad9b2a95c05e4995941d6e95d108699955727f978"/>
         <VersionInfo resourceName="assign-globaltxid" version="SHA-512:a5ff51a04a4c90afc9af190d7b6573b1aac05b82435fa80d854f3c9a698fa9988e9415eaef0b4045a0a90f507cd5d70afe39124a9fcfc3206f678727f83fde58"/>
-        <VersionInfo resourceName="remove-query-param-apikey" version="SHA-512:0a18ecbef34f90ddf535748cb8710364922cfbd3573637aebb3c0b4d881a9a5ce05c13a34616234a3501c4b0be736b33bfcd256e1144d14b1f184663efe685b7"/>
+        <VersionInfo resourceName="assign-remove-query-param-apikey" version="SHA-512:383553cbcf43d4a040a70ce299119939a53230e9665e632272641493da1438bdfa37a33b2e2718ce5f6f3a2e557fd2c7d5c5dc255f842658e2cb6d7b78aba650"/>
+        <VersionInfo resourceName="jsc-TargetEndpoint" version="SHA-512:91965ddae88a589b6dfd37d5a511d575b6882a0f15dbb4c2825ecb07b9e0c3b63c6a975ff423bdcd593b70f23a914cdb021ce961fb8b2708eb1285741ac7b368"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:42bb67d266d32b3609eb4335ecee519ea06ac93e4a83a53aa8d73653e47371694ee0d492d58aaba3e145766420920ff2b6810a321fa4f95c1a2e272f177e4b47"/>
+        <VersionInfo resourceName="default" version="SHA-512:9b6d09e2d8f9481364c94a12997a4ea2d01750f9d05202f30b7dd9defc1e76f356f81e7057918a6e177cea9414b383747d900bfab164fea5be9c6e1364dfd7d4"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://TargetEndpoint.js" version="SHA-512:d8c04b31efbee55bdc70a6adec3617d33b6009d6aa879932b70629050d4a20f7e93a6b22a8e6d2396dfadc1935ee9c5c4c64bc0f6f69e82a8a3134260e2ca6eb"/>
     </Resources>
     <SharedFlows/>
     <TargetEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:d11f8465bf8864da4860cc8e73d7a2f2b9f62f783c50ab89bd15a114ca0754202ed895f20d9b21d19b27e1194e72cd762f600ca5038a23ef58a0558f7574d6a9"/>
+        <VersionInfo resourceName="default" version="SHA-512:ffcb33a5cb09463f699231a5a6c7575b2cabaa07674813c6c565b9bc58222441e0e2798492b92a4bf0249a8ee99d32f6cbd350a6beadc2b320e83d6b8b129938"/>
     </TargetEndpoints>
 </Manifest>

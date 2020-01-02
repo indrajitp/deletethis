@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><TargetEndpoint name="default">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
     <Description/>
     <FaultRules/>
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>TargetEndpoint</Name>
+                <Name>jsc-TargetEndpoint</Name>
             </Step>
             <Step>
                 <Name>assign-globaltxid</Name>
