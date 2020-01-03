@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="add-cors">
-    <DisplayName>add-cors</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Add-CORS">
+    <DisplayName>Add CORS</DisplayName>
     <FaultRules/>
     <Properties/>
     <Set>
         <Headers>
             <Header name="Access-Control-Allow-Origin">{request.header.origin}</Header>
-            <Header name="Access-Control-Allow-Headers">origin, x-requested-with, accept, content-type</Header>
+            <Header name="Access-Control-Allow-Headers">origin, apikey, apienv, Authorization, x-requested-with, accept, content-type, user_email, what_minimum_log_severity, authorization,source_id,source_transaction_id,what_minimum_log_severity,x_global_transaction_id</Header>
             <Header name="Access-Control-Max-Age">3628800</Header>
             <Header name="Access-Control-Allow-Methods">GET, PUT, POST, DELETE</Header>
+            <Header name="Access-Control-Allow-Credentials">true</Header>
+            <Header name="Access-Control-Expose-Headers">x_global_transaction_id</Header>
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="response"/>
+    <AssignTo createNew="false" transport="https" type="response"/>
 </AssignMessage>

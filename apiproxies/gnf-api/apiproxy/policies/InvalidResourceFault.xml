@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="InvalidResourceFault">
+    <DisplayName>InvalidResourceFault</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+            {
+               "x_global_transaction_id": "{gid}",
+                "sourceTransactionId": "{sourceTxnId}",
+                "errors" :[
+                {
+                "errorCode":"40041",
+                "errorMessage":"Invalid Resource. Resource Not Found"
+                }
+                ]
+            }
+               
+            </Payload>
+            <StatusCode>404</StatusCode>
+            <ReasonPhrase>Not Found</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="Sendgrid Provider">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Remove-Target-Path-suffix</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>Remove-Target-Path-suffix</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://api.sendgrid.com/v3/mail/send</URL>
+        <Property name="io.timeout.millis">120000</Property>
+    </HTTPTargetConnection>
+</TargetEndpoint>

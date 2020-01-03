@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- GNF: extracts the params for the Application management -->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Application-Details">
+    <DisplayName>Extract Application Details</DisplayName>
+    <Source>request</Source>
+    <URIPath>
+        <Pattern ignoreCase="true">/applications/{aId}</Pattern>
+        <Pattern ignoreCase="true">/applications/{aId}/groups</Pattern>
+        <Pattern ignoreCase="true">/applications/{aId}/groups/{gId}</Pattern>
+        <Pattern ignoreCase="true">/applications/{aId}/groups/users</Pattern>
+        <Pattern ignoreCase="true">/applications/{aId}/users</Pattern>
+        <Pattern ignoreCase="true">/applications/{aId}/users/{uId}</Pattern>
+    </URIPath>
+    <QueryParam name="name">
+        <Pattern ignoreCase="true">{appName}</Pattern>
+    </QueryParam>
+    <Header name="user_email">
+        <Pattern ignoreCase="flase">{userEmail}</Pattern>
+    </Header>
+    <Header name="user_id">
+        <Pattern ignoreCase="false">{uId}</Pattern>
+    </Header>
+    <!--Request Payload-->
+    <JSONPayload>
+        <Variable name="aId">
+            <JSONPath>$.applicationId</JSONPath>
+        </Variable>
+        <Variable name="appName">
+            <JSONPath>$.applicationName</JSONPath>
+        </Variable>
+        <Variable name="appPref">
+            <JSONPath>$.applicationPreference</JSONPath>
+        </Variable>
+        <Variable name="appStatus">
+            <JSONPath>$.applicationStatus</JSONPath>
+        </Variable>
+        <!--<Variable name="createdBy">
+            <JSONPath>$.createdBy</JSONPath>
+        </Variable>-->
+        <Variable name="isDeleted">
+            <JSONPath>$.isDeleted</JSONPath>
+        </Variable>
+        <!-- <Variable name="modifiedBy">
+            <JSONPath>$.modifiedBy</JSONPath>
+        </Variable>-->
+        <Variable name="groupEmailProvider">
+            <JSONPath>$.groupEmailProvider</JSONPath>
+        </Variable>
+        <Variable name="groupSmsProvider">
+            <JSONPath>$.groupSmsProvider</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

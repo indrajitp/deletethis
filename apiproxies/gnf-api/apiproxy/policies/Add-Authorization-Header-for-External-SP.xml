@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Add-Authorization-Header-for-External-SP">
+    <DisplayName>Add Authorization Header for External SP</DisplayName>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{decodeBase64(provider_key)}</Header>
+        </Headers>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="provider_apikey"/>
+            <Header name="apikey"/>
+        </Headers>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

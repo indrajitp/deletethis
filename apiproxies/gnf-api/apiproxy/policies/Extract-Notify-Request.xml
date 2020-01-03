@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- GNF: Extracts reuqest params from the notify request payload-->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Notify-Request">
+    <DisplayName>Extract Notify Request </DisplayName>
+    <Properties/>
+    <Source clearPayload="false">request</Source>
+    <Header name="x_global_transaction_id">
+        <Pattern ignoreCase="false">{gid}</Pattern>
+    </Header>
+    <!--Request Payload -->
+    <JSONPayload>
+        <!--notification  details-->
+        <Variable name="destinations">
+            <JSONPath>$.destinations</JSONPath>
+        </Variable>
+        <Variable name="destinationType">
+            <JSONPath>$.destinationType</JSONPath>
+        </Variable>
+        <Variable name="messageContent">
+            <JSONPath>$.message</JSONPath>
+        </Variable>
+        <Variable name="messageCategory">
+            <JSONPath>$.messageCategory</JSONPath>
+        </Variable>
+        <Variable name="messagePriority">
+            <JSONPath>$.messagePriority</JSONPath>
+        </Variable>
+        <Variable name="smsNotificationProvider">
+            <JSONPath>$.notificationProvider.sms</JSONPath>
+        </Variable>
+        <Variable name="emailNotificationProvider">
+            <JSONPath>$.notificationProvider.email</JSONPath>
+        </Variable>
+        <Variable name="notificationChannel">
+            <JSONPath>$.notificationChannel</JSONPath>
+        </Variable>
+        <!--Scheduled Notification details-->
+        <Variable name="isScheduled">
+            <JSONPath>$.isScheduled</JSONPath>
+        </Variable>
+        <Variable name="schedulingEta">
+            <JSONPath>$.schedulingEta</JSONPath>
+        </Variable>
+        <Variable name="timezone">
+            <JSONPath>$.timezone</JSONPath>
+        </Variable>
+        <!--Recurring notification details-->
+        <Variable name="isRecurring">
+            <JSONPath>$.isRecurring</JSONPath>
+        </Variable>
+        <Variable name="recurrenceNumber">
+            <JSONPath>$.recurrenceNumber</JSONPath>
+        </Variable>
+        <Variable name="recurrenceUnit">
+            <JSONPath>$.recurrenceUnit</JSONPath>
+        </Variable>
+        <Variable name="maxRecurringCount">
+            <JSONPath>$.maxRecurringCount</JSONPath>
+        </Variable>
+        <Variable name="sendImmediately">
+            <JSONPath>$.sendImmediately</JSONPath>
+        </Variable>
+        <!--Multi message details-->
+        <Variable name="multiMessageFlag">
+            <JSONPath>$.multiMessageFlag</JSONPath>
+        </Variable>
+        <Variable name="multiMessageNumber">
+            <JSONPath>$.multiMessageNumber</JSONPath>
+        </Variable>
+        <Variable name="multiMessageTotal">
+            <JSONPath>$.multiMessageTotal</JSONPath>
+        </Variable>
+        <!--template details-->
+        <Variable name="useTemplate">
+            <JSONPath>$.useTemplate</JSONPath>
+        </Variable>
+        <Variable name="templateId">
+            <JSONPath>$.templateId</JSONPath>
+        </Variable>
+        <Variable name="templateType">
+            <JSONPath>$.templateType</JSONPath>
+        </Variable>
+        <!--retry details-->
+        <Variable name="retryMessageFlag">
+            <JSONPath>$.retryMessageFlag</JSONPath>
+        </Variable>
+        <Variable name="maxRetryCount">
+            <JSONPath>$.maxRetryCount</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

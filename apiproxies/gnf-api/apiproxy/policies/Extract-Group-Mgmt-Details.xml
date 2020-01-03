@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- GNF: extracts the params for the Group management -->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Group-Mgmt-Details">
+    <DisplayName>Extract Group Mgmt Details</DisplayName>
+    <Source>request</Source>
+    <URIPath>
+        <Pattern ignoreCase="true">/groups/{gIds}/users/details</Pattern>
+        <Pattern ignoreCase="true">/groups/{gIds}/users/list</Pattern>
+        <Pattern ignoreCase="true">/groups/applications/{aId}/users/{uId}</Pattern>
+        <Pattern ignoreCase="true">/groups/applications/{gId}</Pattern>
+        <Pattern ignoreCase="true">/groups/details/{gIds}</Pattern>
+        <Pattern ignoreCase="true">/groups/details/preferences/{gIds}</Pattern>
+        <Pattern ignoreCase="true">/groups/preferences/{gIds}</Pattern>
+        <Pattern ignoreCase="true">/groups/{gId}</Pattern>
+    </URIPath>
+    <QueryParam name="userEmail">
+        <Pattern ignoreCase="true">{userEmail}</Pattern>
+    </QueryParam>
+    <Header name="user_email">
+        <Pattern ignoreCase="flase">{userEmail}</Pattern>
+    </Header>
+    <!--Request Payload-->
+    <JSONPayload>
+        <Variable name="aId">
+            <JSONPath>$.applicationId</JSONPath>
+        </Variable>
+        <Variable name="customAttribute">
+            <JSONPath>$.customAttribute</JSONPath>
+        </Variable>
+        <Variable name="grpAuthLevel">
+            <JSONPath>$.groupAuthLevel</JSONPath>
+        </Variable>
+        <Variable name="grpStatus">
+            <JSONPath>$.groupStatus</JSONPath>
+        </Variable>
+        <!-- <Variable name="createdBy">
+            <JSONPath>$.createdBy</JSONPath>
+        </Variable>-->
+        <Variable name="grpName">
+            <JSONPath>$.groupName</JSONPath>
+        </Variable>
+        <!-- <Variable name="modifiedBy">
+            <JSONPath>$.modifiedBy</JSONPath>
+        </Variable>-->
+        <Variable name="grpEmailId">
+            <JSONPath>$.groupEmailId</JSONPath>
+        </Variable>
+        <Variable name="grpEmailProvider">
+            <JSONPath>$.groupEmailProvider</JSONPath>
+        </Variable>
+        <Variable name="grpSmsProvider">
+            <JSONPath>$.groupSmsProvider</JSONPath>
+        </Variable>
+        <Variable name="grpMobileNumber">
+            <JSONPath>$.groupMobileNumber</JSONPath>
+        </Variable>
+        <Variable name="grpMobileShortCode">
+            <JSONPath>$.groupMobileShortCode</JSONPath>
+        </Variable>
+        <Variable name="grpUnsubscribe">
+            <JSONPath>$.groupUnsubscribe</JSONPath>
+        </Variable>
+        <Variable name="replyTo">
+            <JSONPath>$.replyTo</JSONPath>
+        </Variable>
+        <Variable name="gId">
+            <JSONPath>$.groupId</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

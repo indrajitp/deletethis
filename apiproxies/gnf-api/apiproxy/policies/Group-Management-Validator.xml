@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="false" timeLimit="200" name="Group-Management-Validator">
+    <DisplayName>Group Management Validator</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://groupManagementValidator.js</ResourceURL>
+</Javascript>

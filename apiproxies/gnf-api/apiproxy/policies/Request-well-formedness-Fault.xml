@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Request-well-formedness-Fault">
+    <DisplayName>Request well-formedness Fault</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+          {
+                "errors" :[
+                {
+                "errorCode":"40001",
+                "errorMessage":"Message Validation error"
+                }
+                ]
+            }
+               
+           </Payload>
+            <StatusCode>400</StatusCode>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

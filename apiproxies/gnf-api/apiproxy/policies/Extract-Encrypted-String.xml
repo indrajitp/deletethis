@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Encrypted-String">
+    <DisplayName>Extract Encrypted String</DisplayName>
+    <Properties/>
+    <Source>request</Source>
+    <URIPath>
+        <!--<Pattern ignoreCase="true">/users/opt-out/{encryptedString}**</Pattern>-->
+        <Pattern ignoreCase="true">/users/unsubscribe/{encryptedString}</Pattern>
+        <Pattern ignoreCase="true">/unsubscribe-selective/{encryptedString}</Pattern>
+    </URIPath>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

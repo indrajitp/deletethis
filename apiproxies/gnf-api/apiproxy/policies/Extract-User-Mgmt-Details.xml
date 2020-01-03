@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- GNF: extracts the params for the User management -->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-User-Mgmt-Details">
+    <DisplayName>Extract User Mgmt Details</DisplayName>
+    <Source>request</Source>
+    <URIPath>
+        <Pattern ignoreCase="true">/users/{uIds}/groups/applications</Pattern>
+        <Pattern ignoreCase="true">/users/{uIds}/groups/list</Pattern>
+        <Pattern ignoreCase="true">/users/applications/{uId}</Pattern>
+        <Pattern ignoreCase="true">/users/details/{uIds}</Pattern>
+        <Pattern ignoreCase="true">/users/details/preferences/notification-preferences/{uIds}</Pattern>
+        <Pattern ignoreCase="true">/users/notification/preferences/{uIds}</Pattern>
+        <Pattern ignoreCase="true">/users/notification/preferences/groups/{gIds}</Pattern>
+        <Pattern ignoreCase="true">/users/{uId}</Pattern>
+        <Pattern ignoreCase="true">/users/{uId}/groups/{fromGroup}/{toGroup}</Pattern>
+        <Pattern ignoreCase="true">/users/{uIds}/applications/{appIds}</Pattern>
+        <Pattern ignoreCase="true">/users/{uIds}/groups/{gIds}</Pattern>
+    </URIPath>
+    <QueryParam name="userEmail">
+        <Pattern ignoreCase="true">{userEmail}</Pattern>
+    </QueryParam>
+    <Header name="user_email">
+        <Pattern ignoreCase="flase">{userEmail}</Pattern>
+    </Header>
+    <!--Request Payload-->
+    <JSONPayload>
+        <Variable name="email">
+            <JSONPath>$.email</JSONPath>
+        </Variable>
+        <Variable name="faxNumber">
+            <JSONPath>$.faxNumber</JSONPath>
+        </Variable>
+        <Variable name="isEmailValid">
+            <JSONPath>$.isEmailValid</JSONPath>
+        </Variable>
+        <Variable name="isMobileValid">
+            <JSONPath>$.isMobileValid</JSONPath>
+        </Variable>
+        <Variable name="mobileNumber">
+            <JSONPath>$.mobileNumber</JSONPath>
+        </Variable>
+        <!-- <Variable name="createdBy">
+            <JSONPath>$.createdBy</JSONPath>
+        </Variable>-->
+        <Variable name="uId">
+            <JSONPath>$.userId</JSONPath>
+        </Variable>
+        <Variable name="userName">
+            <JSONPath>$.userName</JSONPath>
+        </Variable>
+        <Variable name="userStatus">
+            <JSONPath>$.userStatus</JSONPath>
+        </Variable>
+        <!--<Variable name="modifiedBy">
+            <JSONPath>$.modifiedBy</JSONPath>
+        </Variable>-->
+        <Variable name="customAttribute">
+            <JSONPath>$.customAttribute</JSONPath>
+        </Variable>
+        <Variable name="preferredChannel">
+            <JSONPath>$.preferredChannel</JSONPath>
+        </Variable>
+        <Variable name="languageCode">
+            <JSONPath>$.languageCode</JSONPath>
+        </Variable>
+        <Variable name="optIn">
+            <JSONPath>$.optIn</JSONPath>
+        </Variable>
+        <Variable name="preferredEndTime">
+            <JSONPath>$.preferredEndTime</JSONPath>
+        </Variable>
+        <Variable name="preferredStartTime">
+            <JSONPath>$.preferredStartTime</JSONPath>
+        </Variable>
+        <Variable name="timezone">
+            <JSONPath>$.timezone</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

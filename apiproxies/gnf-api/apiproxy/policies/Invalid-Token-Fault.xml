@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Invalid-Token-Fault">
+    <DisplayName>Invalid Token Fault</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+               {
+               "x_global_transaction_id": "{gid}",
+                "sourceTransactionId": "{sourceTxnId}",
+                "errors" :[
+                {
+                "errorCode":"40011",
+                "errorMessage":"Invalid Access Token"
+                }
+                ]
+            }
+            </Payload>
+            <StatusCode>401</StatusCode>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

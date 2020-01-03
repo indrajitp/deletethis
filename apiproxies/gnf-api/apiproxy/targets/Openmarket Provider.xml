@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<TargetEndpoint name="default">
+<TargetEndpoint name="Openmarket Provider">
     <Description/>
     <FaultRules/>
     <PreFlow name="PreFlow">
-        <Request/>
+        <Request>
+            <Step>
+                <Name>Remove-Target-Path-suffix</Name>
+            </Step>
+        </Request>
         <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">
@@ -12,9 +16,8 @@
     </PostFlow>
     <Flows/>
     <HTTPTargetConnection>
-        <Properties>
-            <Property name="io.timeout.millis">120000</Property>
-        </Properties>
-        <URL>https://pid-gousenapb-noti-res02.appspot.com</URL>
+        <Properties/>
+        <URL>https://smsc.openmarket.com/sms/v4/mt</URL>
+        <Property name="io.timeout.millis">120000</Property>
     </HTTPTargetConnection>
 </TargetEndpoint>

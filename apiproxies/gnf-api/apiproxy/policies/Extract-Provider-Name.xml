@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- GNF: Extracts the value of provider_name i.e JangoMailEmail or OpenMarketSMS or SendGridEmail or TwilioSMS in the header-->
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Provider-Name">
+    <DisplayName>Extract Provider Name</DisplayName>
+    <Header name="provider_name">
+        <Pattern ignoreCase="true">{provider}</Pattern>
+    </Header>
+    <Header name="sid">
+        <Pattern ignoreCase="true">{twilioId}</Pattern>
+    </Header>
+    <Header name="provider_apikey">
+        <Pattern ignoreCase="true">{provider_key}</Pattern>
+    </Header>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

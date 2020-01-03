@@ -1,45 +1,450 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
     <Description/>
-    <FaultRules/>
+    <FaultRules>
+        <FaultRule name="ExpiredToken">
+            <Step>
+                <Name>Expired-Token-Fault</Name>
+            </Step>
+            <Condition>fault.name = "access_token_expired"</Condition>
+        </FaultRule>
+        <FaultRule name="InvalidToken">
+            <Step>
+                <Name>Invalid-Token-Fault</Name>
+            </Step>
+            <Condition>fault.name = "invalid_access_token" or fault.name = "access_token_not_approved"</Condition>
+        </FaultRule>
+        <FaultRule name="RevokedToken">
+            <Step>
+                <Name>Revoked-Token-Fault</Name>
+            </Step>
+            <Condition>fault.name = "access_token_not_approved"</Condition>
+        </FaultRule>
+        <FaultRule name="MessageValidation">
+            <Step>
+                <Name>Request-well-formedness-Fault</Name>
+            </Step>
+            <Condition>messagevalidation.failed = "true"</Condition>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="PlatformFaults">
+        <Step>
+            <Name>Add-CORS</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>assign-remove-query-param-apikey</Name>
-                <Condition>request.verb != "OPTIONS"</Condition>
+                <Name>Extract-Params</Name>
             </Step>
             <Step>
-                <Name>assign-globaltxid</Name>
-                <Condition>request.verb != "OPTIONS"</Condition>
+                <Name>Set-Security</Name>
+            </Step>
+            <Step>
+                <Name>Verify-Access-Token</Name>
+                <Condition>enableSecurity == "true"</Condition>
+            </Step>
+            <Step>
+                <Name>Invalidate-Access-Token</Name>
+                <Condition>(accesstoken.client_ip != request.header.X-Forwarded-For or accesstoken.session_id != request.header.session_id) and enableSecurity == "true"</Condition>
+            </Step>
+            <Step>
+                <Name>Assign-Globaltxid</Name>
+                <Condition>(request.verb != "OPTIONS")</Condition>
+            </Step>
+            <Step>
+                <Name>Source-Not-Trusted</Name>
+                <Condition>(accesstoken.client_ip != request.header.X-Forwarded-For or accesstoken.session_id != request.header.session_id) and enableSecurity == "true"</Condition>
+            </Step>
+            <Step>
+                <Name>Security-Flow-Callout</Name>
+                <Condition>enableSecurity == "true"</Condition>
             </Step>
         </Request>
-        <Response>
-            <Step>
-                <Name>add-cors</Name>
-            </Step>
-        </Response>
+        <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">
         <Request/>
-        <Response/>
+        <Response>
+            <Step>
+                <Name>Add-CORS</Name>
+            </Step>
+            <Step>
+                <Name>Set-Response-Header</Name>
+            </Step>
+            <Step>
+                <Name>Set-Stackdriver-LogMessage</Name>
+            </Step>
+        </Response>
     </PostFlow>
     <Flows>
-        <Flow name="Notification">
-            <Description>To notify to enduser</Description>
+        <Flow name="options-preflight">
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>Add-CORS</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+        </Flow>
+        <Flow name="notify">
+            <Description>This method will be used to send the notifications from the users</Description>
+            <Request>
+                <Step>
+                    <Name>Extract-Notify-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Notify-Request-Validator</Name>
+                </Step>
+                <Step>
+                    <Name>Error-Handling</Name>
+                    <Condition>isError == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>Hash-Message-Content</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/notify") or (proxy.pathsuffix MatchesPath "/notify/async")) and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="jangomail-events">
+            <Description>This method is used to listen the jangomail server</Description>
             <Request/>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/all") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/jangomailwebhook") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="openmarket-events">
+            <Description>This method is used to listen OpenMarket Events</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/openmarketwebhook") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="sendgrid-events">
+            <Description>This method is used to listen the SendGrid Events</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/sendgridwebhook") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="twilio-events">
+            <Description>This method is used to listen TwilioEvent</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/twiliowebhook") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="external-service-providers">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-Provider-Name</Name>
+                </Step>
+                <Step>
+                    <Name>Add-Authorization-Header-for-External-SP</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/serviceproviders") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="get-notification-status">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Input-Validator</Name>
+                </Step>
+                <Step>
+                    <Name>Error-Handling</Name>
+                    <Condition>isError == "true"</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/status") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="cancel-notification">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Input-Validator</Name>
+                </Step>
+                <Step>
+                    <Name>Error-Handling</Name>
+                    <Condition>isError == "true"</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/notification/cancel") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unsubscribe">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/users/unsubscribe**") or (proxy.pathsuffix MatchesPath "/unsubscribe-selective**")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="opt-out">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/users/opt-out**") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="manage-subscriptions">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/users/manage-subscriptions**") and ((request.verb = "GET") or (request.verb = "POST")) </Condition>
+        </Flow>
+        <Flow name="user-management">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-User-Mgmt-Details</Name>
+                </Step>
+                <Step>
+                    <Name>User-Management-Validator</Name>
+                </Step>
+                <Step>
+                    <Name>Errors</Name>
+                    <Condition>isError == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>Skip-Verify-Otp-Logic</Name>
+                </Step>
+                <Step>
+                    <Name>Verify-Otp-Flow</Name>
+                    <Condition>(request.verb != "GET") and (skipOtpVerify != "true")</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/users**")</Condition>
+        </Flow>
+        <Flow name="application-management">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-Application-Details</Name>
+                </Step>
+                <Step>
+                    <Name>Application-Management-Validator</Name>
+                </Step>
+                <Step>
+                    <Name>Errors</Name>
+                    <Condition>isError == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>Skip-Verify-Otp-Logic</Name>
+                </Step>
+                <Step>
+                    <Name>Verify-Otp-Flow</Name>
+                    <Condition>(request.verb != "GET") and (skipOtpVerify != "true")</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/applications**")</Condition>
+        </Flow>
+        <Flow name="group-management">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-Group-Mgmt-Details</Name>
+                </Step>
+                <Step>
+                    <Name>Group-Management-Validator</Name>
+                </Step>
+                <Step>
+                    <Name>Errors</Name>
+                    <Condition>isError == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>Skip-Verify-Otp-Logic</Name>
+                </Step>
+                <Step>
+                    <Name>Verify-Otp-Flow</Name>
+                    <Condition>(request.verb != "GET") and (skipOtpVerify != "true")</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/groups**")</Condition>
+        </Flow>
+        <Flow name="Access Token">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Generate-OAuth-20</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Remove-keys</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="get-user-error-list">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/error/list") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get-roles">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-Role-Details</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/roles/user**") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get-logs">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/logs**") and ((request.verb = "GET") or (request.verb = "POST") or (request.verb = "DELETE"))</Condition>
+        </Flow>
+        <Flow name="template-events">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/templates**") and ((request.verb = "GET") or (request.verb = "POST") or (request.verb = "DELETE") or (request.verb = "PUT"))</Condition>
+        </Flow>
+        <Flow name="logos-events">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/logos**") and ((request.verb = "GET") or (request.verb = "POST") or (request.verb = "DELETE"))</Condition>
+        </Flow>
+        <Flow name="user-offboarding">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-Params</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/offboarding**") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="manage-default-config">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/configurations**")</Condition>
+        </Flow>
+        <Flow name="ui-integration">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/admin**")</Condition>
+        </Flow>
+        <Flow name="manage-provider-details">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/system/provider**")</Condition>
+        </Flow>
+        <Flow name="Consumer-ui">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/consumer**") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="InvalidResource">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>InvalidResourceFault</Name>
+                </Step>
+            </Request>
+            <Response/>
         </Flow>
     </Flows>
     <HTTPProxyConnection>
         <BasePath>/gnf</BasePath>
-        <Properties/>
-        <VirtualHost>default</VirtualHost>
-        <VirtualHost>secure</VirtualHost>
+        <Properties>
+            <Property name="api.timeout">180000</Property>
+        </Properties>
+        <VirtualHost>globalpay</VirtualHost>
     </HTTPProxyConnection>
-    <RouteRule name="noroute">
-        <Condition>request.verb == "OPTIONS"</Condition>
+    <RouteRule name="GoNowhere">
+        <Condition>(request.verb == "OPTIONS") or (proxy.pathsuffix MatchesPath "/token")</Condition>
     </RouteRule>
+    <RouteRule name="JangoMailProvider">
+        <TargetEndpoint>Jangomail Provider</TargetEndpoint>
+        <Condition>provider == "JangoMailEmail"</Condition>
+    </RouteRule>
+    <RouteRule name="OpenMarketProvider">
+        <TargetEndpoint>Openmarket Provider</TargetEndpoint>
+        <Condition>provider == "OpenMarketSMS"</Condition>
+    </RouteRule>
+    <RouteRule name="SendGridProvider">
+        <TargetEndpoint>Sendgrid Provider</TargetEndpoint>
+        <Condition>provider == "SendGridEmail"</Condition>
+    </RouteRule>
+    <RouteRule name="TwilioProvider">
+        <TargetEndpoint>Twilio Provider</TargetEndpoint>
+        <Condition>provider == "TwilioSMS"</Condition>
+    </RouteRule>
+    <RouteRule name="ui-integration">
+        <TargetEndpoint>ui-integration</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/admin**")</Condition>
+    </RouteRule>
+    <RouteRule name="Get Status">
+        <TargetEndpoint>Get Status</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/status")</Condition>
+    </RouteRule>
+    <RouteRule name="Cancel Notification">
+        <TargetEndpoint>Cancel Notification</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/notification/cancel")</Condition>
+    </RouteRule>
+    <RouteRule name="Email-webhook-events">
+        <TargetEndpoint>Email-webhook-events</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/jangomailwebhook") or (proxy.pathsuffix MatchesPath "/sendgridwebhook")  or (proxy.pathsuffix MatchesPath "/images**")</Condition>
+    </RouteRule>
+    <RouteRule name="Sms-webhook-events">
+        <TargetEndpoint>Sms-webhook-events</TargetEndpoint>
+        <Condition> (proxy.pathsuffix MatchesPath "/openmarketwebhook") or  (proxy.pathsuffix MatchesPath "/twiliowebhook") </Condition>
+    </RouteRule>
+    <RouteRule name="Template-events">
+        <TargetEndpoint>Template-events</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/templates**") or (proxy.pathsuffix MatchesPath "/logos**") or (proxy.pathsuffix MatchesPath "/configurations**") or (proxy.pathsuffix MatchesPath "/system/provider**")</Condition>
+    </RouteRule>
+    <!--<RouteRule name="Unsubscribe-Optout">
+        <TargetEndpoint>Unsubscribe-Optout</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/users/unsubscribe**") or (proxy.pathsuffix MatchesPath "/users/opt-out**") or (proxy.pathsuffix MatchesPath "/users/manage-subscriptions**")</Condition>
+    </RouteRule>-->
+    <RouteRule name="UserGroup Management">
+        <TargetEndpoint>UserGroup Management</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/users**") or (proxy.pathsuffix MatchesPath "/applications**") or (proxy.pathsuffix MatchesPath "/groups**") or (proxy.pathsuffix MatchesPath "/users/manage-subscriptions**") or (proxy.pathsuffix MatchesPath "/users/opt-out**") or (proxy.pathsuffix MatchesPath "/users/unsubscribe**") </Condition>
+    </RouteRule>
+    <RouteRule name="Consumer-ui">
+        <TargetEndpoint>Consumer-ui</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/consumer**")</Condition>
+    </RouteRule>
+    <RouteRule name="Get Error List">
+        <TargetEndpoint>Get Error List</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/error/list")</Condition>
+    </RouteRule>
+    <RouteRule name="Get Roles">
+        <TargetEndpoint>Get Roles</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/roles/user**")</Condition>
+    </RouteRule>
+    <RouteRule name="Get Logs">
+        <TargetEndpoint>Get Logs</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/logs**")</Condition>
+    </RouteRule>
+    <RouteRule name="User-Offboarding">
+        <TargetEndpoint>User-Offboarding</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/user/offboarding**")</Condition>
+    </RouteRule>
+    <!--<RouteRule name="Images Provider">
+        <TargetEndpoint>Invoke Images</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/images**")</Condition>
+    </RouteRule>-->
+    <!-- <RouteRule name="Application Management">
+        <TargetEndpoint>Application Management</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/applications/**")</Condition>
+    </RouteRule>-->
+    <!--<RouteRule name="noRoute">
+        <Condition>(proxy.pathsuffix MatchesPath "/token") </Condition>
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>-->
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>

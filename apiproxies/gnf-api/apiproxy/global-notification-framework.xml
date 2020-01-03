@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="35" name="global-notification-framework">
+    <Basepaths>/gnf</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1543856215082</CreatedAt>
+    <CreatedBy>srikanthchintala@globalpay.com</CreatedBy>
+    <Description>send notifications to users, system or application</Description>
+    <DisplayName>globalnotificationframework</DisplayName>
+    <LastModifiedAt>1576141169430</LastModifiedAt>
+    <LastModifiedBy>saurabh.sinha@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:75ac1d354b803a8de7dada8f0f3fc47edfb20f7c2ed58373556b2594d0bba4a3409bf4b10704bca9db845d0c8ef92653fdfe1e685d3ad71320a3207be60082b8</ManifestVersion>
+    <Policies>
+        <Policy>Add-Authorization-Header-for-External-SP</Policy>
+        <Policy>Add-CORS</Policy>
+        <Policy>Application-Management-Validator</Policy>
+        <Policy>Assign-Globaltxid</Policy>
+        <Policy>CheckHeaders</Policy>
+        <Policy>Error-Handling</Policy>
+        <Policy>Errors</Policy>
+        <Policy>Expired-Token-Fault</Policy>
+        <Policy>Extract-Application-Details</Policy>
+        <Policy>Extract-Encrypted-String</Policy>
+        <Policy>Extract-Group-Mgmt-Details</Policy>
+        <Policy>Extract-Notify-Request</Policy>
+        <Policy>Extract-Params</Policy>
+        <Policy>Extract-Provider-Name</Policy>
+        <Policy>Extract-Request-Data</Policy>
+        <Policy>Extract-Role-Details</Policy>
+        <Policy>Extract-User-Mgmt-Details</Policy>
+        <Policy>Generate-OAuth-20</Policy>
+        <Policy>Group-Management-Validator</Policy>
+        <Policy>Hash-Message-Content</Policy>
+        <Policy>Input-Validator</Policy>
+        <Policy>Invalid-Token-Fault</Policy>
+        <Policy>InvalidResourceFault</Policy>
+        <Policy>Invalidate-Access-Token</Policy>
+        <Policy>Notify-Request-Validator</Policy>
+        <Policy>Remove-Target-Path-suffix</Policy>
+        <Policy>Remove-keys</Policy>
+        <Policy>Request-well-formedness-Fault</Policy>
+        <Policy>Revoked-Token-Fault</Policy>
+        <Policy>Role-Management-Validator</Policy>
+        <Policy>Security-Flow-Callout</Policy>
+        <Policy>Service-Provider-Validation</Policy>
+        <Policy>Set-Headers</Policy>
+        <Policy>Set-Response-Header</Policy>
+        <Policy>Set-Security</Policy>
+        <Policy>Set-Stackdriver-LogMessage</Policy>
+        <Policy>Skip-Verify-Otp-Logic</Policy>
+        <Policy>Source-Not-Trusted</Policy>
+        <Policy>Test</Policy>
+        <Policy>User-Management-Validator</Policy>
+        <Policy>Verify-Access-Token</Policy>
+        <Policy>Verify-Otp-Flow</Policy>
+        <Policy>setResponseHeader</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://Test.js</Resource>
+        <Resource>jsc://applicationManagementValidator.js</Resource>
+        <Resource>jsc://groupManagementValidator.js</Resource>
+        <Resource>jsc://inputValidator.js</Resource>
+        <Resource>jsc://notifyRequestValidator.js</Resource>
+        <Resource>jsc://removeKeys.js</Resource>
+        <Resource>jsc://roleManagementValidator.js</Resource>
+        <Resource>jsc://setResponseHeader.js</Resource>
+        <Resource>jsc://setSecurity.js</Resource>
+        <Resource>jsc://setStackdriverLogMessage.js</Resource>
+        <Resource>jsc://skipVerifyOtpLogic.js</Resource>
+        <Resource>jsc://targetPathSuffix.js</Resource>
+        <Resource>jsc://userManagementValidator.js</Resource>
+        <Resource>jsc://validateProvider.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>Cancel Notification</TargetEndpoint>
+        <TargetEndpoint>Consumer-ui</TargetEndpoint>
+        <TargetEndpoint>Email-webhook-events</TargetEndpoint>
+        <TargetEndpoint>Get Error List</TargetEndpoint>
+        <TargetEndpoint>Get Logs</TargetEndpoint>
+        <TargetEndpoint>Get Roles</TargetEndpoint>
+        <TargetEndpoint>Get Status</TargetEndpoint>
+        <TargetEndpoint>Jangomail Provider</TargetEndpoint>
+        <TargetEndpoint>Openmarket Provider</TargetEndpoint>
+        <TargetEndpoint>Sendgrid Provider</TargetEndpoint>
+        <TargetEndpoint>Sms-webhook-events</TargetEndpoint>
+        <TargetEndpoint>Template-events</TargetEndpoint>
+        <TargetEndpoint>Twilio Provider</TargetEndpoint>
+        <TargetEndpoint>User-Offboarding</TargetEndpoint>
+        <TargetEndpoint>UserGroup Management</TargetEndpoint>
+        <TargetEndpoint>default</TargetEndpoint>
+        <TargetEndpoint>ui-integration</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

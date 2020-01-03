@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="assign-globaltxid">
-    <DisplayName>assign-globaltxid</DisplayName>
-    <Properties/>
-    <Set>
+<!-- GNF: Set client_ip and session_id from access token -->
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Globaltxid">
+    <DisplayName>Assign token attribute variables</DisplayName>
+    <!--<Set>
         <Headers>
-            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id">{gid}</Header>
         </Headers>
-    </Set>
+    </Set>-->
+    <AssignVariable>
+        <Name>gnf_TokenClientIp</Name>
+        <Ref>accesstoken.client_ip</Ref>
+        <Value>N/A</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>gnf_TokenSessionId</Name>
+        <Ref>accesstoken.session_id</Ref>
+        <Value>N/A</Value>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="https" type="request"/>
 </AssignMessage>

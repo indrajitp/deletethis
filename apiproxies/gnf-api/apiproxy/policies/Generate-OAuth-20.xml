@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 name="Generate-OAuth-20">
+    <!-- This policy generates an OAuth 2.0 access token using the client_credentials grant type -->
+    <Operation>GenerateAccessToken</Operation>
+    <!-- This is in millseconds, so expire in an hour -->
+    <ExpiresIn>86400000</ExpiresIn>
+    <!-- This part is very important: most real OAuth 2.0 apps will want to use other
+         grant types. In this case it is important to NOT include the "client_credentials"
+         type because it allows a client to get access to a token with no user authentication -->
+    <!-- <GrantType>client_credentials</GrantType>-->
+    <SupportedGrantTypes>
+        <GrantType>client_credentials</GrantType>
+    </SupportedGrantTypes>
+    <Attributes>
+        <Attribute name="token_type" display="true">Bearer</Attribute>
+        <Attribute name="client_ip" ref="request.header.X-Forwarded-For" display="false"/>
+        <!--<Attribute name="session_id" ref="messageid" display="false"/>-->
+    </Attributes>
+    <GenerateResponse/>
+</OAuthV2>

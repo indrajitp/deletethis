@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="Invalidate-Access-Token">
+    <DisplayName>Invalidate Access Token</DisplayName>
+    <Operation>InvalidateToken</Operation>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <GenerateResponse enabled="true"/>
+    <Tokens>
+        <Token type="accesstoken" cascade="true">access_token</Token>
+    </Tokens>
+</OAuthV2>

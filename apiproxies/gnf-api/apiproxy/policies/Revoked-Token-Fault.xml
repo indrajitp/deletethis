@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Revoked-Token-Fault">
+    <DisplayName>Revoked Token Fault</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+                {
+                    "x_global_transaction_id": "{gid}",
+                    "sourceTransactionId": "{sourceTxnId}",
+                    "errors": [
+                        {
+                            "errorCode": "40013",
+                            "errorMessage": "Access token is revoked"
+                        }
+                    ]
+                }
+
+            </Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>Not Authenticated</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

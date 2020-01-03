@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- GNF: invokes js file for validating the input details-->
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Input-Validator">
+    <DisplayName>Input Validator</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://inputValidator.js</ResourceURL>
+</Javascript>

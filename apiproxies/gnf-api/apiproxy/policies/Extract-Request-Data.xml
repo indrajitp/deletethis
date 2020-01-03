@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Request-Data">
+    <DisplayName>Extract Request Data</DisplayName>
+    <Properties/>
+    <Source clearPayload="false">request</Source>
+    <QueryParam name="sourceTransactionId">
+        <Pattern ignoreCase="true">{sourceTransactionId}</Pattern>
+    </QueryParam>
+    <QueryParam name="sourceId">
+        <Pattern ignoreCase="true">{sourceId}</Pattern>
+    </QueryParam>
+    <QueryParam name="x_global_transaction_id">
+        <Pattern ignoreCase="true">{global_transaction_id}</Pattern>
+    </QueryParam>
+    <!--Request Payload-->
+    <JSONPayload>
+        <Variable name="sourceTransactionId">
+            <JSONPath>$.sourceTransactionId</JSONPath>
+        </Variable>
+        <Variable name="sourceId">
+            <JSONPath>$.sourceId</JSONPath>
+        </Variable>
+        <Variable name="global_transaction_id">
+            <JSONPath>$.x_global_transaction_id</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>
