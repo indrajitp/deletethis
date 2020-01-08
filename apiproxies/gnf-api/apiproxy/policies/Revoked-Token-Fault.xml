@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="Revoked-Token-Fault">
-    <DisplayName>Revoked Token Fault</DisplayName>
+    <DisplayName>rf-Revoked Token Fault</DisplayName>
     <Properties/>
     <FaultResponse>
         <Set>

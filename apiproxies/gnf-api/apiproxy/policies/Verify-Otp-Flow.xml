@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <FlowCallout async="false" continueOnError="false" enabled="true" name="Verify-Otp-Flow">
-    <DisplayName>Verify Otp Flow</DisplayName>
+    <DisplayName>fc-Verify Otp Flow</DisplayName>
     <FaultRules/>
     <Properties/>
     <SharedFlowBundle>_sf_GNF-Verify-Otp_v1</SharedFlowBundle>

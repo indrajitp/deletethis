@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="false" name="Errors">
-    <DisplayName>Errors</DisplayName>
+    <DisplayName>rf-Errors</DisplayName>
     <Properties/>
     <FaultResponse>
         <Set>

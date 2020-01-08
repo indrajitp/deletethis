@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- GNF: Hashing the message Content and setting to the header HashedContent to send to the backend  -->
 <AssignMessage async="false" continueOnError="false" enabled="true" name="Hash-Message-Content">
-    <DisplayName>Hash Message Content</DisplayName>
+    <DisplayName>am-Hash Message Content</DisplayName>
     <AssignVariable>
         <Name>hashedMessage</Name>
         <Template>{sha256Hex(messageContent)}</Template>

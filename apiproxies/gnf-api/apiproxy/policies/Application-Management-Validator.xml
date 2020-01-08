@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript async="false" continueOnError="false" enabled="false" timeLimit="200" name="Application-Management-Validator">
-    <DisplayName>Application Management Validator</DisplayName>
+    <DisplayName>js-Application Management Validator</DisplayName>
     <Properties/>
     <ResourceURL>jsc://applicationManagementValidator.js</ResourceURL>
 </Javascript>

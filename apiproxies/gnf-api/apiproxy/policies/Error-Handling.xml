@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- GNF: Raise Fault on any errors-->
 <RaiseFault async="false" continueOnError="false" enabled="true" name="Error-Handling">
-    <DisplayName>Error Handling</DisplayName>
+    <DisplayName>rf-Error Handling</DisplayName>
     <Properties/>
     <FaultResponse>
         <Set>

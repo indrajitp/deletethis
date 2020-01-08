@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript async="false" continueOnError="false" enabled="false" timeLimit="200" name="User-Management-Validator">
-    <DisplayName>User Management Validator</DisplayName>
+    <DisplayName>js-User Management Validator</DisplayName>
     <Properties/>
     <ResourceURL>jsc://userManagementValidator.js</ResourceURL>
 </Javascript>

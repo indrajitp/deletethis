@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Remove-Target-Path-suffix">
-    <DisplayName>Remove Target Path Suffix</DisplayName>
+    <DisplayName>js-Remove Target Path Suffix</DisplayName>
     <Properties/>
     <ResourceURL>jsc://targetPathSuffix.js</ResourceURL>
 </Javascript>

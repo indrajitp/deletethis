@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- GNF: Invokes security shared Flow-->
 <FlowCallout async="false" continueOnError="false" enabled="true" name="Security-Flow-Callout">
-    <DisplayName>Security Flow Callout</DisplayName>
+    <DisplayName>fc-Security Flow Callout</DisplayName>
     <FaultRules/>
     <Properties/>
     <SharedFlowBundle>_sf_Default-Security-Policies_v1</SharedFlowBundle>

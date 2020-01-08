@@ -37,6 +37,10 @@
         <Request>
             <Step>
                 <Name>Extract-Params</Name>
+                <Condition>(request.verb == "POST" or request.verb == "PUT")</Condition>
+            </Step>
+            <Step>
+                <Name>Extract-Parameters-without-Body</Name>
             </Step>
             <Step>
                 <Name>Set-Security</Name>
@@ -93,6 +97,7 @@
             <Request>
                 <Step>
                     <Name>Extract-Notify-Request</Name>
+                    <Condition>(request.header.Content-Length &gt; 0)</Condition>
                 </Step>
                 <Step>
                     <Name>Notify-Request-Validator</Name>
@@ -137,6 +142,7 @@
             <Request>
                 <Step>
                     <Name>Extract-Provider-Name</Name>
+                    <Condition>(request.header.Content-Length &gt; 0)</Condition>
                 </Step>
                 <Step>
                     <Name>Add-Authorization-Header-for-External-SP</Name>
@@ -196,6 +202,7 @@
             <Request>
                 <Step>
                     <Name>Extract-User-Mgmt-Details</Name>
+                    <Condition>(request.header.Content-Length &gt; 0)</Condition>
                 </Step>
                 <Step>
                     <Name>User-Management-Validator</Name>
@@ -220,6 +227,7 @@
             <Request>
                 <Step>
                     <Name>Extract-Application-Details</Name>
+                    <Condition>(request.header.Content-Length &gt; 0)</Condition>
                 </Step>
                 <Step>
                     <Name>Application-Management-Validator</Name>
@@ -244,6 +252,7 @@
             <Request>
                 <Step>
                     <Name>Extract-Group-Mgmt-Details</Name>
+                    <Condition>(request.header.Content-Length &gt; 0)</Condition>
                 </Step>
                 <Step>
                     <Name>Group-Management-Validator</Name>
@@ -315,7 +324,7 @@
             <Description/>
             <Request>
                 <Step>
-                    <Name>Extract-Params</Name>
+                    <Name>Extract-Parameters-without-Body</Name>
                 </Step>
             </Request>
             <Response/>
@@ -344,6 +353,12 @@
             <Request/>
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/consumer**") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="error-description">
+            <Description>To fetch error codes and reason</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/errors**") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="InvalidResource">
             <Description/>
@@ -403,7 +418,7 @@
     </RouteRule>
     <RouteRule name="Template-events">
         <TargetEndpoint>Template-events</TargetEndpoint>
-        <Condition>(proxy.pathsuffix MatchesPath "/templates**") or (proxy.pathsuffix MatchesPath "/logos**") or (proxy.pathsuffix MatchesPath "/configurations**") or (proxy.pathsuffix MatchesPath "/system/provider**")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/templates**") or (proxy.pathsuffix MatchesPath "/logos**") or (proxy.pathsuffix MatchesPath "/configurations**") or (proxy.pathsuffix MatchesPath "/system/provider**") or (proxy.pathsuffix MatchesPath "/errors**")</Condition>
     </RouteRule>
     <!--<RouteRule name="Unsubscribe-Optout">
         <TargetEndpoint>Unsubscribe-Optout</TargetEndpoint>

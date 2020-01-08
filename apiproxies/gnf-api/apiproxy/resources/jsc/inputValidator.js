@@ -14,7 +14,8 @@ var reNumbers = new RegExp(numbers);
 var re_sid = reNumbers.test(sourceId);
 var re_sTxnId = reAlpNum.test(sourceTransactionId);
 var errorHandling = [];
-var source_fields = [sourceId, sourceTransactionId]
+var source_fields = [sourceId, sourceTransactionId];
+
 if (globalTransactionId === "" || globalTransactionId === null ) {
     if (!isAnyObjectNull(source_fields)) {
 		var errorCode = "4008";

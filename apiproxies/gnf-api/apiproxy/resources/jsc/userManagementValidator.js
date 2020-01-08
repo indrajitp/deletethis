@@ -1,3 +1,4 @@
+// jshint esversion: 6
 //GNF:Validations on User management 
 var preferredChannel = context.getVariable("preferredChannel");
 var userId = context.getVariable("uId");

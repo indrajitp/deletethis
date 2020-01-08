@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Set-Stackdriver-LogMessage">
-    <DisplayName>Set Stackdriver LogMessage</DisplayName>
+    <DisplayName>js-Set Stackdriver LogMessage</DisplayName>
     <Properties/>
     <ResourceURL>jsc://setStackdriverLogMessage.js</ResourceURL>
 </Javascript>

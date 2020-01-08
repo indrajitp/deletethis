@@ -1,3 +1,4 @@
+ // jshint esversion: 6
  //GNF:Validations on Notification request 
 
  //header details
@@ -70,6 +71,8 @@ var re_multiMsgNum = reNumbers.test(multiMsgNum);
 var re_multiMsgTotal = reNumbers.test(multiMsgTotal);
 var re_tempId = reTemplId.test(tempId);
 var re_maxRecurCnt = reNumbers.test(maxRecurCnt);
+var errorCode = '';
+var errorMessage = '';
 
 //error Handling
 var errorHandling = [];
@@ -179,8 +182,8 @@ mandatoryCheck(arrayMandatory);
 
 // mandatory check
 if(mandate_var_list.length > 0){
-	var errorCode = "40008";
-	var errorMessage = "Request expects the following fields "+ mandate_var_list;
+	errorCode  = "40008";
+	errorMessage = "Request expects the following fields "+ mandate_var_list;
 	context.setVariable("http.reasonPhrase", "BAD REQUEST");
     context.setVariable("http.statusCode", "400");
 	context.setVariable("log.severity", "Error");       
@@ -193,11 +196,11 @@ if(mandate_var_list.length > 0){
 //manual fields check
 
 //Multi message fields
-var multiMsg_fields = [multiMsgNum,multiMsgTotal,sourceTransactionId]
+var multiMsg_fields = [multiMsgNum,multiMsgTotal,sourceTransactionId];
 if (multiMsgFlag === "true") {
     if (!isAnyObjectNull(multiMsg_fields)) {
-		var errorCode = "40008";
-		var errorMessage = "Request expects the following fields multiMessageNumber, multiMessageTotal, sourceTransactionId";
+		errorCode = "40008";
+		errorMessage = "Request expects the following fields multiMessageNumber, multiMessageTotal, sourceTransactionId";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -209,11 +212,11 @@ if (multiMsgFlag === "true") {
 }
 
 //scheduling fields
-var sched_fields = [schedulingEta, timezone]
+var sched_fields = [schedulingEta, timezone];
 if (isScheduled === "true") {
     if (!isAnyObjectNull(sched_fields)) {
-		var errorCode = "40008";
-		var errorMessage = "Request expects the following fields schedulingEta,timezone";
+		errorCode = "40008";
+		errorMessage = "Request expects the following fields schedulingEta,timezone";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -226,11 +229,11 @@ if (isScheduled === "true") {
 
 //Recurring fields
 
-var recurring_fields = [recurNum,recurUnit]
+var recurring_fields = [recurNum,recurUnit];
 if (isRecurring === "true") {
    if (!isAnyObjectNull(recurring_fields)) {
-     var errorCode = "40008";
-	 var errorMessage = "Request expects the following fields recurrenceNumber,recurrenceUnit";
+     errorCode = "40008";
+	 errorMessage = "Request expects the following fields recurrenceNumber,recurrenceUnit";
      context.setVariable("http.reasonPhrase", "BAD REQUEST");
      context.setVariable("http.statusCode", "400");
 	 context.setVariable("log.severity", "Error");       
@@ -242,11 +245,11 @@ if (isRecurring === "true") {
 }
 
  //template fields
- var template_fields = [tempId,tempType]
+ var template_fields = [tempId,tempType];
 if (useTemplate === "true") {
     if (!isAnyObjectNull(template_fields)) {
-      var errorCode = "40008";
-	  var errorMessage = "Request expects the following fields templateId,templateType";
+      errorCode = "40008";
+	  errorMessage = "Request expects the following fields templateId,templateType";
       context.setVariable("http.reasonPhrase", "BAD REQUEST");
       context.setVariable("http.statusCode", "400");
 	  context.setVariable("log.severity", "Error");       
@@ -278,8 +281,8 @@ function isAnyObjectNull(items) {
 // enum check for input vars
 if (destinationType !== null && destinationType !== "") {
     if (!destTypeEnum[destinationType]) {
-		var errorCode = "40009";
-		var errorMessage = "destinationType contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "destinationType contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -290,11 +293,13 @@ if (destinationType !== null && destinationType !== "") {
     }
 }
 (function() {
+    var errorCode = '';
+    var errorMessage = '';
 //both check
     if (smsNotiProvider !== null && smsNotiProvider !== "" && emailNotiProvider !== null && emailNotiProvider !== "") {
 		if ((!smsNotiProviderEnum[smsNotiProvider]) || (!emailNotiProviderEnum[emailNotiProvider])) {
-			var errorCode = "40009";
-			var errorMessage = "notificationProvider contains unexpected data";
+			errorCode = "40009";
+			errorMessage = "notificationProvider contains unexpected data";
 			context.setVariable("http.reasonPhrase", "BAD REQUEST");
 			context.setVariable("http.statusCode", "400");
 			context.setVariable("log.severity", "Error"); 
@@ -310,8 +315,8 @@ if (destinationType !== null && destinationType !== "") {
 	//email check
 	if (emailNotiProvider !== null && emailNotiProvider !== "") {
 		if (!emailNotiProviderEnum[emailNotiProvider]) {
-			var errorCode = "40009";
-			var errorMessage = "notificationProvider contains unexpected data";
+			errorCode = "40009";
+			errorMessage = "notificationProvider contains unexpected data";
 			context.setVariable("http.reasonPhrase", "BAD REQUEST");
 			context.setVariable("http.statusCode", "400");
 			context.setVariable("log.severity", "Error");
@@ -327,8 +332,8 @@ if (destinationType !== null && destinationType !== "") {
 	//sms check
 	if (smsNotiProvider !== null && smsNotiProvider !== "") {
 		if (!smsNotiProviderEnum[smsNotiProvider]) {
-			var errorCode = "40009";
-			var errorMessage = "notificationProvider contains unexpected data";
+			errorCode = "40009";
+			errorMessage = "notificationProvider contains unexpected data";
 			context.setVariable("http.reasonPhrase", "BAD REQUEST");
 			context.setVariable("http.statusCode", "400");
 			context.setVariable("log.severity", "Error");
@@ -346,8 +351,8 @@ if (destinationType !== null && destinationType !== "") {
     
 if (notificationChannel !== null && notificationChannel !== "") {
     if (!notiChannelEnum[notificationChannel]) {
-		var errorCode = "40009";
-		var errorMessage = "notificationChannel contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "notificationChannel contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -360,8 +365,8 @@ if (notificationChannel !== null && notificationChannel !== "") {
 
 if (recurUnit !== null && recurUnit !== "") {
     if (!recurUnitEnum[recurUnit])  {
-		var errorCode = "40009";
-		var errorMessage = "recurrenceUnit contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "recurrenceUnit contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -374,8 +379,8 @@ if (recurUnit !== null && recurUnit !== "") {
 
 if (tempType !== null && tempType !== "") {
     if (!tempTypeEnum[tempType])  {
-		var errorCode = "40009";
-		var errorMessage = "templateType contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "templateType contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -389,8 +394,8 @@ if (tempType !== null && tempType !== "") {
 //Boolean values enum check for input variables
 if (isScheduled !== null && isScheduled !== "") {
     if (!booleanEnum[isScheduled])  {
-		var errorCode = "40009";
-		var errorMessage = "isScheduled contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "isScheduled contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -402,8 +407,8 @@ if (isScheduled !== null && isScheduled !== "") {
 }
 if (isRecurring !== null && isRecurring !== "") {
     if (!booleanEnum[isRecurring])  {
-		var errorCode = "40009";
-		var errorMessage = "isRecurring contains unexpected data";
+	    errorCode = "40009";
+		errorMessage = "isRecurring contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -415,8 +420,8 @@ if (isRecurring !== null && isRecurring !== "") {
 }
 if (useTemplate !== null && useTemplate !== "") {
     if (!booleanEnum[useTemplate])  {
-		var errorCode = "40009";
-		var errorMessage = "useTemplate contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "useTemplate contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -428,8 +433,8 @@ if (useTemplate !== null && useTemplate !== "") {
 }
 if (multiMsgFlag !== null && multiMsgFlag !== "") {
     if (!booleanEnum[multiMsgFlag])  {
-		var errorCode = "40009";
-		var errorMessage = "multiMessageFlag contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "multiMessageFlag contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -441,8 +446,8 @@ if (multiMsgFlag !== null && multiMsgFlag !== "") {
 }
 if (retryMsgFlag !== null && retryMsgFlag !== "") {
     if (!booleanEnum[retryMsgFlag])  {
-		var errorCode = "40009";
-		var errorMessage = "retryMessageFlag contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "retryMessageFlag contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -454,8 +459,8 @@ if (retryMsgFlag !== null && retryMsgFlag !== "") {
 }
 if (sendImmed !== null && sendImmed !== "") {
     if (!booleanEnum[sendImmed])  {
-		var errorCode = "40009";
-		var errorMessage = "sendImmediately contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "sendImmediately contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -468,8 +473,8 @@ if (sendImmed !== null && sendImmed !== "") {
 //number check for input variables
 if (sourceId !== null && sourceId !== "" && sourceId !== undefined) {
 	if (!(re_sid)) {
-		var errorCode = "40009";
-		var errorMessage = "SourceId contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "SourceId contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -482,8 +487,8 @@ if (sourceId !== null && sourceId !== "" && sourceId !== undefined) {
 
 if (destinations !== null && destinations !== "" && destinations !== undefined) {
 	if (!(re_dest)) {
-		var errorCode = "40009";
-		var errorMessage = "destinations contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "destinations contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error"); 
@@ -497,8 +502,8 @@ if (destinations !== null && destinations !== "" && destinations !== undefined) 
 
 if (msgPriority !== null && msgPriority !== "" && msgPriority !== undefined) {
 	if (!(re_msgPriority)) {
-		var errorCode = "40009";
-		var errorMessage = "messagePriority contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "messagePriority contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -511,8 +516,8 @@ if (msgPriority !== null && msgPriority !== "" && msgPriority !== undefined) {
 
 if (recurNum !== null && recurNum !== "" && recurNum !== undefined) {
 	if (!(re_recurNum)) {
-		var errorCode = "40009";
-		var errorMessage = "recurrenceNumber contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "recurrenceNumber contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -524,8 +529,8 @@ if (recurNum !== null && recurNum !== "" && recurNum !== undefined) {
 }
 if (recurNum !== null && recurNum !== "" && recurNum !== undefined) {
 	if (!(re_recurNum)) {
-		var errorCode = "40009";
-		var errorMessage = "recurrenceNumber contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "recurrenceNumber contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -537,8 +542,8 @@ if (recurNum !== null && recurNum !== "" && recurNum !== undefined) {
 }
 if (maxRecurCnt !== null && maxRecurCnt !== "" && maxRecurCnt !== undefined) {
 	if (!(re_maxRecurCnt)) {
-		var errorCode = "40009";
-		var errorMessage = "maxRecurringCount contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "maxRecurringCount contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -551,8 +556,8 @@ if (maxRecurCnt !== null && maxRecurCnt !== "" && maxRecurCnt !== undefined) {
 
 if (multiMsgNum !== null && multiMsgNum !== "" && multiMsgNum !== undefined) {
 	if (!(re_multiMsgNum)) {
-		var errorCode = "40009";
-		var errorMessage = "multiMessageNumber contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "multiMessageNumber contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -564,8 +569,8 @@ if (multiMsgNum !== null && multiMsgNum !== "" && multiMsgNum !== undefined) {
 }
 if (multiMsgTotal !== null && multiMsgTotal !== "" && multiMsgTotal !== undefined) {
 	if (!(re_multiMsgTotal)) {
-		var errorCode = "40009";
-		var errorMessage = "multiMessageTotal contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "multiMessageTotal contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -577,8 +582,8 @@ if (multiMsgTotal !== null && multiMsgTotal !== "" && multiMsgTotal !== undefine
 }
 if (maxRetryCnt !== null && maxRetryCnt !== "" && maxRetryCnt !== undefined) {
 	if (!(re_maxRetryCnt)) {
-		var errorCode = "40009";
-		var errorMessage = "maxRetryCount contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "maxRetryCount contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -591,8 +596,8 @@ if (maxRetryCnt !== null && maxRetryCnt !== "" && maxRetryCnt !== undefined) {
 //Alphabets check
 if (messageCategory !== null && messageCategory !== "" && messageCategory !== undefined) {
 	if (!(re_msgCategory)) {
-		var errorCode = "40009";
-		var errorMessage = "messageCategory contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "messageCategory contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -606,8 +611,8 @@ if (messageCategory !== null && messageCategory !== "" && messageCategory !== un
 
 if (sourceTransactionId !== null && sourceTransactionId !== "" && sourceTransactionId !== undefined) {
 	if (!(re_sTxnId)) {
-		var errorCode = "40009";
-		var errorMessage = "sourceTransactionId contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "sourceTransactionId contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -622,8 +627,8 @@ if (sourceTransactionId !== null && sourceTransactionId !== "" && sourceTransact
 //patterns check for input variables
 if (tempId !== null && tempId !== "" && tempId !== undefined) {
 	if (!(re_tempId)) {
-		var errorCode = "40009";
-		var errorMessage = "templateId contains unexpected data";
+		errorCode = "40009";
+		errorMessage = "templateId contains unexpected data";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -635,8 +640,8 @@ if (tempId !== null && tempId !== "" && tempId !== undefined) {
 }
 if (schedulingEta !== null && schedulingEta !== "" && schedulingEta !== undefined) {
 	if (!(re_schedulingEta)) {
-		var errorCode = "40010";
-		var errorMessage = "schedulingEta is not in proper format";
+		errorCode = "40010";
+		errorMessage = "schedulingEta is not in proper format";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");
 		context.setVariable("http.statusCode", "400");
 		context.setVariable("log.severity", "Error");       
@@ -648,6 +653,7 @@ if (schedulingEta !== null && schedulingEta !== "" && schedulingEta !== undefine
 }
 if (timezone !== null && timezone !== "" && timezone !== undefined) {
 	if (!(re_timezone)) {
+	    
 		var errorCode = "40010";
 		var errorMessage = "timezone is not in proper format";
 		context.setVariable("http.reasonPhrase", "BAD REQUEST");

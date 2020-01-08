@@ -17,4 +17,5 @@
         <!--<Attribute name="session_id" ref="messageid" display="false"/>-->
     </Attributes>
     <GenerateResponse/>
+    <DisplayName>oauthv2-Generate-OAuth-20</DisplayName>
 </OAuthV2>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Skip-Verify-Otp-Logic">
-    <DisplayName>Skip Verify Otp Logic</DisplayName>
+    <DisplayName>js-Skip Verify Otp Logic</DisplayName>
     <Properties/>
     <ResourceURL>jsc://skipVerifyOtpLogic.js</ResourceURL>
 </Javascript>

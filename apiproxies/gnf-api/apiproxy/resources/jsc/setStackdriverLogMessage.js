@@ -3,32 +3,32 @@ var gnf_ReqHeaders = JSON.parse( JSON.stringify(context.proxyRequest.headers) ) 
 //removing Authorization Header
 if(gnf_ReqHeaders.hasOwnProperty("Authorization")){
     
-    delete gnf_ReqHeaders["Authorization"];
+    delete gnf_ReqHeaders.Authorization;
 }
 if(gnf_ReqHeaders.hasOwnProperty("authorization")){
     
-    delete gnf_ReqHeaders["authorization"]; 
+    delete gnf_ReqHeaders.authorization; 
 }
 //removing Apikey Header
 if(gnf_ReqHeaders.hasOwnProperty("Apikey")){
     
-    delete gnf_ReqHeaders["Apikey"];
+    delete gnf_ReqHeaders.Apikey;
 }
 if(gnf_ReqHeaders.hasOwnProperty("apikey")){
     
-    delete gnf_ReqHeaders["apikey"];
+    delete gnf_ReqHeaders.apikey;
 }
 if(gnf_ReqHeaders.hasOwnProperty("APIKEY")){
     
-    delete gnf_ReqHeaders["APIKEY"];
+    delete gnf_ReqHeaders.APIKEY;
 }
 if(gnf_ReqHeaders.hasOwnProperty("client_id")){
     
-    delete gnf_ReqHeaders["client_id"];
+    delete gnf_ReqHeaders.client_id;
 }
 if(gnf_ReqHeaders.hasOwnProperty("client_secret")){
     
-    delete gnf_ReqHeaders["client_secret"];
+    delete gnf_ReqHeaders.client_secret;
 }
 
 // set Apikey to log to Stackdriver
@@ -62,9 +62,9 @@ function redactField(sensitiveField){
 		remainingToMask = sensitiveField.substring(2,sensitiveField.length-4) ;
 		redacted_field_first2_last4 = first2 + Array(remainingToMask.length + 1).join("X") + last4 ;
 
-		return redacted_field_first2_last4
+		return redacted_field_first2_last4;
 	}
-	else return "N/A"
+	else return "N/A";
 	
 }
 

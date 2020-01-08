@@ -1,3 +1,4 @@
+// jshint esversion: 6
 //GNF:Validations on Group management 
 var groupIds = context.getVariable("gIds");
 var userId = context.getVariable("uId");

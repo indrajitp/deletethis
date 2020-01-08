@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Parameters-without-Body">
+    <DisplayName>Extract Parameters without Body</DisplayName>
+    <!-- Header Params-->
+    <Header name="source_transaction_id">
+        <Pattern ignoreCase="false">{sourceTxnId}</Pattern>
+    </Header>
+    <Header name="source_id">
+        <Pattern ignoreCase="flase">{sid}</Pattern>
+    </Header>
+    <Header name="x_global_transaction_id">
+        <Pattern ignoreCase="flase">{gid}</Pattern>
+    </Header>
+    <!-- query Params-->
+    <QueryParam name="sourceTransactionId">
+        <Pattern ignoreCase="true">{sourceTxnId}</Pattern>
+    </QueryParam>
+    <QueryParam name="sourceId">
+        <Pattern ignoreCase="true">{sid}</Pattern>
+    </QueryParam>
+    <QueryParam name="x_global_transaction_id">
+        <Pattern ignoreCase="true">{gid}</Pattern>
+    </QueryParam>
+    <!-- query Params for user offboarding-->
+    <QueryParam name="serviceName">
+        <Pattern ignoreCase="true">{serviceName}</Pattern>
+    </QueryParam>
+    <QueryParam name="hash">
+        <Pattern ignoreCase="true">{hashValue}</Pattern>
+    </QueryParam>
+</ExtractVariables>

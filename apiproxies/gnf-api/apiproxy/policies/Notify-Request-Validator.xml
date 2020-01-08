@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Notify-Request-Validator">
-    <DisplayName>Notify Request Validator</DisplayName>
+    <DisplayName>js-Notify Request Validator</DisplayName>
     <Properties/>
     <ResourceURL>jsc://notifyRequestValidator.js</ResourceURL>
 </Javascript>
