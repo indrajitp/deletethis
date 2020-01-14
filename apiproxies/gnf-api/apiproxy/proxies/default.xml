@@ -375,7 +375,7 @@
         <Properties>
             <Property name="api.timeout">180000</Property>
         </Properties>
-        <VirtualHost>globalpay</VirtualHost>
+        <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="GoNowhere">
         <Condition>(request.verb == "OPTIONS") or (proxy.pathsuffix MatchesPath "/token")</Condition>
