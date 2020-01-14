@@ -147,7 +147,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <org>indrajitpatil3-eval</org>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
+                <org>globalpay</org>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
                 <options>validate</options>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
                 <apigee.profile>test</apigee.profile>
                 <apigee.env>test</apigee.env>
