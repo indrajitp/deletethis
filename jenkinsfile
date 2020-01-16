@@ -34,7 +34,7 @@ pipeline{
                                 cat AD_changed_files
                                 cat AD_changed_files > ~/file_to_be_build
                                 cat ~/file_to_be_build
-​
+				
 								echo "gnf-api" > $WORKSPACE/AD_changed_files
                                 git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
                             fi
