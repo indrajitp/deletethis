@@ -62,6 +62,7 @@ pipeline{
                                  
                                     //Create a maven build for specific service
                                     sh '''
+				    					xml sel -t -v '//version' filestore.xml $WORKSPACE/apiproxies/$service/pom.xml
 									service=`cat $WORKSPACE/AD_changed_files | head -1`
 									echo 'Deploying a $service Proxy'
 									ls -ltr
