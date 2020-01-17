@@ -30,7 +30,7 @@ pipeline{
                             then
                                 touch $WORKSPACE/AD_changed_files
                             else
-                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > $WORKSPACE/AD_changed_files
+                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $2}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > $WORKSPACE/AD_changed_files
                                 cat $WORKSPACE/AD_changed_files
                                 cat $WORKSPACE/AD_changed_files > ~/file_to_be_build
                                 cat ~/file_to_be_build
