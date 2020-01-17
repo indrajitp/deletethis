@@ -28,14 +28,14 @@ pipeline{
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
                             if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
                             then
-                                touch AD_changed_files
+                                touch $WORKSPACE/AD_changed_files
                             else
-                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > AD_changed_files
-                                cat AD_changed_files
-                                cat AD_changed_files > ~/file_to_be_build
+                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > $WORKSPACE/AD_changed_files
+                                cat $WORKSPACE/AD_changed_files
+                                cat $WORKSPACE/AD_changed_files > ~/file_to_be_build
                                 cat ~/file_to_be_build
 				
-								echo "gnf-api" > $WORKSPACE/AD_changed_files
+								#echo "gnf-api" > $WORKSPACE/ $WORKSPACE/AD_changed_files
                                 git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
                             fi
 							pwd
@@ -49,7 +49,7 @@ pipeline{
                 script{
                     dir("${WORKSPACE}")
                     {
-                        def service_count = sh(script: "cat $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
+                        def service_count = sh(script: "cat $WORKSPACE/ $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
                         println "service_count:$service_count"
                         //def n = service_count.toInteger()
                         if(service_count!=0)
@@ -57,7 +57,7 @@ pipeline{
                             for(i=0; i<service_count.toInteger(); i++)
                             {
                                 //get service name and version number to take a maven build and deploy to artifactory
-                                def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
+                                def service = sh(script: "cat $WORKSPACE/ $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
 				def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
 				println "version:$version"
                                
@@ -65,7 +65,7 @@ pipeline{
                                     //Create a maven build for specific service
                                     sh '''
 				    					
-									service=`cat $WORKSPACE/AD_changed_files | head -1`
+									service=`cat $WORKSPACE/ $WORKSPACE/AD_changed_files | head -1`
 									echo 'Deploying a $service Proxy'
 									ls -ltr
 									cd $WORKSPACE/apiproxies/$service
@@ -100,7 +100,7 @@ pipeline{
                                 //remove recently built service name from build list
                                 sh '''
                                     cd $WORKSPACE
-                                    sed -i '1d' AD_changed_files
+                                    sed -i '1d' $WORKSPACE/AD_changed_files
                                 '''
                             }
                         }
