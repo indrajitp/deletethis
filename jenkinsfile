@@ -49,7 +49,7 @@ pipeline{
                 script{
                     dir("${WORKSPACE}")
                     {
-                        def service_count = sh(script: "cat $WORKSPACE/ $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
+                        def service_count = sh(script: "cat $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
                         println "service_count:$service_count"
                         //def n = service_count.toInteger()
                         if(service_count!=0)
@@ -81,19 +81,19 @@ pipeline{
 									echo "{$WORKSPACE}"
 									ls -ltr
 									'''
-									//Upload to artifactory
-                                    def server = Artifactory.server 'artifactory'
-                                    def uploadSpec = """{
-                                    "files": [
-                                        {
-                                            "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
-                                            "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
-                                        }
-                                    ]
-                                    }"""
-                                    server.upload(uploadSpec)
-                                    def buildInfo = server.upload uploadSpec
-                                    server.publishBuildInfo buildInfo
+									#//Upload to artifactory
+                                    #def server = Artifactory.server 'artifactory'
+                                    #def uploadSpec = """{
+                                    #"files": [
+                                    #    {
+                                    #        "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
+                                    #        "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
+                                    #    }
+                                    #]
+                                    #}"""
+                                    #server.upload(uploadSpec)
+                                    #def buildInfo = server.upload uploadSpec
+                                    #server.publishBuildInfo buildInfo
                          
                                
                                
