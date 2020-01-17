@@ -58,7 +58,7 @@ pipeline{
                             {
                                 //get service name and version number to take a maven build and deploy to artifactory
                                 def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
-				def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
+				def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
 				println "version:$version"
                                
                                  
