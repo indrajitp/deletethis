@@ -81,7 +81,7 @@ pipeline{
 									echo "{$WORKSPACE}"
 									ls -ltr
 									'''
-									#//Upload to artifactory
+									//Upload to artifactory
                                     //def server = Artifactory.server 'artifactory'
                                     //def uploadSpec = """{
                                     //"files": [
