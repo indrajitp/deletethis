@@ -82,18 +82,18 @@ pipeline{
 									ls -ltr
 									'''
 									#//Upload to artifactory
-                                    #def server = Artifactory.server 'artifactory'
-                                    #def uploadSpec = """{
-                                    #"files": [
-                                    #    {
-                                    #        "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
-                                    #        "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
-                                    #    }
-                                    #]
-                                    #}"""
-                                    #server.upload(uploadSpec)
-                                    #def buildInfo = server.upload uploadSpec
-                                    #server.publishBuildInfo buildInfo
+                                    //def server = Artifactory.server 'artifactory'
+                                    //def uploadSpec = """{
+                                    //"files": [
+                                    //    {
+                                    //        "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
+                                    //        "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
+                                    //    }
+                                    //]
+                                    //}"""
+                                    //server.upload(uploadSpec)
+                                    //def buildInfo = server.upload uploadSpec
+                                    //server.publishBuildInfo buildInfo
                          
                                
                                
