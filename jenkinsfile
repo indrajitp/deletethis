@@ -58,6 +58,8 @@ pipeline{
                             {
                                 //get service name and version number to take a maven build and deploy to artifactory
                                 def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
+				def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
+				println "version:$version"
                                
                                  
                                     //Create a maven build for specific service
@@ -84,8 +86,8 @@ pipeline{
                                     def uploadSpec = """{
                                     "files": [
                                         {
-                                            "pattern": "$WORKSPACE/apiproxies/gnf-api/target/*.zip",
-                                            "target": "libs-snapshot-local/com/gpi/apigee/gnf-api/1.3.1/"
+                                            "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
+                                            "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
                                         }
                                     ]
                                     }"""
