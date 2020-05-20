@@ -153,9 +153,9 @@
                 <apigee.env>test</apigee.env>
                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
                 <apigee.apiversion>v1</apigee.apiversion>
-                <apigee.org>${org}</apigee.org>
-                <apigee.username>${username}</apigee.username>
-                <apigee.password>${password}</apigee.password>
+                <apigee.org>indrajitpatil3-eval</apigee.org>
+                <apigee.username>indrajit.patil3@globalpay.com</apigee.username>
+                <apigee.password>IP@Mar2018</apigee.password>
                 <apigee.options>${options}</apigee.options>
                 <!--apigee.override.delay>10</apigee.override.delay-->
                 <!--apigee.delay>1000</apigee.delay-->                                  
