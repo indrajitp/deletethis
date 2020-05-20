@@ -147,7 +147,7 @@
             { 
                "name":"retryMechanism",
                "type":"jsc",
-               "file":"./apiproxy/resources/jsc/retryMechanismretryMechanism.js"
+               "file":"./apiproxy/resources/jsc/retryMechanism.js"
             },
             { 
                "name":"setSecurity",
