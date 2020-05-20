@@ -132,32 +132,32 @@
             { 
                "name":"errorCheck",
                "type":"jsc",
-               "file":"./resourceFiles/jsc/errorCheck.js"
+               "file":"./apiproxy/resources/jsc/errorCheck.js"
             },
             { 
                "name":"logMidToStackDriver",
                "type":"jsc",
-               "file":"./resourceFiles/jsc/logMidToStackDriver.js"
+               "file":"./apiproxy/resources/jsc/logMidToStackDriver.js"
             },
             { 
                "name":"removePathsuffix",
                "type":"jsc",
-               "file":"./resourceFiles/jsc/removePathsuffix.js"
+               "file":"./apiproxy/resources/jsc/removePathsuffix.js"
             },
             { 
                "name":"retryMechanism",
                "type":"jsc",
-               "file":"./resourceFiles/jsc/retryMechanismretryMechanism.js"
+               "file":"./apiproxy/resources/jsc/retryMechanismretryMechanism.js"
             },
             { 
                "name":"setSecurity",
                "type":"jsc",
-               "file":"./resourceFiles/jsc/setSecurity.js"
+               "file":"./apiproxy/resources/jsc/setSecurity.js"
             },
             { 
                "name":"validateData",
                "type":"jsc",
-               "file":"./resourceFiles/jsc/validateData.js"
+               "file":"./apiproxy/resources/jsc/validateData.js"
             }
          ]
       }
