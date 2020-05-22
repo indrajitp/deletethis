@@ -1,105 +1,141 @@
-{ 
+{
    "version":"1.0",
-   "envConfig":{ 
-      "test":{ 
-         "targetServers":[ 
-            { 
+   "envConfig":{
+      "test":{
+         "targetServers":[
+            {
+               "host":"pid-central-tokn-res01.appspot.com",
+               "isEnabled":true,
+               "name":"tokenization-central",
+               "port":443,
+               "sSLInfo":{
+                  "ciphers":[
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "protocols":[
+
+                  ],
+                  "trustStore":""
+               }
+            },
+            {
+               "host":"pid-east-tokn-res01.appspot.com",
+               "isEnabled":true,
+               "name":"tokenization-east",
+               "port":443,
+               "sSLInfo":{
+                  "ciphers":[
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "protocols":[
+
+                  ],
+                  "trustStore":""
+               }
+            },
+            {
                "host":"pid-gousenaid-tokn-res01.appspot.com",
                "isEnabled":true,
                "name":"tokenization-cache",
                "port":443,
-               "sSLInfo":{ 
-                  "ciphers":[ 
+               "sSLInfo":{
+                  "ciphers":[
 
                   ],
                   "clientAuthEnabled":"false",
                   "enabled":"true",
                   "ignoreValidationErrors":false,
-                  "protocols":[ 
+                  "protocols":[
 
                   ],
                   "trustStore":""
                }
             },
-            { 
+            {
                "host":"pid-gouscnaid-tokn-res01.appspot.com",
                "isEnabled":true,
                "name":"tokenization-cache-central",
                "port":443,
-               "sSLInfo":{ 
-                  "ciphers":[ 
+               "sSLInfo":{
+                  "ciphers":[
 
                   ],
                   "clientAuthEnabled":"false",
                   "enabled":"true",
                   "ignoreValidationErrors":false,
-                  "protocols":[ 
+                  "protocols":[
 
                   ],
                   "trustStore":""
                }
             },
-            { 
+            {
                "host":"35.241.18.187",
                "isEnabled":true,
                "name":"gptokenize-us-east",
                "port":443,
-               "sSLInfo":{ 
-                  "ciphers":[ 
+               "sSLInfo":{
+                  "ciphers":[
 
                   ],
                   "clientAuthEnabled":"false",
                   "enabled":"true",
                   "ignoreValidationErrors":false,
-                  "protocols":[ 
+                  "protocols":[
 
                   ]
                }
             },
-            { 
+            {
                "host":"35.241.0.199",
                "isEnabled":true,
                "name":"gptokenize-us-central",
                "port":443,
-               "sSLInfo":{ 
-                  "ciphers":[ 
+               "sSLInfo":{
+                  "ciphers":[
 
                   ],
                   "clientAuthEnabled":"false",
                   "enabled":"true",
                   "ignoreValidationErrors":false,
-                  "protocols":[ 
+                  "protocols":[
 
                   ]
                }
             }
          ],
-         "virtualHosts":[ 
-            { 
-               "hostAliases":[ 
+         "virtualHosts":[
+            {
+               "hostAliases":[
                   "apis-dev.globalpay.com"
                ],
-               "interfaces":[ 
+               "interfaces":[
 
                ],
-               "listenOptions":[ 
+               "listenOptions":[
 
                ],
                "name":"globalpay",
                "port":"443",
-               "properties":{ 
-                  "property":[ 
-                     { 
+               "properties":{
+                  "property":[
+                     {
                         "name":"ssl_ciphers",
                         "value":"HIGH+TLSv1.2+AESGCM:!AES128:!aNULL:!MD5:!DH+3DES:!kEDH:!TLSv1.0:!TLSv1.1"
                      }
                   ]
                },
-               "retryOptions":[ 
+               "retryOptions":[
 
                ],
-               "sSLInfo":{ 
-                  "ciphers":[ 
+               "sSLInfo":{
+                  "ciphers":[
 
                   ],
                   "clientAuthEnabled":"false",
@@ -107,54 +143,54 @@
                   "ignoreValidationErrors":false,
                   "keyAlias":"globalpay",
                   "keyStore":"ref://globalpay",
-                  "protocols":[ 
+                  "protocols":[
 
                   ]
                }
             }
          ],
-         "kvms":[ 
-            { 
+         "kvms":[
+            {
                "name":"tokenization_k2viewCredentials",
-               "entry":[ 
-                  { 
+               "entry":[
+                  {
                      "name":"k2view.token",
                      "value":"ccToken"
                   },
-                  { 
+                  {
                      "name":"modTenCheck",
                      "value":"false"
                   }
                ]
             }
          ],
-         "resourcefiles":[ 
-            { 
+         "resourcefiles":[
+            {
                "name":"errorCheck",
                "type":"jsc",
                "file":"./apiproxy/resources/jsc/errorCheck.js"
             },
-            { 
+            {
                "name":"logMidToStackDriver",
                "type":"jsc",
                "file":"./apiproxy/resources/jsc/logMidToStackDriver.js"
             },
-            { 
+            {
                "name":"removePathsuffix",
                "type":"jsc",
                "file":"./apiproxy/resources/jsc/removePathsuffix.js"
             },
-            { 
+            {
                "name":"retryMechanism",
                "type":"jsc",
                "file":"./apiproxy/resources/jsc/retryMechanism.js"
             },
-            { 
+            {
                "name":"setSecurity",
                "type":"jsc",
                "file":"./apiproxy/resources/jsc/setSecurity.js"
             },
-            { 
+            {
                "name":"validateData",
                "type":"jsc",
                "file":"./apiproxy/resources/jsc/validateData.js"
@@ -162,76 +198,76 @@
          ]
       }
    },
-   "orgConfig":{ 
-      "apiProducts":[ 
-         { 
+   "orgConfig":{
+      "apiProducts":[
+         {
             "name":"EchoProduct",
-            "apiResources":[ 
+            "apiResources":[
                "/",
                "/**"
             ],
             "approvalType":"auto",
-            "attributes":[ 
+            "attributes":[
 
             ],
             "description":"Echo Product",
             "displayName":"Echo Product",
-            "environments":[ 
+            "environments":[
                "test",
                "prod"
             ],
-            "proxies":[ 
+            "proxies":[
                "tokenization_rev33_2019_11_15"
             ],
             "quota":"10000",
             "quotaInterval":"1",
             "quotaTimeUnit":"month",
-            "scopes":[ 
+            "scopes":[
 
             ]
          }
       ],
-      "developers":[ 
-         { 
+      "developers":[
+         {
             "email":"john@example.com",
             "firstName":"John",
             "lastName":"Example",
             "userName":"johnexample",
-            "attributes":[ 
+            "attributes":[
 
             ]
          },
-         { 
+         {
             "email":"bill@unesco.com",
             "firstName":"Bill",
             "lastName":"Buffalo",
             "userName":"billunesco",
-            "attributes":[ 
+            "attributes":[
 
             ]
          }
       ],
-      "developerApps":{ 
-         "john@example.com":[ 
-            { 
+      "developerApps":{
+         "john@example.com":[
+            {
                "name":"coolechoapp",
-               "apiProducts":[ 
+               "apiProducts":[
                   "EchoProduct"
                ],
                "callbackUrl":"http://weatherapp.com",
-               "scopes":[ 
+               "scopes":[
 
                ]
             }
          ],
-         "bill@unesco.com":[ 
-            { 
+         "bill@unesco.com":[
+            {
                "name":"oneechoapp",
-               "apiProducts":[ 
+               "apiProducts":[
                   "EchoProduct"
                ],
                "callbackUrl":"http://weatherapp.com",
-               "scopes":[ 
+               "scopes":[
 
                ]
             }
