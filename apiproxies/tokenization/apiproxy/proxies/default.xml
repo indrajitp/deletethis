@@ -14,6 +14,12 @@
             </Step>
             <Condition>(jsonattack.JSON-Threat-Protection.failed = true)</Condition>
         </FaultRule>
+        <FaultRule name="ErrornOnExceededQuota">
+            <Step>
+                <Name>Return-Error-For-Exceeded-Quota</Name>
+            </Step>
+            <Condition>(ratelimit.Quota.failed = true)</Condition>
+        </FaultRule>
     </FaultRules>
     <DefaultFaultRule name="PlatformFaults">
         <Step>
@@ -28,15 +34,19 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <Name>Set-Security-Policies</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
+                <Name>Apply-GPN-Security-Policies</Name>
+                <Condition>request.verb != "OPTIONS"</Condition>
+            </Step>
+            <Step>
                 <Name>Extract-All-Variables</Name>
                 <Condition>request.verb != "OPTIONS"</Condition>
             </Step>
             <Step>
                 <Name>Log-Mid-To-Stack-Driver</Name>
-                <Condition>request.verb != "OPTIONS"</Condition>
-            </Step>
-            <Step>
-                <Name>JSON-Threat-Protection</Name>
                 <Condition>request.verb != "OPTIONS"</Condition>
             </Step>
             <Step>
@@ -79,9 +89,6 @@
             <Description/>
             <Request>
                 <Step>
-                    <Name>Get-K2View-Key</Name>
-                </Step>
-                <Step>
                     <Name>Create-Global-Tokenize-Request</Name>
                 </Step>
             </Request>
@@ -91,9 +98,6 @@
         <Flow name="merchant-tokenize">
             <Description/>
             <Request>
-                <Step>
-                    <Name>Get-K2View-Key</Name>
-                </Step>
                 <Step>
                     <Name>Create-Merchant-Request</Name>
                 </Step>
@@ -105,9 +109,6 @@
             <Description/>
             <Request>
                 <Step>
-                    <Name>Get-K2View-Key</Name>
-                </Step>
-                <Step>
                     <Name>Create-Global-with-Merchant-Request</Name>
                 </Step>
             </Request>
@@ -117,9 +118,6 @@
         <Flow name="detokenize">
             <Description/>
             <Request>
-                <Step>
-                    <Name>Get-K2View-Key</Name>
-                </Step>
                 <Step>
                     <Name>Create-Detoken-Request</Name>
                 </Step>
@@ -140,8 +138,10 @@
     </Flows>
     <HTTPProxyConnection>
         <BasePath>/apis/gptokenization</BasePath>
-        <Properties/>
-        <VirtualHost>default</VirtualHost>
+        <Properties>
+            <Property name="api.timeout">300000</Property>
+        </Properties>
+        <VirtualHost>globalpay</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="no-route">
         <Condition>request.verb == "OPTIONS"</Condition>

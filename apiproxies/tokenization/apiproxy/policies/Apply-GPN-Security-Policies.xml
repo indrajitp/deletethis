@@ -3,5 +3,5 @@
     <DisplayName>Apply GPN Security Policies</DisplayName>
     <FaultRules/>
     <Properties/>
-    <SharedFlowBundle>_sf_Default-Security-Policies_v1</SharedFlowBundle>
+    <SharedFlowBundle>_sf_Test_CICD_v1</SharedFlowBundle>
 </FlowCallout>

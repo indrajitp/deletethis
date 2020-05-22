@@ -1,4 +1,4 @@
-var error =context.getVariable("errorResponse");
+var error =context.getVariable("status");
 var errorCheck = context.getVariable("response.content");
 var httpcode;
 var httpMessage;
@@ -9,7 +9,7 @@ var errorCodeBackend=500;
 var checkError = false;
 
 //check for bad request from k2view
-if(errorCheck !==null && errorCheck.includes("400 BAD Request")){
+if(error==400 || errorCheck.includes("400 BAD Request")){
     checkError = true;
     httpcode=400;
     errorCodeBadReq=400;
@@ -24,7 +24,7 @@ if(errorCheck !==null && errorCheck.includes("400 BAD Request")){
 	context.setVariable("checkError",checkError);
 }
 //check for invalid token from k2view
-if(errorCheck !==null && errorCheck.includes("WebServiceException: Token")){
+if(error==401){
     checkError = true;
     httpcode=401;
     errorCodeBadToken=401;
@@ -39,7 +39,7 @@ if(errorCheck !==null && errorCheck.includes("WebServiceException: Token")){
     context.setVariable("checkError",checkError);
 }
 //check for any other k2view error
-if(!errorCheck.includes("WebServiceException: Token") && !errorCheck.includes("400 BAD Request") && error !== null){
+if(error==500 || (errorCheck.includes("Fabric Synchronization") && !errorCheck.includes("400 BAD Request"))){
     checkError = true;
     httpcode=500;
     errorCodeBadToken=500;

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="tokenization_rev33_2019_11_15">
+<APIProxy revision="39" name="tokenization">
     <Basepaths>/apis/tokenization</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1574329824926</CreatedAt>
-    <CreatedBy>saurabh.sinha@globalpay.com</CreatedBy>
+    <CreatedAt>1542373816935</CreatedAt>
+    <CreatedBy>daniel.lilavois@globalpay.com</CreatedBy>
     <Description></Description>
     <DisplayName>tokenization</DisplayName>
-    <LastModifiedAt>1574329824926</LastModifiedAt>
+    <LastModifiedAt>1590146658653</LastModifiedAt>
     <LastModifiedBy>saurabh.sinha@globalpay.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:0f6afd39e2d53034f8aa3f4c05b727578616aa7e6290cf19d00097fe3880cfbd9d4505dc173521a6edaf9129c57072adb9f93befb5c08e376a3187b9757991b8</ManifestVersion>
+    <ManifestVersion>SHA-512:30d5f908d182ff23d2101aa411424c8ba81539cd4e1395ee0dbaf0e137fe1d7dad3a9fd37777963159004f8bc45eb194f7907d2d88d25ab5c181c8c34e723635</ManifestVersion>
     <Policies>
         <Policy>Add-CORS</Policy>
         <Policy>Apply-GPN-Security-Policies</Policy>
@@ -29,6 +29,7 @@
         <Policy>Retry-Mechanism</Policy>
         <Policy>Return-Error-For-Backend-K2View</Policy>
         <Policy>Return-Error-For-Backend</Policy>
+        <Policy>Return-Error-For-Exceeded-Quota</Policy>
         <Policy>Return-Error-For-Invalid-APIKey</Policy>
         <Policy>Return-Error-For-JSON-Threat-Protection</Policy>
         <Policy>Return-Error-Message For Invalid Token</Policy>
@@ -57,6 +58,7 @@
         <TargetEndpoint>Detoken K2View</TargetEndpoint>
         <TargetEndpoint>Global Token</TargetEndpoint>
         <TargetEndpoint>Merchant and Global Token</TargetEndpoint>
+        <TargetEndpoint>Ping K2View</TargetEndpoint>
         <TargetEndpoint>default</TargetEndpoint>
     </TargetEndpoints>
 </APIProxy>

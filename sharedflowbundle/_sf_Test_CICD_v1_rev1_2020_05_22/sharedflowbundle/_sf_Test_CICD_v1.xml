@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="_sf_Test_CICD_v1">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1590146591767</CreatedAt>
+    <CreatedBy>saurabh.sinha@globalpay.com</CreatedBy>
+    <Description>To test the dependencies wile deploying shared flow through automated pipeline</Description>
+    <DisplayName>_sf_Test_CICD_v1</DisplayName>
+    <LastModifiedAt>1590146630744</LastModifiedAt>
+    <LastModifiedBy>saurabh.sinha@globalpay.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:a9998b05dde71335c34eabeae9b91e5a06e8ca5c5dd3252b5c267a333dd34fad0eb9da70d0e86298f8634835b8d17ff0fa5c7fa308f8ffddb62756f05a0e52a3</ManifestVersion>
+    <Policies>
+        <Policy>Add-CORS</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

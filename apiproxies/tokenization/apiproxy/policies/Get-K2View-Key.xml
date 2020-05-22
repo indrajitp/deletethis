@@ -13,5 +13,10 @@
             <Parameter>modTenCheck</Parameter>
         </Key>
     </Get>
+    <Get assignTo="private.bypassCache">
+        <Key>
+            <Parameter>bypassCache</Parameter>
+        </Key>
+    </Get>
     <Scope>environment</Scope>
 </KeyValueMapOperations>

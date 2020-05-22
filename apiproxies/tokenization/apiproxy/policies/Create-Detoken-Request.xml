@@ -12,7 +12,7 @@
     </Set>
     <Add>
         <QueryParams>
-            <QueryParam name="token">{private.k2vToken}</QueryParam>
+            <QueryParam name="token">{k2vToken}</QueryParam>
             <QueryParam name="format">json</QueryParam>
             <QueryParam name="TOKEN_NUM">{private.tnumber}</QueryParam>
         </QueryParams>

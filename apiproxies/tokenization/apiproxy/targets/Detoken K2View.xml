@@ -16,41 +16,17 @@
             <Step>
                 <Name>Set-Security-Headers</Name>
             </Step>
+            <Step>
+                <Name>Add-CORS</Name>
+            </Step>
         </Response>
     </PostFlow>
     <Flows/>
     <HTTPTargetConnection>
-        <Properties/>
-        <LoadBalancer>
-            <!--            <Algorithm>RoundRobin</Algorithm>
-            <Server name="tokenization-central"/>
-            <Server name="tokenization-east"/>
-            <MaxFailures>3</MaxFailures> -->
-            <Algorithm>Weighted</Algorithm>
-            <Server name="gptokenize-us-east">
-                <Weight>2</Weight>
-            </Server>
-            <Server name="gptokenize-us-central">
-                <!-- <Weight>10/27</Weight>-->
-                <Weight>1</Weight>
-            </Server>
-        </LoadBalancer>
-        <Path>/api/detokenize</Path>
-        <HealthMonitor>
-            <IsEnabled>true</IsEnabled>
-            <IntervalInSec>30</IntervalInSec>
-            <HTTPMonitor>
-                <Request>
-                    <ConnectTimeoutInSec>30</ConnectTimeoutInSec>
-                    <SocketReadTimeoutInSec>30</SocketReadTimeoutInSec>
-                    <Port>443</Port>
-                    <Verb>GET</Verb>
-                    <Path>/static/swaggerUI/dist/index.html</Path>
-                </Request>
-                <SuccessResponse>
-                    <ResponseCode>200</ResponseCode>
-                </SuccessResponse>
-            </HTTPMonitor>
-        </HealthMonitor>
+        <Properties>
+            <Property name="connect.timeout.millis">150000</Property>
+            <Property name="io.timeout.millis">300000</Property>
+        </Properties>
+        <URL>https://gptokenizationeast-dev.globalpay.com/api/detokenize</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>
