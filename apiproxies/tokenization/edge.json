@@ -217,7 +217,7 @@
                "prod"
             ],
             "proxies":[
-               "tokenization_rev33_2019_11_15"
+               "tokenization"
             ],
             "quota":"10000",
             "quotaInterval":"1",
