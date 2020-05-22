@@ -216,7 +216,8 @@
                "test",
                "prod"
             ],
-            "proxies":[
+
+            "proxies":[ 
                "tokenization"
             ],
             "quota":"10000",

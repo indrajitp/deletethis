@@ -85,20 +85,18 @@
         <profile>
             <id>test</id>
             <properties>
+                <org>globalpay</org>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
+                <options>validate</options>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
                 <apigee.profile>test</apigee.profile>
+                <apigee.env>test</apigee.env>
                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
                 <apigee.apiversion>v1</apigee.apiversion>
                 <apigee.org>${org}</apigee.org>
-                <apigee.env>${env}</apigee.env>
                 <apigee.username>${username}</apigee.username>
                 <apigee.password>${password}</apigee.password>
-                <apigee.authtype>basic</apigee.authtype> <!-- optional: oauth|basic(default) -->
-                <apigee.tokenurl>https://login.apigee.com/oauth/token</apigee.tokenurl> <!-- optional: oauth -->
-                <apigee.mfatoken>${mfatoken}</apigee.mfatoken> <!-- optional: mfa -->
-                <apigee.clientid>${clientId}</apigee.clientid> <!-- optional: Oauth Client Id - Default is edgecli-->
-                <apigee.clientsecret>${clientSecret}</apigee.clientsecret> <!-- optional: Oauth Client Secret Default is edgeclisecret-->
-                <apigee.bearer>${bearer}</apigee.bearer> <!-- optional: Bearer token override -->
-                <apigee.refresh>${refresh}</apigee.refresh> <!-- optional: Refresh token override -->
+                <apigee.options>${options}</apigee.options>
+                <!--apigee.override.delay>10</apigee.override.delay-->
+                <!--apigee.delay>1000</apigee.delay-->                                  
             </properties>
         </profile>
         <profile>
