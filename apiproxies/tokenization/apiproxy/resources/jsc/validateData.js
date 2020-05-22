@@ -26,7 +26,6 @@ if (path == "/merchant/number") {
 
 	if ((mid !== null)
 			&& (mid !== "")
-			&& (re_mid)
 			&& (pan !== null)
 			&& (pan !== "")
 			&& (pan.length < 27)
@@ -42,7 +41,6 @@ if (path == "/merchant/number") {
 
 	if ((mid !== null)
 			&& (mid !== "")
-			&& (re_mid)
 			&& (pan !== null)
 			&& (pan !== "")
 			&& (pan.length < 27)

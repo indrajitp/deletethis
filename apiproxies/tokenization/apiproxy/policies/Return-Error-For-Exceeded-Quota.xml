@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Return-Error-For-Exceeded-Quota">
+    <DisplayName>Return Error For Exceeded Quota</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <!--
+            <Payload contentType="text/plain">Invalid user credentials</Payload>
+            -->
+            <Payload contentType="application/json">
+                {
+                    "httpCode": "429",
+                	"httpMessage": "Too Many Requests",
+                	"moreInformation": "Rejected"
+                }
+			</Payload>
+            <StatusCode>429</StatusCode>
+            <ReasonPhrase>Too Many Requests</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

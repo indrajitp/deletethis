@@ -13,7 +13,8 @@
             {
             "PAN" : "{private.pan}",
             "MID" : "{mid}",
-            "isModTenRequired" : "{private.modTenCheck}"
+            "isModTenRequired" : {mod10Check},
+            "bypassCache" : {bypassCache}
             }
         </Payload>
     </Set>

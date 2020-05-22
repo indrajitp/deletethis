@@ -12,7 +12,8 @@
         <Payload contentType="application/json">
             {
             "PAN" : "{private.pan}",
-            "isModTenRequired" : "{private.modTenCheck}"
+            "isModTenRequired" : "{mod10Check}",
+            "bypassCache" : "{bypassCache}"
             }
         </Payload>
     </Set>

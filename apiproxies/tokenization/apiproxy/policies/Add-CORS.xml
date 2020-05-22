@@ -10,6 +10,11 @@
             <Header name="Access-Control-Max-Age">3628800</Header>
             <Header name="Access-Control-Allow-Methods">GET, PUT, POST, DELETE, OPTIONS</Header>
             <Header name="Access-Control-Allow-Credentials">true</Header>
+            <Header name="Cache-Control">no-store, no-cache</Header>
+            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id_source">globalpay.ApigeeEdge</Header>
+            <Header name="X-Frame-Options">DENY</Header>
+            <Header name="X-Content-Type-Options">nosniff</Header>
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
