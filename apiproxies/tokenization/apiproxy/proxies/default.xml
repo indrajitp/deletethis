@@ -141,7 +141,7 @@
         <Properties>
             <Property name="api.timeout">300000</Property>
         </Properties>
-        <VirtualHost>globalpay</VirtualHost>
+        <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="no-route">
         <Condition>request.verb == "OPTIONS"</Condition>

@@ -33,7 +33,7 @@
         <VersionInfo resourceName="Validate-Data" version="SHA-512:07e5859b40fe733a2b610f4cf63ea3abaf8e988ff5f94922ee6b3f27b841556b0435320a26cf6ad44d2ef84ad2f38805c8e9cf94e057b94db0715af2bcd71bf2"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:e8af65f5da4a8ff867866e06d85af523e7931b0bfa857f1cd029e1b5541e01af1bf9e636dc90b662615480420acdffcc0781487efa69985e0d48351e71655ec9"/>
+        <VersionInfo resourceName="default" version="SHA-512:7355048e95713d27ef90fbf15192c1a362e1fab936df21b1fc20612a86f6e37809d9f340e493111743263259f1adc8a8c444e9170c8b235fef006305f78073e7"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://errorCheck.js" version="SHA-512:378f27083a67d405cb33f125bea0fb3601ad9716a40c708e44b6e97d1b45dc3ede746dd7eff444f4c444fc3381920209fdf9ab8bebbfecd0dcab555bc0ffcdd5"/>

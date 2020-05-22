@@ -6,9 +6,9 @@
     <CreatedBy>daniel.lilavois@globalpay.com</CreatedBy>
     <Description></Description>
     <DisplayName>tokenization</DisplayName>
-    <LastModifiedAt>1590146658653</LastModifiedAt>
+    <LastModifiedAt>1590152794119</LastModifiedAt>
     <LastModifiedBy>saurabh.sinha@globalpay.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:30d5f908d182ff23d2101aa411424c8ba81539cd4e1395ee0dbaf0e137fe1d7dad3a9fd37777963159004f8bc45eb194f7907d2d88d25ab5c181c8c34e723635</ManifestVersion>
+    <ManifestVersion>SHA-512:f8f0844b3c23140c7c17b8ad5d36c4818bd36b64a1f18a29956d21d06bb49765f2ce0e8a8b9abf2035b6869e7b630e5b2b4ad73ce69adf0f23bbc99c0eb84538</ManifestVersion>
     <Policies>
         <Policy>Add-CORS</Policy>
         <Policy>Apply-GPN-Security-Policies</Policy>
