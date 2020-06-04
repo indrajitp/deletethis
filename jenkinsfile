@@ -75,7 +75,7 @@ pipeline{
 									echo ' Java Code Scan using JSLint   '
 									echo '*********************************************************'
 									#jslint '**/*.js'
-									mvn package -P test -D username=indrajit.patil3@globalpay.com -D password=IP@Mar2018 -D org=indrajitpatil3-eval
+									install -X -Ptest -D username=$ae_username -D password=$ae_password -D org=$ae_org -Dapigee.config.options=create
 									cd target
 									pwd
 									echo "{$WORKSPACE}"
