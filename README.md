@@ -123,3 +123,10 @@ Typo fixes, improvements to grammar or readability, it's all welcome.
 
 Thanks,
 Indrajit patil
+
+apiproxies/$api_name/pom.xml
+install -X -Ptest -D username=$ae_username -D password=$ae_password -D org=$ae_org -Dapigee.config.options=create
+tokenization
+weather-api
+gnf-api
+forecastweatherapi
