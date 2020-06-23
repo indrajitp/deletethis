@@ -1,0 +1,21 @@
+mqsideploy IBNQN01 -e IBS_CSP_IS  -a /GP/ESB01-N-Q/app00/mqsi/gp-get-terminal-profile-app-5.0.0.101-SNAPSHOT.bar
+
+
+-----------If IIB commands are not working------------------
+. /GP/ESB01-N-P/app00/EAsmbl_image/iib-10.0.0.4/server/bin/mqsiprofile
+
+--------CHECK application state--------------
+mqsireportflowmonitoring IBNPN01 -e IBS_CSP_IS -j
+
+--------------Make app active------------------
+mqsichangeflowmonitoring IBNQN02 -e IBS_CSP_IS -k gp-get-terminal-profile-app -c active -j 
+
+mqsichangeflowmonitoring IBNQN02 -e IBS_CSP_IS -k gp-get-terminal-profile-app -c active -j
+
+
+https://g1nlpesba001:18443 (webuser1 Nucleus123!)
+
+
+
+qa_YJ_May2017
+
