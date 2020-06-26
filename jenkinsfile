@@ -65,10 +65,9 @@ pipeline{
 				                def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true, file: '$WORKSPACE/apiproxies/$service/pom.xml'
                                 println "version:$version"
                                
-                                    withCredentials([usernamePassword(credentialsId: 'ip_apigee_creds', usernameVariable: 'ae_username', passwordVariable: 'ae_password')])
                                     //Create a maven build for specific service
                                     sh '''
-				    				echo "My creds are = $ae_username and pass $ae_password"
+				    				echo "My creds are = $user_creds_usr and pass $user_creds_psw"
                                     exit 0	
 									service=`cat $WORKSPACE/AD_changed_files | head -1`
 									echo 'Deploying a $service Proxy'
