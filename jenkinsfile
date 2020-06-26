@@ -35,7 +35,7 @@ pipeline{
                                 cat $WORKSPACE/AD_changed_files > ~/file_to_be_build
                                 cat ~/file_to_be_build
 				
-								#echo "Above files are changed"
+								#echo "gnf-api" > $WORKSPACE/AD_changed_files
                                 git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
                             fi
 							pwd
@@ -49,7 +49,61 @@ pipeline{
                 script{
                     dir("${WORKSPACE}")
                     {
-                       
+                        def service_count = sh(script: "cat $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
+                        println "service_count:$service_count"
+                        //def n = service_count.toInteger()
+                        if(service_count!=0)
+                        {
+                            for(i=0; i<service_count.toInteger(); i++)
+                            {
+                                //get service name and version number to take a maven build and deploy to artifactory
+                                def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
+				                def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
+				                println "version:$version"
+                               
+                                 
+                                    //Create a maven build for specific service
+                                    sh '''
+				    					
+									service=`cat $WORKSPACE/AD_changed_files | head -1`
+									echo 'Deploying a $service Proxy'
+									ls -ltr
+									cd $WORKSPACE/apiproxies/$service
+									apigeelint -s apiproxies/$service/apiproxy -f html.js
+									cat
+									echo '*********************************************************'
+									echo ' Java Code Scan using JSLint   '
+									echo '*********************************************************'
+									#jslint '**/*.js'
+									install -X -Ptest -D username=$ae_username -D password=$ae_password -D org=$ae_org -Dapigee.config.options=create
+									cd target
+									pwd
+									echo "{$WORKSPACE}"
+									ls -ltr
+									'''
+									//Upload to artifactory
+                                    def server = Artifactory.server 'artifactory'
+                                    def uploadSpec = """{
+                                    "files": [
+                                        {
+                                            "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
+                                            "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
+                                        }
+                                    ]
+                                    }"""
+                                    server.upload(uploadSpec)
+                                    def buildInfo = server.upload uploadSpec
+                                    server.publishBuildInfo buildInfo
+                         
+                               
+                               
+                                //remove recently built service name from build list
+                                sh '''
+                                    cd $WORKSPACE
+                                    sed -i '1d' $WORKSPACE/AD_changed_files
+                                '''
+                            }
+                        }
                     }
                 }
             }
