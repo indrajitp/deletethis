@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Remove-Pathsuffix</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Set-Security-Headers</Name>
+            </Step>
+            <Step>
+                <Name>Add-CORS</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <Properties/>
+        <LoadBalancer>
+            <Server name="tokenization-cache-central"/>
+            <Server name="tokenization-cache">
+                <IsFallback>true</IsFallback>
+            </Server>
+            <MaxFailures>3</MaxFailures>
+        </LoadBalancer>
+        <Path>/tokenize/merchantToken</Path>
+        <HealthMonitor>
+            <IsEnabled>true</IsEnabled>
+            <IntervalInSec>30</IntervalInSec>
+            <HTTPMonitor>
+                <Request>
+                    <ConnectTimeoutInSec>10</ConnectTimeoutInSec>
+                    <SocketReadTimeoutInSec>10</SocketReadTimeoutInSec>
+                    <Port>443</Port>
+                    <Verb>GET</Verb>
+                    <Path>/actuator/health</Path>
+                </Request>
+                <SuccessResponse>
+                    <ResponseCode>200</ResponseCode>
+                </SuccessResponse>
+            </HTTPMonitor>
+        </HealthMonitor>
+    </HTTPTargetConnection>
+</TargetEndpoint>

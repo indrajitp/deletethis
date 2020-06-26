@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Validate input data-->
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Validate-Data">
+    <DisplayName>Validate Data</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://validateData.js</ResourceURL>
+</Javascript>

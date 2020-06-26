@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Set-Cache-Control">
+    <DisplayName>Set Cache Control</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Cache-Control">no-store, no-cache</Header>
+            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id_source">globalpay.ApigeeEdge</Header>
+        </Headers>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="X-Global-Transaction-ID"/>
+        </Headers>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="response"/>
+</AssignMessage>

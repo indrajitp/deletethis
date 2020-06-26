@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Setting response security header-->
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Set-Security-Headers">
+    <DisplayName>Set Security Headers</DisplayName>
+    <Set>
+        <Headers>
+            <Header name="Cache-Control">no-store, no-cache</Header>
+            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id_source">globalpay.ApigeeEdge</Header>
+            <Header name="X-Frame-Options">DENY</Header>
+            <Header name="X-Content-Type-Options">nosniff</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="response"/>
+</AssignMessage>

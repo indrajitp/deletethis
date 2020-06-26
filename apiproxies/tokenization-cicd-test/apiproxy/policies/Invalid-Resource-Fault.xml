@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Raise a fault for any invalid http method-->
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Invalid-Resource-Fault">
+    <DisplayName>Invalid Resource Fault</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">
+                {
+                    "httpCode": "404",
+                	"httpMessage": "Resource not found",
+                	"moreInformation": "The input resource was not found"
+
+                }
+            </Payload>
+            <StatusCode>404</StatusCode>
+            <ReasonPhrase>Not Found</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

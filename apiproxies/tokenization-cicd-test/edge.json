@@ -1,0 +1,241 @@
+{ 
+   "version":"1.0",
+   "envConfig":{ 
+      "dev":{ 
+         "targetServers":[ 
+            { 
+               "host":"pid-gousenaid-tokn-res01.appspot.com",
+               "isEnabled":true,
+               "name":"tokenization-cache",
+               "port":443,
+               "sSLInfo":{ 
+                  "ciphers":[ 
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "protocols":[ 
+
+                  ],
+                  "trustStore":""
+               }
+            },
+            { 
+               "host":"pid-gouscnaid-tokn-res01.appspot.com",
+               "isEnabled":true,
+               "name":"tokenization-cache-central",
+               "port":443,
+               "sSLInfo":{ 
+                  "ciphers":[ 
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "protocols":[ 
+
+                  ],
+                  "trustStore":""
+               }
+            },
+            { 
+               "host":"35.241.18.187",
+               "isEnabled":true,
+               "name":"gptokenize-us-east",
+               "port":443,
+               "sSLInfo":{ 
+                  "ciphers":[ 
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "protocols":[ 
+
+                  ]
+               }
+            },
+            { 
+               "host":"35.241.0.199",
+               "isEnabled":true,
+               "name":"gptokenize-us-central",
+               "port":443,
+               "sSLInfo":{ 
+                  "ciphers":[ 
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "protocols":[ 
+
+                  ]
+               }
+            }
+         ],
+         "virtualHosts":[ 
+            { 
+               "hostAliases":[ 
+                  "apis-dev.globalpay.com"
+               ],
+               "interfaces":[ 
+
+               ],
+               "listenOptions":[ 
+
+               ],
+               "name":"globalpay",
+               "port":"443",
+               "properties":{ 
+                  "property":[ 
+                     { 
+                        "name":"ssl_ciphers",
+                        "value":"HIGH+TLSv1.2+AESGCM:!AES128:!aNULL:!MD5:!DH+3DES:!kEDH:!TLSv1.0:!TLSv1.1"
+                     }
+                  ]
+               },
+               "retryOptions":[ 
+
+               ],
+               "sSLInfo":{ 
+                  "ciphers":[ 
+
+                  ],
+                  "clientAuthEnabled":"false",
+                  "enabled":"true",
+                  "ignoreValidationErrors":false,
+                  "keyAlias":"globalpay",
+                  "keyStore":"ref://globalpay",
+                  "protocols":[ 
+
+                  ]
+               }
+            }
+         ],
+         "kvms":[ 
+            { 
+               "name":"tokenization_k2viewCredentials",
+               "entry":[ 
+                  { 
+                     "name":"k2view.token",
+                     "value":"ccToken"
+                  },
+                  { 
+                     "name":"modTenCheck",
+                     "value":"false"
+                  }
+               ]
+            }
+         ],
+         "resourcefiles":[ 
+            { 
+               "name":"errorCheck",
+               "type":"jsc",
+               "file":"./apiproxy/resources/jsc/errorCheck.js"
+            },
+            { 
+               "name":"logMidToStackDriver",
+               "type":"jsc",
+               "file":"./apiproxy/resources/jsc/logMidToStackDriver.js"
+            },
+            { 
+               "name":"removePathsuffix",
+               "type":"jsc",
+               "file":"./apiproxy/resources/jsc/removePathsuffix.js"
+            },
+            { 
+               "name":"retryMechanism",
+               "type":"jsc",
+               "file":"./apiproxy/resources/jsc/retryMechanism.js"
+            },
+            { 
+               "name":"setSecurity",
+               "type":"jsc",
+               "file":"./apiproxy/resources/jsc/setSecurity.js"
+            },
+            { 
+               "name":"validateData",
+               "type":"jsc",
+               "file":"./apiproxy/resources/jsc/validateData.js"
+            }
+         ]
+      }
+   },
+   "orgConfig":{ 
+      "apiProducts":[ 
+         { 
+            "name":"EchoProduct",
+            "apiResources":[ 
+               "/",
+               "/**"
+            ],
+            "approvalType":"auto",
+            "attributes":[ 
+
+            ],
+            "description":"Echo Product",
+            "displayName":"Echo Product",
+            "environments":[ 
+               "dev",
+               "test"
+            ],
+            "proxies":[ 
+               "tokenization-cicd-test"
+            ],
+            "quota":"10000",
+            "quotaInterval":"1",
+            "quotaTimeUnit":"month",
+            "scopes":[ 
+
+            ]
+         }
+      ],
+      "developers":[ 
+         { 
+            "email":"indrajit.patil3@globalpay.com",
+            "firstName":"Indrajit",
+            "lastName":"Patil",
+            "userName":"indrajitp",
+            "attributes":[ 
+
+            ]
+         },
+         { 
+            "email":"saurabh.sinha@globalpay.com",
+            "firstName":"Saurabh",
+            "lastName":"Sinha",
+            "userName":"soro24",
+            "attributes":[ 
+
+            ]
+         }
+      ],
+      "developerApps":{ 
+         "indrajit.patil3@globalpay.com":[ 
+            { 
+               "name":"coolechoapp",
+               "apiProducts":[ 
+                  "EchoProduct"
+               ],
+               "callbackUrl":"http://weatherapp.com",
+               "scopes":[ 
+
+               ]
+            }
+         ],
+         "saurabh.sinha@globalpay.com":[ 
+            { 
+               "name":"oneechoapp",
+               "apiProducts":[ 
+                  "EchoProduct"
+               ],
+               "callbackUrl":"http://weatherapp.com",
+               "scopes":[ 
+
+               ]
+            }
+         ]
+      }
+   }
+}

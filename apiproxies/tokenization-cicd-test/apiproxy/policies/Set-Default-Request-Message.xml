@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Set-Default-Request-Message">
+    <DisplayName>Set Default Request Message</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <!-- <Header name="Content-Type">application/x-www-form-urlencoded</Header> -->
+            <Header name="x_global_transaction_id">{messageid}</Header>
+            <Header name="x_global_transaction_id_source">globalpay.ApigeeEdge</Header>
+            <!--   <Header name="X-Global-Transaction-ID">{messageid}</Header> -->
+            <Header name="X-IBM-Client-Id">{private.dp.username}</Header>
+            <Header name="X-IBM-Client-Secret">{private.dp.password}</Header>
+        </Headers>
+    </Set>
+    <Copy source="request">
+        <Headers>
+            <Header name="X-GP-AppAccess-Token"/>
+        </Headers>
+        <Payload/>
+        <Verb/>
+    </Copy>
+    <!--<AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable> -->
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>
