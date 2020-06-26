@@ -9,7 +9,6 @@
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
                             "value": "TEST"
-                            
                         }
                     ]
                 }
