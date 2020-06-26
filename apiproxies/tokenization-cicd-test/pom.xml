@@ -27,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>apigee</groupId>
     <artifactId>tokenization-cicd-test</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.3</version>
     <name>tokenization-cicd-test</name>
     <packaging>pom</packaging>
 
