@@ -1,110 +1,118 @@
-<!--
-
-    Copyright (C) 2014 Apigee Corporation
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>parent-pom</artifactId>
-        <groupId>apigee</groupId>
-        <version>1.0</version>
-        <relativePath>../shared-pom.xml</relativePath>
-    </parent>
-
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>apigee</groupId>
-    <artifactId>tokenization-cicd-test</artifactId>
-    <version>1.3.3</version>
-    <name>tokenization-cicd-test</name>
-    <packaging>pom</packaging>
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <build>
-              <plugins>
-                <plugin>
-                    <groupId>com.lazerycode.jmeter</groupId>
-                    <artifactId>jmeter-maven-plugin</artifactId>
-                    <version>1.8.1</version>
-                    <executions>
-                        <execution>
-                            <id>jmeter-tests</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>jmeter</goal>
-                            </goals>
-                            <configuration>
-								<echo message="Jmeter Testing for test env, This is still in progress - Indrajit Patil"/>
-                                <skipTests>${skipTests}</skipTests> <!-- default true -->
-                                <ignoreResultFailures>true</ignoreResultFailures>
-                                <suppressJMeterOutput>false</suppressJMeterOutput>
-                                    <propertiesUser>
-                                        <testData>tokenization-test.csv</testData>
-                                        <threadNum>5</threadNum>
-                                        <rampUpPeriodSecs>5</rampUpPeriodSecs>
-                                        <loopCount>2</loopCount>
-                                    </propertiesUser> 
-                            </configuration>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <testFilesDirectory>tests</testFilesDirectory>
-                        <testResultsTimestamp>false</testResultsTimestamp>
-                    </configuration>                    
-                    </plugin>
-                </plugins>
-            </build>            
-        </profile>        
-        <profile>
-            <id>test</id>
-            <build>
-              <plugins>
-                <plugin>
-                    <groupId>com.lazerycode.jmeter</groupId>
-                    <artifactId>jmeter-maven-plugin</artifactId>
-                    <version>1.8.1</version>
-                    <executions>
-                        <execution>
-                            <id>jmeter-tests</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>jmeter</goal>
-                            </goals>
-                            <configuration>
-                                <skipTests>${skipTests}</skipTests>
-                                <ignoreResultFailures>true</ignoreResultFailures>
-                                <suppressJMeterOutput>false</suppressJMeterOutput>
-                                    <propertiesUser> 
-                                        <testData>tokenization-prod.csv</testData>
-                                        <threadNum>5</threadNum>
-                                        <rampUpPeriodSecs>5</rampUpPeriodSecs>
-                                        <loopCount>2</loopCount>
-                                    </propertiesUser> 
-                            </configuration>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <testFilesDirectory>tests</testFilesDirectory>
-                        <testResultsTimestamp>false</testResultsTimestamp>
-                    </configuration>                    
-                    </plugin>
-                </plugins>
-            </build>            
-
-        </profile>
-    </profiles>
-</project>
+pipeline{
+    agent any
+    tools{
+        maven 'Jenkins-Maven'
+        jdk 'Jenkins-Java'
+    }
+    environment{
+	    USER_CREDS = credentials('ip_apigee_creds')
+    }
+    stages{
+        stage ('Initialize'){
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    echo "My creds are = ${USER_CREDS_USR} ${USER_CREDS_PSW}"
+                '''
+            }
+        }
+        stage('CheckOut & FindOut'){
+            steps{
+                script{
+                    cleanWs()
+                    dir("${WORKSPACE}")
+                    {
+                        checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6bbcd2a7-09d4-4f45-9f9a-688c9e2ea1d3', url: 'https://github.com/indrajitp/deletethis.git']]])
+                        sh '''
+   
+							ls -ltr
+							pwd
+                            git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
+                            if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
+                            then
+                                touch $WORKSPACE/AD_changed_files
+                            else
+                                git diff HEAD^ HEAD --name-only | awk -F'/' '{print $2}' | grep -vE "jenkinsfile|gitignore|zip" | sort -u > $WORKSPACE/AD_changed_files
+                                cat $WORKSPACE/AD_changed_files
+                                cat $WORKSPACE/AD_changed_files > ~/file_to_be_build
+                                cat ~/file_to_be_build
+				
+								#echo "gnf-api" > $WORKSPACE/AD_changed_files
+                                git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
+                            fi
+							pwd
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Build & SCAN'){
+            steps{
+                script{
+                    dir("${WORKSPACE}")
+                    {
+                        def service_count = sh(script: "cat $WORKSPACE/AD_changed_files | wc -l ", returnStdout: true).trim()
+                        println "service_count:$service_count"
+                        //def n = service_count.toInteger()
+                        if(service_count!=0)
+                        {
+                            for(i=0; i<service_count.toInteger(); i++)
+                            {
+                                //get service name and version number to take a maven build and deploy to artifactory
+                                def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
+				                //def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
+				                def version = readFile('$WORKSPACE/apiproxies/$service/pom.xml') =~ '<version>(.+?)</version>'
+                                version ? version[1][1] : null
+                                println "version:$version"
+                               
+                                    //Create a maven build for specific service
+                                    sh '''
+				    				echo "My creds are = $user_creds_usr and pass $user_creds_psw"
+                                    exit 0	
+									service=`cat $WORKSPACE/AD_changed_files | head -1`
+									echo 'Deploying a $service Proxy'
+									ls -ltr
+									cd $WORKSPACE/apiproxies/$service
+									#apigeelint -s apiproxies/$service/apiproxy -f html.js
+									cat
+									echo '*********************************************************'
+									echo ' Java Code Scan using JSLint   '
+									echo '*********************************************************'
+									#jslint '**/*.js'
+									#install -X -Ptest -D username=$ae_username -D password=$ae_password -D org=globalpay -Dapigee.config.options=create
+									cd target
+									pwd
+									echo "{$WORKSPACE}"
+									ls -ltr
+									'''
+									//Upload to artifactory
+                                    def server = Artifactory.server 'artifactory'
+                                    def uploadSpec = """{
+                                    "files": [
+                                        {
+                                            "pattern": "$WORKSPACE/apiproxies/${service}/target/*.zip",
+                                            "target": "libs-snapshot-local/com/gpi/apigee/${service}/${version}/"
+                                        }
+                                    ]
+                                    }"""
+                                    server.upload(uploadSpec)
+                                    def buildInfo = server.upload uploadSpec
+                                    server.publishBuildInfo buildInfo
+                         
+                               
+                               
+                                //remove recently built service name from build list
+                                sh '''
+                                    cd $WORKSPACE
+                                    sed -i '1d' $WORKSPACE/AD_changed_files
+                                '''
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+   
+}
