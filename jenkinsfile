@@ -1,9 +1,11 @@
 pipeline{
     agent any
-    tools
-    {
+    tools{
         maven 'Jenkins-Maven'
         jdk 'Jenkins-Java'
+    }
+    environment{
+	    user_creds = credentials('ip_apigee_creds')
     }
     stages{
         stage ('Initialize'){
@@ -11,6 +13,7 @@ pipeline{
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
+                    echo "My creds are = ${user_creds_usr} ${user_creds_psw}"
                 '''
             }
         }
@@ -20,7 +23,7 @@ pipeline{
                     cleanWs()
                     dir("${WORKSPACE}")
                     {
-                        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6bbcd2a7-09d4-4f45-9f9a-688c9e2ea1d3', url: 'https://github.com/indrajitp/deletethis.git']]])
+                        checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6bbcd2a7-09d4-4f45-9f9a-688c9e2ea1d3', url: 'https://github.com/indrajitp/deletethis.git']]])
                         sh '''
    
 							ls -ltr
@@ -58,24 +61,26 @@ pipeline{
                             {
                                 //get service name and version number to take a maven build and deploy to artifactory
                                 def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
-				def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
-				println "version:$version"
+				                //def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
+				                def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true, file: '$WORKSPACE/apiproxies/$service/pom.xml'
+                                println "version:$version"
                                
-                                 
+                                    withCredentials([usernamePassword(credentialsId: 'ip_apigee_creds', usernameVariable: 'ae_username', passwordVariable: 'ae_password')])
                                     //Create a maven build for specific service
                                     sh '''
-				    					
+				    					echo "My creds are = $ae_username and pass $ae_password"
+                                    					exit 0	
 									service=`cat $WORKSPACE/AD_changed_files | head -1`
 									echo 'Deploying a $service Proxy'
 									ls -ltr
 									cd $WORKSPACE/apiproxies/$service
-									apigeelint -s apiproxies/$service/apiproxy -f html.js
+									#apigeelint -s apiproxies/$service/apiproxy -f html.js
 									cat
 									echo '*********************************************************'
 									echo ' Java Code Scan using JSLint   '
 									echo '*********************************************************'
 									#jslint '**/*.js'
-									install -X -Ptest -D username=$ae_username -D password=$ae_password -D org=$ae_org -Dapigee.config.options=create
+									#install -X -Ptest -D username=$ae_username -D password=$ae_password -D org=globalpay -Dapigee.config.options=create
 									cd target
 									pwd
 									echo "{$WORKSPACE}"
