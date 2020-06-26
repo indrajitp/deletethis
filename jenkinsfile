@@ -1,9 +1,11 @@
 pipeline{
     agent any
-    tools
-    {
+    tools{
         maven 'Jenkins-Maven'
         jdk 'Jenkins-Java'
+    }
+    environment{
+	    user_creds = credentials('ip_apigee_creds')
     }
     stages{
         stage ('Initialize'){
@@ -11,6 +13,7 @@ pipeline{
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
+                    echo "My creds are = ${user_creds_usr} ${user_creds_psw}"
                 '''
             }
         }
@@ -58,8 +61,9 @@ pipeline{
                             {
                                 //get service name and version number to take a maven build and deploy to artifactory
                                 def service = sh(script: "cat $WORKSPACE/AD_changed_files | head -1", returnStdout: true).trim()
-				                def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
-				                println "version:$version"
+				                //def version = sh(script: "grep -oP '<version>(.*)</version>' $WORKSPACE/apiproxies/$service/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1", returnStdout: true).trim()
+				                def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true, file: '$WORKSPACE/apiproxies/$service/pom.xml'
+                                println "version:$version"
                                
                                     withCredentials([usernamePassword(credentialsId: 'ip_apigee_creds', usernameVariable: 'ae_username', passwordVariable: 'ae_password')])
                                     //Create a maven build for specific service
