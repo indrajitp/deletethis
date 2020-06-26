@@ -20,11 +20,11 @@ pipeline{
                     cleanWs()
                     dir("${WORKSPACE}")
                     {
-                        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6bbcd2a7-09d4-4f45-9f9a-688c9e2ea1d3', url: 'https://github.com/indrajitp/deletethis.git']]])
+                        checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6bbcd2a7-09d4-4f45-9f9a-688c9e2ea1d3', url: 'https://github.com/indrajitp/deletethis.git']]])
                         sh '''
    
-							ls -ltr
-							pwd
+				ls -ltr
+				pwd
                             git log -1 | grep -i commit | awk '{print $2}' > AD_latestcommitidfile
                             if [ `cat AD_latestcommitidfile` == `cat ~/AD_oldcommitidfile` ]
                             then
@@ -35,10 +35,10 @@ pipeline{
                                 cat $WORKSPACE/AD_changed_files > ~/file_to_be_build
                                 cat ~/file_to_be_build
 				
-								#echo "Above files are changed"
+				echo "Above files are changed"
                                 git log -1 | grep -i commit | awk '{print $2}' > ~/AD_oldcommitidfile
                             fi
-							pwd
+			    pwd
                         '''
                     }
                 }
