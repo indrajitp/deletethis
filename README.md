@@ -2,19 +2,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [Dillinger](https://dillinger.io/)*
 
-- [Enable Continuous Integration on Apigee Edge](#enable-continuous-integration-on-apigee-edge)
-- [Install Jenkins Plugins](#install-jenkins-plugins)
-      - [Hide passwords and sensitive data](#hide-passwords-and-sensitive-data)
-- [Install Maven](#install-maven)
-- [Create a new job](#create-a-new-job)
-  - [Setup Git Repo](#setup-git-repo)
-  - [Setup Build Trigger](#setup-build-trigger)
-- [Notifications](#notifications)
-- [Jenkins CLI](#jenkins-cli)
-- [Node.js Plugin and Grunt API Plugin ](#nodejs-plugin-and-grunt-api-plugin)
-- [Jenkins Pull Request Plugin Setup](#jenkins-pull-request-plugin-setup)
-- [Contributing](#contributing)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 Enable Continuous Integration on Apigee Edge
